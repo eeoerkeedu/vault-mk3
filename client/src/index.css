@@ -1,3 +1,15 @@
+root {
+	--vaultRasin: #272932;
+	--vaultBlue: #4d7ea8;
+	--vaultYellow: #ffc857;
+	--vaultPink: #f72585;
+	--vaultGreen: #a4f9c8;
+	--mainText: Signika,
+		Arial,
+		Helvetica,
+		sans-serif;
+}
+
 body {
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
