@@ -1,6 +1,18 @@
-body {
-	background: var(--vaultRasin);
+root {
+	--vaultRasin: #272932;
+	--vaultBlue: #4d7ea8;
+	--vaultYellow: #ffc857;
+	--vaultPink: #f72585;
+	--vaultGreen: #a4f9c8;
+	--mainText: Signika,
+		Arial,
+		Helvetica,
+		sans-serif;
 }
+
+/* body {
+	background: var(--vaultRasin);
+} */
 
 .App {
   text-align: center;
@@ -11,13 +23,24 @@ body {
 	font-family: Oribitron, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.spraypaint {
+	color: #f72585;
+	font-family: Rock Salt,
+		Oribitron,
+		Impact,
+		Haettenschweiler,
+		'Arial Narrow Bold',
+		sans-serif;
+	font-size: 2.5rem;
+}
+
 .akashi {
 	font-family: Akashi, 
 		Oribitron,
 		Impact,
 		Haettenschweiler,
 		'Arial Narrow Bold',
-		sans-serif;;
+		sans-serif;
 }
 
 .App-logo {
@@ -33,7 +56,7 @@ body {
 
 .App-header {
   background-color: var(--vaultRasin);
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
