@@ -10,9 +10,6 @@ root {
 		sans-serif;
 }
 
-/* body {
-	background: var(--vaultRasin);
-} */
 
 .App {
   text-align: center;
@@ -31,7 +28,7 @@ root {
 		Haettenschweiler,
 		'Arial Narrow Bold',
 		sans-serif;
-	font-size: 2.5rem;
+	font-size: 1.5rem;
 }
 
 .akashi {
@@ -67,6 +64,15 @@ root {
 
 .App-link {
   color: var(--vaultGreen);
+}
+
+.hidden {
+	display: none;
+}
+
+.bigGreen{
+	color: var(--vaultGreen);
+	font-size: 1.5rem;
 }
 
 @keyframes App-logo-spin {
