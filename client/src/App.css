@@ -8,12 +8,18 @@ root {
 		Arial,
 		Helvetica,
 		sans-serif;
+	--chakra-colors-vaultRasin: #272932;
+	--chakra-colors-vaultBlue: #4d7ea8;
+	--chakra-colors-vaultYellow: #ffc857;
+	--chakra-colors-vaultPink: #f72585;
+	--chakra-colors-vaultGreen: #a4f9c8;
 }
 
 
 .App {
   text-align: center;
   font-family: var(--mainText);
+  background-color: var(--vaultRasin);
 }
 
 .orbitron {
@@ -73,13 +79,4 @@ root {
 .bigGreen{
 	color: var(--vaultGreen);
 	font-size: 1.5rem;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
