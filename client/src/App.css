@@ -8,15 +8,18 @@ root {
 		Arial,
 		Helvetica,
 		sans-serif;
+	--chakra-colors-vaultRasin: #272932;
+	--chakra-colors-vaultBlue: #4d7ea8;
+	--chakra-colors-vaultYellow: #ffc857;
+	--chakra-colors-vaultPink: #f72585;
+	--chakra-colors-vaultGreen: #a4f9c8;
 }
 
-/* body {
-	background: var(--vaultRasin);
-} */
 
 .App {
   text-align: center;
   font-family: var(--mainText);
+  background-color: var(--vaultRasin);
 }
 
 .orbitron {
@@ -31,7 +34,7 @@ root {
 		Haettenschweiler,
 		'Arial Narrow Bold',
 		sans-serif;
-	font-size: 2.5rem;
+	font-size: 1.5rem;
 }
 
 .akashi {
@@ -69,11 +72,11 @@ root {
   color: var(--vaultGreen);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hidden {
+	display: none;
+}
+
+.bigGreen{
+	color: var(--vaultGreen);
+	font-size: 1.5rem;
 }

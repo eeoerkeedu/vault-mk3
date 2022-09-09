@@ -1,8 +1,24 @@
 import logo from "./assets/imgs/VaultLogoforsite.png";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 
-import { Container, Image, VStack, Text, Box, LinkBox } from "@chakra-ui/react";
+import {
+	Container,
+	Image,
+	VStack,
+	Box,
+	LinkBox,
+	Link,
+	Button,
+} from "@chakra-ui/react";
+// import { AnimatorGeneralProvider } from "@arwes/animation";
+import {
+	ArwesThemeProvider,
+	Button as ButtonArwes,
+	Text,
+	FrameHexagon,
+} from "@arwes/core";
 
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
@@ -18,13 +34,18 @@ const loadingText = [
 	"Establishing Connection......",
 	"Building Encryption......",
 	"Confirming User......",
-	"Welcome Mercenary.",
+	"Welcome Mercenary",
 ];
-const duration = { enter: 1000, exit: 1000 };
+
+let currentColor = vaultGreen;
+let hideME = "flex";
+
+const duration = { enter: 250, exit: 250 };
 
 function displayHome() {
 	const homeNav = document.getElementById("homeNav");
-	homeNav.style.display = "";
+	currentColor = vaultGreen;
+	hideME = "flex";
 }
 
 function App() {
@@ -32,37 +53,48 @@ function App() {
 
 	React.useEffect(() => {
 		const timeout = setTimeout(() => {
+			currentColor = vaultYellow;
 			const isLastIndex = childrenIndex === loadingText.length - 1;
 			const nextIndex = isLastIndex ? 4 : childrenIndex + 1;
 			setChildrenIndex(nextIndex);
 			if (nextIndex === 4) {
-				const textfield = document.getElementById("loadingField");
-				textfield.style.color = vaultGreen;
+				displayHome();
 			}
-			displayHome();
-		}, 1000);
+		}, 500);
+
 		return () => clearTimeout(timeout);
 	}, [childrenIndex]);
 
 	return (
-		<Container bg={vaultRasin} h="100vw" maxW="100vw" centerContent>
-			<VStack>
-				<Box className="App-header">
-					<Image src={logo} maxW="60%"></Image>
-					<h1 className="spraypaint">Make a Killing</h1>
-				</Box>
-				<Box color={vaultYellow}>
-					<Text
-						id="loadingField"
-						fontSize="3rem"
-						as="h1"
-						animator={{ duration }}
-					>
+		<Container bg={vaultRasin} height="100vw" maxW="100vw">
+			<Box className="App-header">
+				<Image src={logo} maxW="40%"></Image>
+				<h1 className="spraypaint">Make a Killing</h1>
+			</Box>
+
+			<Box color={currentColor} fontSize="2rem" padding="1rem" marginLeft="5%">
+				<ArwesThemeProvider>
+					<Text id="loadingField" as="h1" animator={{ duration }}>
 						{loadingText[childrenIndex]}
 					</Text>
-					<LinkBox id="homeNav" hidden></LinkBox>
-				</Box>
-			</VStack>
+				</ArwesThemeProvider>
+				<VStack id="homeNav" display={hideME} marginTop={4} align="stretch">
+					<ArwesThemeProvider>
+						<ButtonArwes palette="vaultGreen" FrameComponent={FrameHexagon}>
+							<Text>Character Builder</Text>
+						</ButtonArwes>
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							<Text>View Characters Roster</Text>
+						</ButtonArwes>
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							<Text>View Profile</Text>
+						</ButtonArwes>
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							<Text>Sign-Out</Text>
+						</ButtonArwes>
+					</ArwesThemeProvider>
+				</VStack>
+			</Box>
 		</Container>
 	);
 }
