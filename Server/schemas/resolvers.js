@@ -1,5 +1,4 @@
-import { User } from "../models";
+const { User } = require("../models");
 
 const resolvers = {};
-
-export default resolvers;
+module.exports = resolvers;
