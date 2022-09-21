@@ -89,6 +89,13 @@ function App() {
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 							<Text>View Profile</Text>
 						</ButtonArwes>
+						<ButtonArwes
+							palette={vaultGreen}
+							FrameComponent={FrameHexagon}
+							href="/"
+						>
+							<Text>Downloads</Text>
+						</ButtonArwes>
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 							<Text>Sign-Out</Text>
 						</ButtonArwes>
