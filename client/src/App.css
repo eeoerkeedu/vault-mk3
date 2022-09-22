@@ -13,8 +13,8 @@ root {
 	--chakra-colors-vaultYellow: #ffc857;
 	--chakra-colors-vaultPink: #f72585;
 	--chakra-colors-vaultGreen: #a4f9c8;
+	background: #272932;
 }
-
 
 .App {
   text-align: center;
