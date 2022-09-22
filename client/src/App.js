@@ -29,8 +29,8 @@ function App() {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Home />} />
-					{/* <Route path="/login" element={<Login />} />
-					<Route path="/downloads" element={<Downloads />} /> */}
+					{/* <Route path="/login" element={<Login />} /> */}
+					<Route path="/downloads" element={<Downloads />} />
 				</Routes>
 			</Router>
 		</ApolloProvider>

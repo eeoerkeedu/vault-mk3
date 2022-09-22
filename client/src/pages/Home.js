@@ -30,8 +30,6 @@ const loadingText = [
 	"Welcome Mercenary",
 ];
 
-const inTimer = setTimeout(() => {});
-
 function Home() {
 	const [childrenIndex, setChildrenIndex] = React.useState(0);
 	const duration = { enter: 5000, exit: 5000 };
@@ -48,8 +46,8 @@ function Home() {
 	// const { isOpen } = useDisclosure();
 
 	return (
-		<Container bg={vaultRasin} height="100vw" maxW="100vw">
-			<Box className="App-header">
+		<Container bg={vaultRasin} height="100vh" width="100%" maxWidth="100vw">
+			<Box paddingTop="3rem" className="App-header">
 				<Image src={logo} maxW="40%"></Image>
 				<h1 className="spraypaint">Make a Killing</h1>
 			</Box>
@@ -63,7 +61,7 @@ function Home() {
 				<ScaleFade initialScale={0.75} in={true}>
 					<ArwesThemeProvider>
 						<Link href="/" padding=".5rem">
-							<ButtonArwes palette="vaultGreen" FrameComponent={FrameHexagon}>
+							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Character Builder
 							</ButtonArwes>
 						</Link>
@@ -77,7 +75,7 @@ function Home() {
 								View Profile
 							</ButtonArwes>
 						</Link>
-						<Link href="/" padding=".5rem">
+						<Link href="/downloads" padding=".5rem">
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Downloads
 							</ButtonArwes>
