@@ -43,8 +43,6 @@ function Home() {
 		return () => clearTimeout(timeout);
 	}, [childrenIndex]);
 
-	// const { isOpen } = useDisclosure();
-
 	return (
 		<Container bg={vaultRasin} height="100vh" width="100%" maxWidth="100vw">
 			<Box paddingTop="3rem" className="App-header">
@@ -80,7 +78,7 @@ function Home() {
 								Downloads
 							</ButtonArwes>
 						</Link>
-						<Link href="/" padding=".5rem">
+						<Link href="/login" padding=".5rem">
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Sign-Out
 							</ButtonArwes>
