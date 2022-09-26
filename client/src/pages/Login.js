@@ -62,6 +62,7 @@ const LoginForm = () => {
 			if (!data) {
 				throw new Error("something went wrong!");
 			}
+			console.log("User Logged In");
 			Auth.login(data.login.token);
 			//
 		} catch (err) {
