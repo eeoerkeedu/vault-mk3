@@ -12,7 +12,16 @@ import {
 	Container,
 	Box,
 	Image,
+	InputGroup,
+	InputLeftAddon,
+	ErrorMessage,
 } from "@chakra-ui/react";
+import {
+	ArwesThemeProvider,
+	Button as ButtonArwes,
+	Text,
+	FrameHexagon,
+} from "@arwes/core";
 
 import "../App.css";
 
@@ -30,7 +39,7 @@ const LoginForm = () => {
 		emailField: "",
 		passwordField: "",
 	});
-	const [validated] = useState(false);
+	// const [validated] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
 	const [loginUser, { error }] = useMutation(LOGIN_USER);
 	const handleInputChange = (event) => {
@@ -65,46 +74,97 @@ const LoginForm = () => {
 		});
 	};
 	return (
-		<Container bg={vaultRasin} height="100vh" width="100%" maxWidth="100vw">
-			<Box paddingTop="3rem" className="App-header">
-				<Image src={logo} maxW="40%"></Image>
+		<Container
+			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+			bg={vaultRasin}
+			height="100vh"
+			width="100%"
+			maxWidth="100vw"
+			centerContent
+		>
+			<Box paddingTop="2rem" className="App-header">
+				<Image src={logo} maxW="30%"></Image>
 				<h1 className="spraypaint">Make a Killing</h1>
 			</Box>
-			<div className="loginContainer">
-				<FormControl isRequired>
-					<FormHelperText>
-						Please enter Mercenary credentials to log in:
-					</FormHelperText>
-					<Input
-						size="md"
-						type="email"
-						name="emailField"
-						placeholder="EMAIL"
-						onChange={handleInputChange}
-						value={userFormData.email}
-					/>
-					<FormErrorMessage type="invalid">Email is required.</FormErrorMessage>
-				</FormControl>
-				<FormControl isRequired>
-					<Input
-						size="md"
-						type="password"
-						name="passwordField"
-						placeholder="PASSWORD"
-						onChange={handleInputChange}
-						value={userFormData.password}
-					/>
-					<FormErrorMessage>Password is required!</FormErrorMessage>
-				</FormControl>
-				<Button
-					className="loginbtn"
-					variant="success"
-					type="submit"
-					disabled={!(userFormData.email && userFormData.password)}
+			<ArwesThemeProvider>
+				<Box
+					mt="2rem"
+					pr="2rem"
+					pl="2rem"
+					pb="2rem"
+					borderWidth="2px"
+					borderColor={vaultYellow}
+					borderRadius="15px"
+					maxW="80%"
+					background-color="#fff"
+					boxShadow="0px 0px 40px 5px #4d7ea8"
 				>
-					Log In
-				</Button>
-			</div>
+					<form onSubmit={handleFormSubmit}>
+						<FormControl isRequired>
+							<FormHelperText
+								p=".2rem"
+								mb=".2rem"
+								fontSize="1.5rem"
+								color={vaultYellow}
+							>
+								Provide Credentials for Access:
+							</FormHelperText>
+							<InputGroup size="md">
+								{/* <FormLabel color={vaultYellow}>Email:</FormLabel> */}
+								<InputLeftAddon
+									color={vaultYellow}
+									borderColor={vaultBlue}
+									bg={vaultRasin}
+									children="Email:"
+								/>
+								<Input
+									color={vaultYellow}
+									borderColor={vaultBlue}
+									type="email"
+									name="emailField"
+									focusBorderColor={vaultBlue}
+									// placeholder="EMAIL"
+									onChange={handleInputChange}
+									value={userFormData.email}
+								/>
+							</InputGroup>
+						</FormControl>
+						<FormControl isRequired isInvalid={showAlert} mb="1rem">
+							<InputGroup pt=".5rem" size="md">
+								{/* <FormLabel color={vaultYellow}>Password:</FormLabel> */}
+								<InputLeftAddon
+									color={vaultYellow}
+									borderColor={vaultBlue}
+									bg={vaultRasin}
+									children="Password:"
+								/>
+								<Input
+									color={vaultYellow}
+									borderColor={vaultBlue}
+									type="password"
+									name="passwordField"
+									focusBorderColor={vaultBlue}
+									autoComplete="true"
+									onChange={handleInputChange}
+									value={userFormData.password}
+								/>
+								<FormErrorMessage color={vaultPink}>
+									Does not match Vault Records
+								</FormErrorMessage>
+							</InputGroup>
+						</FormControl>
+
+						<ButtonArwes
+							mt="2rem"
+							type="submit"
+							palette={vaultGreen}
+							FrameComponent={FrameHexagon}
+						>
+							Login
+						</ButtonArwes>
+					</form>
+				</Box>
+			</ArwesThemeProvider>
 		</Container>
 	);
 };
