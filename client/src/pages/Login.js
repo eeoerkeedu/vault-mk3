@@ -7,7 +7,6 @@ import {
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
-	Button,
 	Input,
 	Container,
 	Box,
@@ -19,7 +18,6 @@ import {
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
-	Text,
 	FrameHexagon,
 } from "@arwes/core";
 
@@ -34,39 +32,45 @@ const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 	const [userFormData, setUserFormData] = useState({
-		emailField: "",
-		passwordField: "",
+		email: "",
+		password: "",
 	});
 	// const [validated] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
-	const [loginUser, { error }] = useMutation(LOGIN_USER);
+	const [login] = useMutation(LOGIN_USER);
+
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setUserFormData({ ...userFormData, [name]: value });
 	};
+
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		console.log(userFormData);
 		// check if form has everything (as per react-bootstrap docs)
-		const form = event.currentTarget;
-		if (form.checkValidity() === false) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
+		// const form = event.currentTarget;
+		// // console.log(form);
+		// if (form.checkValidity() === false) {
+		// 	console.log("Data Missing - Form Validity Check");
+		// 	event.preventDefault();
+		// 	event.stopPropagation();
+		// }
 		try {
-			const { data } = await loginUser({
+			console.log("Recieving Data from User Form");
+			const { data } = await login({
 				variables: { ...userFormData },
 			});
+			console.log(data);
 			if (!data) {
 				throw new Error("something went wrong!");
 			}
-			console.log("User Logged In");
+			console.log("User Authenticated");
 			Auth.login(data.login.token);
 			//
-		} catch (err) {
-			console.error(err);
+		} catch (error) {
+			console.error(error);
 			setShowAlert(true);
 		}
 		setUserFormData({
@@ -108,7 +112,7 @@ const LoginForm = () => {
 								fontSize="1.5rem"
 								color={vaultYellow}
 							>
-								Provide Credentials for Access:
+								Provide Credentials for Records Access:
 							</FormHelperText>
 							<InputGroup size="md">
 								{/* <FormLabel color={vaultYellow}>Email:</FormLabel> */}
@@ -122,7 +126,7 @@ const LoginForm = () => {
 									color={vaultYellow}
 									borderColor={vaultBlue}
 									type="email"
-									name="emailField"
+									name="email"
 									focusBorderColor={vaultBlue}
 									// placeholder="EMAIL"
 									onChange={handleInputChange}
@@ -143,16 +147,16 @@ const LoginForm = () => {
 									color={vaultYellow}
 									borderColor={vaultBlue}
 									type="password"
-									name="passwordField"
+									name="password"
 									focusBorderColor={vaultBlue}
 									autoComplete="true"
 									onChange={handleInputChange}
 									value={userFormData.password}
 								/>
-								<FormErrorMessage color={vaultPink}>
-									Does not match Vault Records
-								</FormErrorMessage>
 							</InputGroup>
+							<FormErrorMessage color={vaultPink}>
+								Credentials do not match Vault Records
+							</FormErrorMessage>
 						</FormControl>
 
 						<ButtonArwes

@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
+const bcrypt = require("bcrypt");
 
 const resolvers = {
 	Query: {
@@ -22,7 +23,7 @@ const resolvers = {
 			const user = await User.findOne({ email });
 
 			if (!user) {
-				throw new AuthenticationError("No user found with this email address");
+				throw new AuthenticationError("Incorrect credentials");
 			}
 
 			const correctPw = await user.isCorrectPassword(password);
@@ -34,6 +35,15 @@ const resolvers = {
 			const token = signToken(user);
 
 			return { token, user };
+		},
+
+		updateUser: async (parent, { userId, username, email, password }) => {
+			const userData = await User.findOneAndUpdate(
+				{ _id: userId },
+				{ username: username, email: email, password: password },
+				{ new: true }
+			);
+			return userData;
 		},
 	},
 };
