@@ -50,13 +50,13 @@ const LoginForm = (props) => {
 		event.preventDefault();
 		console.log(userFormData);
 		// check if form has everything (as per react-bootstrap docs)
-		// const form = event.currentTarget;
-		// // console.log(form);
-		// if (form.checkValidity() === false) {
-		// 	console.log("Data Missing - Form Validity Check");
-		// 	event.preventDefault();
-		// 	event.stopPropagation();
-		// }
+		const form = event.currentTarget;
+		// console.log(form);
+		if (form.checkValidity() === false) {
+			console.log("Data Missing - Form Validity Check");
+			event.preventDefault();
+			event.stopPropagation();
+		}
 		try {
 			console.log("Recieving Data from User Form");
 			const { data } = await login({
@@ -69,8 +69,8 @@ const LoginForm = (props) => {
 			console.log("User Authenticated");
 			Auth.login(data.login.token);
 			//
-		} catch (error) {
-			console.error(error);
+		} catch (err) {
+			console.error(err);
 			setShowAlert(true);
 		}
 		setUserFormData({
