@@ -3,7 +3,6 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutation";
 import {
 	FormControl,
-	Form,
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
@@ -11,9 +10,23 @@ import {
 	Container,
 	Box,
 	Image,
-	InputGroup,
-	InputLeftAddon,
-	ErrorMessage,
+	// InputGroup,
+	// InputLeftAddon,
+	// ErrorMessage,
+	Checkbox,
+	CheckboxGroup,
+	Link,
+	VStack,
+	Modal,
+	ModalContent,
+	ModalCloseButton,
+	ModalOverlay,
+	ModalBody,
+	ModalFooter,
+	ModalHeader,
+	useDisclosure,
+	Button,
+	HStack,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -33,6 +46,11 @@ const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
 const LoginForm = (props) => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	const initialRef = React.useRef(null);
+	const finalRef = React.useRef(null);
+
 	const [userFormData, setUserFormData] = useState({
 		email: "",
 		password: "",
@@ -91,6 +109,7 @@ const LoginForm = (props) => {
 				<Image src={logo} maxW="30%"></Image>
 				<h1 className="spraypaint">Make a Killing</h1>
 			</Box>
+
 			<ArwesThemeProvider>
 				<Box
 					mt="2rem"
@@ -114,46 +133,46 @@ const LoginForm = (props) => {
 							>
 								Provide Credentials for Records Access:
 							</FormHelperText>
-							<InputGroup size="md">
-								{/* <FormLabel color={vaultYellow}>Email:</FormLabel> */}
-								<InputLeftAddon
+							{/* <InputGroup size="md"> */}
+							<FormLabel color={vaultYellow}>Email:</FormLabel>
+							{/* <InputLeftAddon
 									color={vaultYellow}
 									borderColor={vaultBlue}
 									bg={vaultRasin}
 									children="Email:"
-								/>
-								<Input
-									color={vaultYellow}
-									borderColor={vaultBlue}
-									type="email"
-									name="email"
-									focusBorderColor={vaultBlue}
-									// placeholder="EMAIL"
-									onChange={handleInputChange}
-									value={userFormData.email}
-								/>
-							</InputGroup>
+								/> */}
+							<Input
+								color={vaultYellow}
+								borderColor={vaultBlue}
+								type="email"
+								name="email"
+								focusBorderColor={vaultYellow}
+								// placeholder="EMAIL"
+								onChange={handleInputChange}
+								value={userFormData.email}
+							/>
+							{/* </InputGroup> */}
 						</FormControl>
-						<FormControl isRequired isInvalid={showAlert} mb="1rem">
-							<InputGroup pt=".5rem" size="md">
-								{/* <FormLabel color={vaultYellow}>Password:</FormLabel> */}
-								<InputLeftAddon
+						<FormControl isRequired isInvalid={showAlert} mt="1rem" mb="1rem">
+							{/* <InputGroup pt=".5rem" size="md"> */}
+							<FormLabel color={vaultYellow}>Password:</FormLabel>
+							{/* <InputLeftAddon
 									color={vaultYellow}
 									borderColor={vaultBlue}
 									bg={vaultRasin}
 									children="Password:"
-								/>
-								<Input
-									color={vaultYellow}
-									borderColor={vaultBlue}
-									type="password"
-									name="password"
-									focusBorderColor={vaultBlue}
-									autoComplete="true"
-									onChange={handleInputChange}
-									value={userFormData.password}
-								/>
-							</InputGroup>
+								/> */}
+							<Input
+								color={vaultYellow}
+								borderColor={vaultBlue}
+								type="password"
+								name="password"
+								focusBorderColor={vaultYellow}
+								autoComplete="true"
+								onChange={handleInputChange}
+								value={userFormData.password}
+							/>
+							{/* </InputGroup> */}
 							<FormErrorMessage color={vaultPink}>
 								Credentials do not match Vault Records
 							</FormErrorMessage>
@@ -169,6 +188,105 @@ const LoginForm = (props) => {
 						</ButtonArwes>
 					</form>
 				</Box>
+
+				<HStack mt="1rem" paddingTop=".5rem" spacing="2rem">
+					<ButtonArwes
+						onClick={onOpen}
+						palette={vaultGreen}
+						FrameComponent={FrameHexagon}
+					>
+						Register
+					</ButtonArwes>
+					<Link href="/" padding=".5rem">
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							Return Home
+						</ButtonArwes>
+					</Link>
+				</HStack>
+
+				<Modal
+					initialFocusRef={initialRef}
+					finalFocusRef={finalRef}
+					isOpen={isOpen}
+					onClose={onClose}
+				>
+					<ModalOverlay />
+					<ModalContent
+						fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+						bg={vaultYellow}
+					>
+						<ModalHeader color={vaultRasin} fontWeight="black">
+							Create an account
+						</ModalHeader>
+						<ModalCloseButton />
+						<ModalBody color={vaultRasin} pb={6}>
+							<form>
+								<FormControl isRequired>
+									<FormLabel fontWeight="black">Email:</FormLabel>
+									<Input
+										color={vaultRasin}
+										borderColor={vaultBlue}
+										ref={initialRef}
+										placeholder="Email"
+										name="newEmail"
+									/>
+								</FormControl>
+
+								<FormControl mt={4} isRequired>
+									<FormLabel fontWeight="black">Username:</FormLabel>
+									<Input
+										color={vaultRasin}
+										borderColor={vaultBlue}
+										placeholder="Username"
+										name="newUsername"
+									/>
+								</FormControl>
+
+								<FormControl mt={4} isRequired>
+									<FormLabel fontWeight="black">Password:</FormLabel>
+									<Input
+										color={vaultRasin}
+										borderColor={vaultBlue}
+										placeholder="Password"
+										name="newPassword"
+									/>
+								</FormControl>
+
+								<FormControl mt={4}>
+									<Checkbox
+										color={vaultRasin}
+										colorScheme="blackAlpha"
+										defaultChecked
+										name="joinMailing"
+									>
+										Join the Team Rex Games Email List
+									</Checkbox>
+								</FormControl>
+							</form>
+						</ModalBody>
+
+						<ModalFooter>
+							<Button
+								bg={vaultYellow}
+								color={vaultRasin}
+								borderWidth="0px"
+								colorScheme="blackAlpha"
+								mr={3}
+							>
+								Save
+							</Button>
+							<Button
+								bg={vaultYellow}
+								color={vaultRasin}
+								borderWidth="0px"
+								colorScheme="blackAlpha"
+								onClick={onClose}
+							>
+								Cancel
+							</Button>
+						</ModalFooter>
+					</ModalContent>
+				</Modal>
 			</ArwesThemeProvider>
 		</Container>
 	);
