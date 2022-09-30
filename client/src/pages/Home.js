@@ -15,6 +15,7 @@ import {
 	Text,
 	FrameHexagon,
 } from "@arwes/core";
+import Auth from "../utils/auth";
 
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
@@ -43,14 +44,32 @@ function Home() {
 		return () => clearTimeout(timeout);
 	}, [childrenIndex]);
 
+	const logout = (event) => {
+		event.preventDefault();
+		Auth.logout();
+	};
+
 	return (
-		<Container bg={vaultRasin} height="100vh" width="100%" maxWidth="100vw">
+		<Container
+			bg={vaultRasin}
+			height="100vh"
+			width="100%"
+			maxWidth="100vw"
+			centerContent
+			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+		>
 			<Box paddingTop="3rem" className="App-header">
 				<Image src={logo} maxW="40%"></Image>
 				<h1 className="spraypaint">Make a Killing</h1>
 			</Box>
 
-			<Box color={vaultYellow} fontSize="2rem" padding="1rem" marginLeft="5%">
+			<Box
+				flex="1"
+				color={vaultYellow}
+				fontSize="2rem"
+				padding="1rem"
+				marginLeft="5%"
+			>
 				<ArwesThemeProvider>
 					<Text id="loadingField" as="h1" animator={{ duration }}>
 						{loadingText[childrenIndex]}
@@ -68,21 +87,29 @@ function Home() {
 								View Characters Roster
 							</ButtonArwes>
 						</Link>
-						<Link href="/" padding=".5rem">
-							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-								View Profile
-							</ButtonArwes>
-						</Link>
 						<Link href="/downloads" padding=".5rem">
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Downloads
 							</ButtonArwes>
 						</Link>
-						<Link href="/login" padding=".5rem">
+						<Link href="/" padding=".5rem">
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-								Sign-Out
+								View Profile
 							</ButtonArwes>
 						</Link>
+						{Auth.loggedIn() ? (
+							<Link href="/" padding=".5rem" onClick={logout}>
+								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+									Logout
+								</ButtonArwes>
+							</Link>
+						) : (
+							<Link href="/login" padding=".5rem">
+								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+									Login
+								</ButtonArwes>
+							</Link>
+						)}
 					</ArwesThemeProvider>
 				</ScaleFade>
 			</Box>

@@ -45,7 +45,7 @@ const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
-const LoginForm = (props) => {
+const LoginForm = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const initialRef = React.useRef(null);
@@ -222,6 +222,16 @@ const LoginForm = (props) => {
 						<ModalBody color={vaultRasin} pb={6}>
 							<form>
 								<FormControl isRequired>
+									<FormLabel fontWeight="black">Username:</FormLabel>
+									<Input
+										color={vaultRasin}
+										borderColor={vaultBlue}
+										placeholder="Username"
+										name="newUsername"
+									/>
+								</FormControl>
+
+								<FormControl mt={4} isRequired>
 									<FormLabel fontWeight="black">Email:</FormLabel>
 									<Input
 										color={vaultRasin}
@@ -229,16 +239,6 @@ const LoginForm = (props) => {
 										ref={initialRef}
 										placeholder="Email"
 										name="newEmail"
-									/>
-								</FormControl>
-
-								<FormControl mt={4} isRequired>
-									<FormLabel fontWeight="black">Username:</FormLabel>
-									<Input
-										color={vaultRasin}
-										borderColor={vaultBlue}
-										placeholder="Username"
-										name="newUsername"
 									/>
 								</FormControl>
 
