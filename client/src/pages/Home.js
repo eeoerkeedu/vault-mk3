@@ -1,17 +1,25 @@
 import logo from "../assets/imgs/VaultLogoforsite.png";
 import React from "react";
-// import { useQuery } from "@apollo/client";
-// import { useParams } from "react-router-dom";
+import Auth from "../utils/auth";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
+
 import "../App.css";
-import { Container, Image, Box, ScaleFade, Link } from "@chakra-ui/react";
+import {
+	Box,
+	Container,
+	Image,
+	Link,
+	ScaleFade,
+	Tooltip,
+} from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
-	Text,
 	FrameHexagon,
+	Text,
 } from "@arwes/core";
-
-import Auth from "../utils/auth";
 
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
@@ -19,14 +27,16 @@ const vaultYellow = "#ffc857";
 const vaultGreen = "#a4f9c8";
 // const vaultPink = "#f72585";
 
-const user = JSON.parse(localStorage.getItem("vaultUsername"));
+const username = JSON.parse(localStorage.getItem("vaultUsername"));
 // console.log(user);
 const loadingText = [
 	"Loading App......",
 	"Establishing Connection......",
 	"Building Encryption......",
 	"Confirming User......",
-	`Welcome Mercenary --- ${Auth.loggedIn() ? user : ""}`,
+	`Welcome Mercenary ${
+		Auth.loggedIn() ? `--- ${username}` : "Please Register or Login"
+	}`,
 ];
 
 function Home() {
@@ -47,13 +57,25 @@ function Home() {
 		Auth.logout();
 	};
 
+	let { username } = useParams();
+	// console.log(username);
+
+	const { loading, data, error } = useQuery(QUERY_USER, {
+		variables: { username: username },
+	});
+	// if (loading) return "Loading...";
+	// if (error) return `Error! ${error.message}`;
+
+	const user = data?.user || [];
+	// console.log(user);
+
 	return (
 		<Container
 			bg={vaultRasin}
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
-			centerContent
+			centercontent="true"
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
 		>
 			<Box paddingTop="3rem" className="App-header">
@@ -75,32 +97,52 @@ function Home() {
 				</ArwesThemeProvider>
 				<ScaleFade initialScale={0.75} in={true}>
 					<ArwesThemeProvider>
-						<Link href="/" padding=".5rem">
-							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+						<Link padding=".5rem">
+							<ButtonArwes
+								disabled
+								palette={vaultGreen}
+								FrameComponent={FrameHexagon}
+							>
 								Character Builder
 							</ButtonArwes>
 						</Link>
-						<Link href="/" padding=".5rem">
-							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-								View Characters Roster
-							</ButtonArwes>
-						</Link>
+						{Auth.loggedIn() ? (
+							<Link padding=".5rem">
+								<ButtonArwes
+									disabled
+									palette={vaultGreen}
+									FrameComponent={FrameHexagon}
+								>
+									View Characters Roster
+								</ButtonArwes>
+							</Link>
+						) : (
+							<></>
+						)}
 						<Link href="/downloads" padding=".5rem">
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Downloads
 							</ButtonArwes>
 						</Link>
-						<Link href="/" padding=".5rem">
-							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-								View Profile
-							</ButtonArwes>
-						</Link>
 						{Auth.loggedIn() ? (
-							<Link href="/" padding=".5rem" onClick={logout}>
-								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-									Logout
-								</ButtonArwes>
-							</Link>
+							<>
+								<Link href={`/profile/${username}`} padding=".5rem">
+									<ButtonArwes
+										palette={vaultGreen}
+										FrameComponent={FrameHexagon}
+									>
+										View Profile
+									</ButtonArwes>
+								</Link>
+								<Link href="/" padding=".5rem" onClick={logout}>
+									<ButtonArwes
+										palette={vaultGreen}
+										FrameComponent={FrameHexagon}
+									>
+										Logout
+									</ButtonArwes>
+								</Link>
+							</>
 						) : (
 							<Link href="/login" padding=".5rem">
 								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER, ADD_USER } from "../utils/mutation";
+import Auth from "../utils/auth";
 import {
 	FormControl,
 	FormLabel,
@@ -36,14 +37,14 @@ import {
 
 import "../App.css";
 
-import Auth from "../utils/auth";
-
 import logo from "../assets/imgs/VaultLogoforsite.png";
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
+
+const username = JSON.parse(localStorage.getItem("vaultUsername"));
 
 const LoginForm = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -250,7 +251,7 @@ const LoginForm = () => {
 					>
 						Register
 					</ButtonArwes>
-					<Link href="/" padding=".5rem">
+					<Link href={Auth.loggedIn() ? `/${username}` : "/"} padding=".5rem">
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 							Return Home
 						</ButtonArwes>

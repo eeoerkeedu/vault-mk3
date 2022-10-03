@@ -2,6 +2,7 @@ import BnWCS from "../assets/imgs/BnWfrontpage.PNG";
 import ColorCS from "../assets/imgs/frontpage.PNG";
 
 import React from "react";
+import Auth from "../utils/auth";
 import "../App.css";
 import {
 	Container,
@@ -24,6 +25,8 @@ const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
+
+const username = JSON.parse(localStorage.getItem("vaultUsername"));
 
 function Downloads() {
 	return (
@@ -56,7 +59,7 @@ function Downloads() {
 					</Link>
 				</ArwesThemeProvider>
 				<ArwesThemeProvider>
-					<Link href="/" padding=".5rem">
+					<Link href={Auth.loggedIn() ? `/${username}` : "/"} padding=".5rem">
 						<VStack>
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Return Home
