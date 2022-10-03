@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutation";
+import { LOGIN_USER, ADD_USER } from "../utils/mutation";
 import {
 	FormControl,
 	FormLabel,
@@ -85,8 +85,11 @@ const LoginForm = () => {
 				throw new Error("something went wrong!");
 			}
 			console.log("User Authenticated");
+			localStorage.setItem(
+				"vaultUsername",
+				JSON.stringify(data.login.user.username)
+			);
 			Auth.login(data.login.token);
-			//
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
@@ -96,6 +99,56 @@ const LoginForm = () => {
 			password: "",
 		});
 	};
+
+	const [showAlertRegister, setShowAlertRegister] = useState(false);
+	const [addUser] = useMutation(ADD_USER);
+	const [newUserFormData, setNewUserFormData] = useState({
+		username: "",
+		email: "",
+		password: "",
+	});
+	const handleRegistrationChange = (event) => {
+		const { name, value } = event.target;
+		setNewUserFormData({ ...newUserFormData, [name]: value });
+	};
+
+	const handleAddUser = async (event) => {
+		event.preventDefault();
+		console.log(newUserFormData);
+
+		const form = event.currentTarget;
+
+		if (form.checkValidity() === false) {
+			console.log("Data Missing - Form Validity Check");
+			event.preventDefault();
+			event.stopPropagation();
+		}
+
+		try {
+			console.log("Recieving Data from Registration Form");
+			const { data } = await addUser({
+				variables: { ...newUserFormData },
+			});
+			console.log(data);
+			if (!data) {
+				throw new Error("something went wrong!");
+			}
+			console.log("User Registered");
+
+			// Auth.login(data.login.token);
+			//
+		} catch (err) {
+			console.error(err);
+			setShowAlertRegister(true);
+		}
+		onClose();
+		setNewUserFormData({
+			username: "",
+			email: "",
+			password: "",
+		});
+	};
+
 	return (
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
@@ -216,43 +269,57 @@ const LoginForm = () => {
 						bg={vaultYellow}
 					>
 						<ModalHeader color={vaultRasin} fontWeight="black">
-							Create an account
+							Create a Vault account
 						</ModalHeader>
 						<ModalCloseButton />
-						<ModalBody color={vaultRasin} pb={6}>
-							<form>
-								<FormControl isRequired>
+						<form onSubmit={handleAddUser}>
+							<ModalBody color={vaultRasin} pb={6}>
+								<FormControl isRequired isInvalid={showAlertRegister}>
 									<FormLabel fontWeight="black">Username:</FormLabel>
 									<Input
 										color={vaultRasin}
 										borderColor={vaultBlue}
 										placeholder="Username"
-										name="newUsername"
+										type="input"
+										name="username"
+										value={newUserFormData.username}
+										onChange={handleRegistrationChange}
 									/>
 								</FormControl>
 
-								<FormControl mt={4} isRequired>
+								<FormControl mt={4} isRequired isInvalid={showAlertRegister}>
 									<FormLabel fontWeight="black">Email:</FormLabel>
 									<Input
 										color={vaultRasin}
 										borderColor={vaultBlue}
 										ref={initialRef}
 										placeholder="Email"
-										name="newEmail"
+										type="email"
+										name="email"
+										value={newUserFormData.email}
+										onChange={handleRegistrationChange}
 									/>
 								</FormControl>
 
-								<FormControl mt={4} isRequired>
+								<FormControl mt={4} isRequired isInvalid={showAlertRegister}>
 									<FormLabel fontWeight="black">Password:</FormLabel>
 									<Input
 										color={vaultRasin}
 										borderColor={vaultBlue}
 										placeholder="Password"
-										name="newPassword"
+										type="password"
+										// autoComplete="true"
+										name="password"
+										onChange={handleRegistrationChange}
+										value={newUserFormData.password}
 									/>
+									<FormErrorMessage color={vaultPink}>
+										Something Went Wrong! Please ensure info fields are properly
+										filled out.
+									</FormErrorMessage>
 								</FormControl>
 
-								<FormControl mt={4}>
+								{/* <FormControl mt={4}>
 									<Checkbox
 										color={vaultRasin}
 										colorScheme="blackAlpha"
@@ -261,30 +328,31 @@ const LoginForm = () => {
 									>
 										Join the Team Rex Games Email List
 									</Checkbox>
-								</FormControl>
-							</form>
-						</ModalBody>
+								</FormControl> */}
+							</ModalBody>
 
-						<ModalFooter>
-							<Button
-								bg={vaultYellow}
-								color={vaultRasin}
-								borderWidth="0px"
-								colorScheme="blackAlpha"
-								mr={3}
-							>
-								Save
-							</Button>
-							<Button
-								bg={vaultYellow}
-								color={vaultRasin}
-								borderWidth="0px"
-								colorScheme="blackAlpha"
-								onClick={onClose}
-							>
-								Cancel
-							</Button>
-						</ModalFooter>
+							<ModalFooter>
+								<Button
+									bg={vaultYellow}
+									color={vaultRasin}
+									borderWidth="0px"
+									colorScheme="blackAlpha"
+									type="submit"
+									mr={3}
+								>
+									Save
+								</Button>
+								<Button
+									bg={vaultYellow}
+									color={vaultRasin}
+									borderWidth="0px"
+									colorScheme="blackAlpha"
+									onClick={onClose}
+								>
+									Cancel
+								</Button>
+							</ModalFooter>
+						</form>
 					</ModalContent>
 				</Modal>
 			</ArwesThemeProvider>
