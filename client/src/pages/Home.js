@@ -1,34 +1,32 @@
 import logo from "../assets/imgs/VaultLogoforsite.png";
-import React, { useState, useEffect } from "react";
+import React from "react";
+// import { useQuery } from "@apollo/client";
+// import { useParams } from "react-router-dom";
 import "../App.css";
-import {
-	Container,
-	Image,
-	VStack,
-	Box,
-	ScaleFade,
-	Link,
-} from "@chakra-ui/react";
+import { Container, Image, Box, ScaleFade, Link } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
 	Text,
 	FrameHexagon,
 } from "@arwes/core";
+
 import Auth from "../utils/auth";
 
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
-const vaultBlue = "#4d7ea8";
+// const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
-const vaultPink = "#f72585";
+// const vaultPink = "#f72585";
 
+const user = JSON.parse(localStorage.getItem("vaultUsername"));
+// console.log(user);
 const loadingText = [
 	"Loading App......",
 	"Establishing Connection......",
 	"Building Encryption......",
 	"Confirming User......",
-	"Welcome Mercenary",
+	`Welcome Mercenary --- ${Auth.loggedIn() ? user : ""}`,
 ];
 
 function Home() {
