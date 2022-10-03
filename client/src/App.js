@@ -9,11 +9,15 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Auth from "./utils/auth";
+
 //imported routes
 import Home from "./pages/Home";
+// import MercHome from "./pages/MercHome";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import Downloads from "./pages/Downloads";
+import UserProfile from "./pages/UserProfile";
 
 // import NavbarComp from "./componets/Navbar/Navbar";
 // import Footer from "./componets/Footer/Footer";
@@ -47,10 +51,15 @@ function App() {
 		<ApolloProvider client={client}>
 			<Router>
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route
+						path={Auth.loggedIn() ? "/:username" : "/"}
+						element={<Home />}
+					/>
+					{/* <Route path="/:id" element={<MercHome />} /> */}
 					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
+					{/* <Route path="/register" element={<Register />} /> */}
 					<Route path="/downloads" element={<Downloads />} />
+					<Route path="/profile/:username" element={<UserProfile />} />
 				</Routes>
 			</Router>
 		</ApolloProvider>

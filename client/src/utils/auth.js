@@ -35,7 +35,8 @@ class AuthService {
 	login(idToken) {
 		// Saves user token to localStorage
 		localStorage.setItem("id_token", idToken);
-		window.location.assign("/");
+		const username = JSON.parse(localStorage.getItem("vaultUsername"));
+		window.location.assign(`/${username}`);
 	}
 
 	logout() {
