@@ -1,9 +1,9 @@
 import logo from "../assets/imgs/VaultLogoforsite.png";
 import React from "react";
 import Auth from "../utils/auth";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+// import { useParams } from "react-router-dom";
+// import { useQuery } from "@apollo/client";
+// import { QUERY_USER } from "../utils/queries";
 
 import "../App.css";
 import {
@@ -56,18 +56,6 @@ function Home() {
 		event.preventDefault();
 		Auth.logout();
 	};
-
-	let { username } = useParams();
-	// console.log(username);
-
-	const { loading, data, error } = useQuery(QUERY_USER, {
-		variables: { username: username },
-	});
-	// if (loading) return "Loading...";
-	// if (error) return `Error! ${error.message}`;
-
-	const user = data?.user || [];
-	// console.log(user);
 
 	return (
 		<Container
