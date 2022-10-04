@@ -44,7 +44,7 @@ const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
-const username = JSON.parse(localStorage.getItem("vaultUsername"));
+const loggedInUsername = JSON.parse(localStorage.getItem("vaultUsername"));
 
 const LoginForm = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -251,7 +251,10 @@ const LoginForm = () => {
 					>
 						Register
 					</ButtonArwes>
-					<Link href={Auth.loggedIn() ? `/${username}` : "/"} padding=".5rem">
+					<Link
+						href={Auth.loggedIn() ? `/${loggedInUsername}` : "/"}
+						padding=".5rem"
+					>
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 							Return Home
 						</ButtonArwes>

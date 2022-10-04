@@ -44,15 +44,15 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
+const username = JSON.parse(localStorage.getItem("vaultUsername"));
+
 function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
 				<Routes>
-					<Route
-						path={Auth.loggedIn() ? "/:username" : "/"}
-						element={<Home />}
-					/>
+					<Route path="/" element={<Home />} />
+					<Route path="/:username" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/downloads" element={<Downloads />} />
 					<Route path="/profile/:username" element={<UserProfile />} />
