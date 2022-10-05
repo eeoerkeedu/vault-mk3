@@ -40,7 +40,11 @@ const resolvers = {
 		updateUser: async (parent, { userId, username, email, password }) => {
 			const userData = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ username: username, email: email, password: password },
+				{
+					username: username,
+					email: email,
+					password: await bcrypt.hash(password, 12),
+				},
 				{ new: true }
 			);
 			return userData;

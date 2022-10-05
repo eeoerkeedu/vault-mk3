@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
+import { UPDATE_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
 
 import {
@@ -33,6 +34,15 @@ import {
 	Td,
 	TableCaption,
 	TableContainer,
+	Modal,
+	ModalBody,
+	ModalContent,
+	ModalHeader,
+	ModalOverlay,
+	ModalCloseButton,
+	ModalFooter,
+	Button,
+	useDisclosure,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -50,16 +60,65 @@ const vaultPink = "#f72585";
 
 const UserProfile = () => {
 	let { username } = useParams();
-	// console.log(id);
 
 	const { loading, data, error } = useQuery(QUERY_USER, {
 		variables: { username: username },
 	});
+	const user = data?.user || [];
+	const userId = user._id;
+	const userNameVar = user.username;
+	// console.log(userId);
+
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const initialRef = React.useRef(null);
+	const finalRef = React.useRef(null);
+	const [showAlert, setShowAlert] = useState(false);
+
+	const [editUserData, setEditUserData] = useState({
+		_id: userId,
+		username: userNameVar,
+		email: "",
+		password: "",
+	});
+	const [updateUser] = useMutation(UPDATE_USER);
 
 	if (loading) return "Loading...";
 
-	const user = data?.user || [];
-	console.log(user);
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setEditUserData({ ...editUserData, [name]: value });
+	};
+
+	const handleUpdateUser = async (event) => {
+		event.preventDefault();
+		console.log(editUserData);
+
+		try {
+			console.log("Recieving Data from User Edit Form");
+			const { data } = await updateUser({
+				variables: { ...editUserData },
+			});
+			console.log(data);
+			if (!data) {
+				throw new Error("something went wrong!");
+			}
+			console.log("Handshake Complete");
+			localStorage.setItem(
+				"vaultUsername",
+				JSON.stringify(data.login.user.username)
+			);
+			window.location.reload();
+		} catch (err) {
+			console.error(err);
+			setShowAlert(true);
+		}
+		setEditUserData({
+			_id: userId,
+			username: userNameVar,
+			email: "",
+			password: "",
+		});
+	};
 
 	return (
 		<Container
@@ -89,67 +148,135 @@ const UserProfile = () => {
 					<Divider mt="2rem" />
 					<Box mt="1rem">
 						<ArwesThemeProvider>
-							<Grid templateColumns="repeat(4, 1fr)" gap={1}>
-								<GridItem colSpan="4">
+							<Grid templateColumns="repeat(5, 1fr)" gap={1}>
+								<GridItem colSpan="5">
 									<Heading
 										pb="1rem"
 										fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
 									>
-										{user.username}
+										Merc Username: {user.username}
 									</Heading>
 								</GridItem>
 
-								<GridItem colSpan="3">
+								<GridItem colSpan="1">
 									<Heading color={vaultYellow} as="h3" size="md">
 										Account Details:
 									</Heading>
 									<TableContainer>
 										<Table size="sm">
 											<Tbody>
-												<Tr>
+												{/* <Tr>
 													<Td>Username:</Td>
 													<Td color={vaultGreen}>{user.username}</Td>
-													<Td>
-														<ButtonArwes
-															disabled
-															palette={vaultGreen}
-															FrameComponent={FrameHexagon}
-														>
-															Edit
-														</ButtonArwes>
-													</Td>
-												</Tr>
+												</Tr> */}
 												<Tr>
 													<Td>Email:</Td>
 													<Td color={vaultGreen}>{user.email}</Td>
-													<Td>
-														<ButtonArwes
-															disabled
-															palette={vaultGreen}
-															FrameComponent={FrameHexagon}
-														>
-															Edit
-														</ButtonArwes>
-													</Td>
 												</Tr>
 												<Tr>
 													<Td>Password:</Td>
-													<Td color={vaultGreen}>***********</Td>
-													<Td>
-														<ButtonArwes
-															disabled
-															palette={vaultGreen}
-															FrameComponent={FrameHexagon}
-														>
-															Edit
-														</ButtonArwes>
-													</Td>
+													<Td color={vaultGreen}>*************</Td>
 												</Tr>
 											</Tbody>
 										</Table>
+										<Box padding="1rem">
+											<ButtonArwes
+												palette={vaultGreen}
+												FrameComponent={FrameHexagon}
+												onClick={onOpen}
+											>
+												Edit
+											</ButtonArwes>
+										</Box>
 									</TableContainer>
 								</GridItem>
 							</Grid>
+							<Modal
+								initialFocusRef={initialRef}
+								finalFocusRef={finalRef}
+								isOpen={isOpen}
+								onClose={onClose}
+							>
+								<ModalOverlay />
+								<ModalContent
+									fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+									bg={vaultYellow}
+								>
+									<ModalHeader color={vaultRasin} fontWeight="black">
+										Edit Your Vault Account
+									</ModalHeader>
+									<ModalCloseButton />
+									<form onSubmit={handleUpdateUser}>
+										<ModalBody color={vaultRasin} pb={6}>
+											{/* <FormControl isRequired isInvalid={setShowAlert}>
+												<FormLabel fontWeight="black">Username:</FormLabel>
+												<Input
+													color={vaultRasin}
+													borderColor={vaultBlue}
+													type="input"
+													name="username"
+													value={editUserData.username}
+													onChange={handleInputChange}
+													autoComplete="false"
+												/>
+											</FormControl> */}
+
+											<FormControl mt={4} isRequired isInvalid={setShowAlert}>
+												<FormLabel fontWeight="black">Email:</FormLabel>
+												<Input
+													color={vaultRasin}
+													borderColor={vaultBlue}
+													ref={initialRef}
+													type="email"
+													name="email"
+													value={editUserData.email}
+													onChange={handleInputChange}
+													autoComplete="false"
+												/>
+											</FormControl>
+
+											<FormControl mt={4} isRequired isInvalid={setShowAlert}>
+												<FormLabel fontWeight="black">Password:</FormLabel>
+												<Input
+													color={vaultRasin}
+													borderColor={vaultBlue}
+													type="password"
+													name="password"
+													onChange={handleInputChange}
+													autoComplete="false"
+													value={editUserData.password}
+												/>
+												<FormErrorMessage color={vaultPink}>
+													Something Went Wrong! Please ensure info fields are
+													properly filled out.
+												</FormErrorMessage>
+											</FormControl>
+										</ModalBody>
+
+										<ModalFooter>
+											<Button
+												bg={vaultYellow}
+												color={vaultRasin}
+												borderWidth="0px"
+												colorScheme="blackAlpha"
+												type="submit"
+												mr={3}
+											>
+												Save
+											</Button>
+											<Button
+												bg={vaultYellow}
+												color={vaultRasin}
+												borderWidth="0px"
+												colorScheme="blackAlpha"
+												onClick={onClose}
+											>
+												Cancel
+											</Button>
+										</ModalFooter>
+									</form>
+								</ModalContent>
+							</Modal>
 						</ArwesThemeProvider>
 					</Box>
 				</>

@@ -20,7 +20,12 @@ const typeDefs = gql`
 
 		login(email: String!, password: String!): Auth
 
-		updateUser(username: String!, email: String!, password: String!): User
+		updateUser(
+			userId: ID!
+			username: String
+			email: String
+			password: String
+		): User
 	}
 `;
 
