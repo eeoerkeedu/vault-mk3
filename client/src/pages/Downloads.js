@@ -1,8 +1,12 @@
+// imports images from the charactersheets as somples
 import BnWCS from "../assets/imgs/BnWfrontpage.PNG";
 import ColorCS from "../assets/imgs/frontpage.PNG";
 
+// import function dependancies
 import React from "react";
 import Auth from "../utils/auth";
+
+// import styling dependancies
 import "../App.css";
 import {
 	Container,
@@ -20,19 +24,25 @@ import {
 	FrameHexagon,
 } from "@arwes/core";
 
+//bringing in vault pallet
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
+// extract username from local storage.
 const username = JSON.parse(localStorage.getItem("vaultUsername"));
 
+// page rendering
 function Downloads() {
 	return (
+		// outer containter for the page
 		<Container bg={vaultRasin} height="100%" width="100%" maxWidth="100vw">
 			<Box fontSize="2rem" padding="1rem" marginLeft="5%">
+				{/* Arwes theme add-on wrapper */}
 				<ArwesThemeProvider>
+					{/* link wrapped image and button for color character sheet */}
 					<Link
 						href="https://drive.google.com/uc?export=download&id=1ujtaj6cLMWkNciSMSI_06ti43rZMq1A7"
 						isExternal
@@ -45,6 +55,7 @@ function Downloads() {
 							<Image src={ColorCS} />
 						</VStack>
 					</Link>
+					{/* link wrapped image and button for black and white character sheet */}
 					<Link
 						href="https://drive.google.com/uc?export=download&id=1fQGWojUorBwnfkshgvUJRhpxlqWUNwJz"
 						isExternal
@@ -57,8 +68,7 @@ function Downloads() {
 							<Image src={BnWCS} />
 						</VStack>
 					</Link>
-				</ArwesThemeProvider>
-				<ArwesThemeProvider>
+					{/* Return to Homepage button with logic to return to the user specific homepage if logged-in */}
 					<Link href={Auth.loggedIn() ? `/${username}` : "/"} padding=".5rem">
 						<VStack>
 							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
