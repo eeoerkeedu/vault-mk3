@@ -1,8 +1,12 @@
+// importing utility dependancies
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER, ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
+
+// import styling dependancies
 import {
+	Button,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -14,10 +18,7 @@ import {
 	// InputGroup,
 	// InputLeftAddon,
 	// ErrorMessage,
-	Checkbox,
-	CheckboxGroup,
 	Link,
-	VStack,
 	Modal,
 	ModalContent,
 	ModalCloseButton,
@@ -26,17 +27,17 @@ import {
 	ModalFooter,
 	ModalHeader,
 	useDisclosure,
-	Button,
 	HStack,
+	VStack,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
 	FrameHexagon,
 } from "@arwes/core";
-
 import "../App.css";
 
+//bringing in the vault pallet and logo
 import logo from "../assets/imgs/VaultLogoforsite.png";
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
@@ -44,33 +45,46 @@ const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
+// extract username from local storage.
 const loggedInUsername = JSON.parse(localStorage.getItem("vaultUsername"));
 
+// page rendering
 const LoginForm = () => {
+	// discolosure (open, close) system for modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
-
 	const initialRef = React.useRef(null);
 	const finalRef = React.useRef(null);
 
+	// login state setup for user input
 	const [userFormData, setUserFormData] = useState({
 		email: "",
 		password: "",
 	});
 	// const [validated] = useState(false);
+
+	// shows alerts if login info is incorrect
 	const [showAlert, setShowAlert] = useState(false);
+
+	// extracts login function
 	const [login] = useMutation(LOGIN_USER);
 
+	// handle input change for the login fields
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setUserFormData({ ...userFormData, [name]: value });
 	};
 
+	// handles user login sumbittion and delivers auth token and username to localstorage
 	const handleFormSubmit = async (event) => {
+		//prevent default
 		event.preventDefault();
-		console.log(userFormData);
+
+		// console.log(userFormData);
 		// check if form has everything (as per react-bootstrap docs)
 		const form = event.currentTarget;
 		// console.log(form);
+
+		//check if form is complete and stops if not
 		if (form.checkValidity() === false) {
 			console.log("Data Missing - Form Validity Check");
 			event.preventDefault();
@@ -81,44 +95,56 @@ const LoginForm = () => {
 			const { data } = await login({
 				variables: { ...userFormData },
 			});
-			console.log(data);
+			// console.log(data);
 			if (!data) {
 				throw new Error("something went wrong!");
 			}
 			console.log("User Authenticated");
+			// sets username in local storage
 			localStorage.setItem(
 				"vaultUsername",
 				JSON.stringify(data.login.user.username)
 			);
+			// runs auth if login function succeeds
 			Auth.login(data.login.token);
 		} catch (err) {
 			console.error(err);
 			setShowAlert(true);
 		}
+		//resets state
 		setUserFormData({
 			email: "",
 			password: "",
 		});
 	};
 
+	// shows alerts if register info is missing or incorrect
 	const [showAlertRegister, setShowAlertRegister] = useState(false);
+
+	// extract addUser function
 	const [addUser] = useMutation(ADD_USER);
+
+	// register state setup for user input
 	const [newUserFormData, setNewUserFormData] = useState({
 		username: "",
 		email: "",
 		password: "",
 	});
+
+	// handle input change for the resgistration fields on the modal
 	const handleRegistrationChange = (event) => {
 		const { name, value } = event.target;
 		setNewUserFormData({ ...newUserFormData, [name]: value });
 	};
 
+	// handles registration submittion
 	const handleAddUser = async (event) => {
+		// prevent default
 		event.preventDefault();
 		console.log(newUserFormData);
 
+		//check if form is complete and stops if not
 		const form = event.currentTarget;
-
 		if (form.checkValidity() === false) {
 			console.log("Data Missing - Form Validity Check");
 			event.preventDefault();
@@ -130,19 +156,17 @@ const LoginForm = () => {
 			const { data } = await addUser({
 				variables: { ...newUserFormData },
 			});
-			console.log(data);
+			// console.log(data);
 			if (!data) {
 				throw new Error("something went wrong!");
 			}
 			console.log("User Registered");
-
-			// Auth.login(data.login.token);
-			//
 		} catch (err) {
 			console.error(err);
 			setShowAlertRegister(true);
 		}
 		onClose();
+		// ressets state
 		setNewUserFormData({
 			username: "",
 			email: "",
