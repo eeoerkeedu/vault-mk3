@@ -24,7 +24,7 @@ import {
 	FrameHexagon,
 } from "@arwes/core";
 
-//bring in vault pallet
+//bringing in vault pallet
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
@@ -40,7 +40,7 @@ function Downloads() {
 		// outer containter for the page
 		<Container bg={vaultRasin} height="100%" width="100%" maxWidth="100vw">
 			<Box fontSize="2rem" padding="1rem" marginLeft="5%">
-				{/* Arwes theme add */}
+				{/* Arwes theme add-on wrapper */}
 				<ArwesThemeProvider>
 					{/* link wrapped image and button for color character sheet */}
 					<Link
