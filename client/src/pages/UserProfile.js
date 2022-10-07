@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { QUERY_USER } from "../utils/queries";
@@ -70,8 +70,8 @@ const UserProfile = () => {
 	// console.log(userId);
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const initialRef = React.useRef(null);
-	const finalRef = React.useRef(null);
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
 	const [showAlert, setShowAlert] = useState(false);
 
 	const [editUserData, setEditUserData] = useState({

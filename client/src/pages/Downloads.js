@@ -3,7 +3,6 @@ import BnWCS from "../assets/imgs/BnWfrontpage.PNG";
 import ColorCS from "../assets/imgs/frontpage.PNG";
 
 // import function dependancies
-import React from "react";
 import Auth from "../utils/auth";
 
 // import styling dependancies
