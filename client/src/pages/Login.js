@@ -1,5 +1,5 @@
 // importing utility dependancies
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER, ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
@@ -15,9 +15,6 @@ import {
 	Container,
 	Box,
 	Image,
-	// InputGroup,
-	// InputLeftAddon,
-	// ErrorMessage,
 	Link,
 	Modal,
 	ModalContent,
@@ -52,8 +49,8 @@ const loggedInUsername = JSON.parse(localStorage.getItem("vaultUsername"));
 const LoginForm = () => {
 	// discolosure (open, close) system for modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const initialRef = React.useRef(null);
-	const finalRef = React.useRef(null);
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
 
 	// login state setup for user input
 	const [userFormData, setUserFormData] = useState({
@@ -160,6 +157,7 @@ const LoginForm = () => {
 			if (!data) {
 				throw new Error("something went wrong!");
 			}
+			// registers user but does not log them in yet.
 			console.log("User Registered");
 		} catch (err) {
 			console.error(err);
@@ -183,11 +181,12 @@ const LoginForm = () => {
 			maxWidth="100vw"
 			centerContent
 		>
+			{/* Page Header */}
 			<Box paddingTop="2rem" className="App-header">
 				<Image src={logo} maxW="30%"></Image>
 				<h1 className="spraypaint">Make a Killing</h1>
 			</Box>
-
+			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>
 				<Box
 					mt="2rem"
@@ -201,6 +200,7 @@ const LoginForm = () => {
 					background-color="#fff"
 					boxShadow="0px 0px 40px 5px #4d7ea8"
 				>
+					{/* login form */}
 					<form onSubmit={handleFormSubmit}>
 						<FormControl isRequired>
 							<FormHelperText
@@ -211,35 +211,19 @@ const LoginForm = () => {
 							>
 								Provide Credentials for Records Access:
 							</FormHelperText>
-							{/* <InputGroup size="md"> */}
 							<FormLabel color={vaultYellow}>Email:</FormLabel>
-							{/* <InputLeftAddon
-									color={vaultYellow}
-									borderColor={vaultBlue}
-									bg={vaultRasin}
-									children="Email:"
-								/> */}
 							<Input
 								color={vaultYellow}
 								borderColor={vaultBlue}
 								type="email"
 								name="email"
 								focusBorderColor={vaultYellow}
-								// placeholder="EMAIL"
 								onChange={handleInputChange}
 								value={userFormData.email}
 							/>
-							{/* </InputGroup> */}
 						</FormControl>
 						<FormControl isRequired isInvalid={showAlert} mt="1rem" mb="1rem">
-							{/* <InputGroup pt=".5rem" size="md"> */}
 							<FormLabel color={vaultYellow}>Password:</FormLabel>
-							{/* <InputLeftAddon
-									color={vaultYellow}
-									borderColor={vaultBlue}
-									bg={vaultRasin}
-									children="Password:"
-								/> */}
 							<Input
 								color={vaultYellow}
 								borderColor={vaultBlue}
@@ -250,7 +234,6 @@ const LoginForm = () => {
 								onChange={handleInputChange}
 								value={userFormData.password}
 							/>
-							{/* </InputGroup> */}
 							<FormErrorMessage color={vaultPink}>
 								Credentials do not match Vault Records
 							</FormErrorMessage>
@@ -267,7 +250,9 @@ const LoginForm = () => {
 					</form>
 				</Box>
 
+				{/* register and return home button outside the login box, recognizes if user is logged in to retuirn to correct home route. */}
 				<HStack mt="1rem" paddingTop=".5rem" spacing="2rem">
+					{/* kicks off registration modal */}
 					<ButtonArwes
 						onClick={onOpen}
 						palette={vaultGreen}
@@ -285,6 +270,7 @@ const LoginForm = () => {
 					</Link>
 				</HStack>
 
+				{/* registration modal */}
 				<Modal
 					initialFocusRef={initialRef}
 					finalFocusRef={finalRef}
@@ -346,17 +332,6 @@ const LoginForm = () => {
 										filled out.
 									</FormErrorMessage>
 								</FormControl>
-
-								{/* <FormControl mt={4}>
-									<Checkbox
-										color={vaultRasin}
-										colorScheme="blackAlpha"
-										defaultChecked
-										name="joinMailing"
-									>
-										Join the Team Rex Games Email List
-									</Checkbox>
-								</FormControl> */}
 							</ModalBody>
 
 							<ModalFooter>

@@ -1,10 +1,7 @@
 // importing logo and utility dependancies
+import { useState, useEffect } from "react";
 import logo from "../assets/imgs/VaultLogoforsite.png";
-import React from "react";
 import Auth from "../utils/auth";
-// import { useParams } from "react-router-dom";
-// import { useQuery } from "@apollo/client";
-// import { QUERY_USER } from "../utils/queries";
 
 // import styling dependancies
 import "../App.css";
@@ -48,11 +45,11 @@ const loadingText = [
 // page rendering
 function Home() {
 	// state indexing for loading text
-	const [childrenIndex, setChildrenIndex] = React.useState(0);
+	const [childrenIndex, setChildrenIndex] = useState(0);
 	const duration = { enter: 5000, exit: 5000 };
 
 	// runs through the loading text for use effect using timing
-	React.useEffect(() => {
+	useEffect(() => {
 		const timeout = setTimeout(() => {
 			const isLastIndex = childrenIndex === loadingText.length - 1;
 			const nextIndex = isLastIndex ? 4 : childrenIndex + 1;
