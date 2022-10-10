@@ -43,6 +43,7 @@ import {
 	ModalFooter,
 	Button,
 	useDisclosure,
+	HStack,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -80,7 +81,7 @@ const UserProfile = () => {
 		email: "",
 		password: "",
 	});
-	console.log(editUserData);
+	// console.log(editUserData);
 	const [updateUser] = useMutation(UPDATE_USER);
 
 	if (loading) return "Loading...";
@@ -92,7 +93,7 @@ const UserProfile = () => {
 
 	const handleUpdateUser = async (event) => {
 		event.preventDefault();
-		console.log(editUserData);
+		// console.log(editUserData);
 
 		try {
 			console.log("Recieving Data from User Edit Form");
@@ -104,10 +105,6 @@ const UserProfile = () => {
 				throw new Error("something went wrong!");
 			}
 			console.log("Handshake Complete");
-			localStorage.setItem(
-				"vaultUsername",
-				JSON.stringify(editUserData.username)
-			);
 			window.location.reload();
 		} catch (err) {
 			console.error(err.message);
@@ -129,99 +126,112 @@ const UserProfile = () => {
 			width="100%"
 			maxWidth="100vw"
 		>
-			{Auth.loggedIn() ? (
-				<>
-					<Box paddingTop="2rem">
-						<Image src={logo} maxW="20%"></Image>
-						<Heading
-							size="sm"
-							fontFamily="Rock Salt,
+			<Box paddingTop="2rem">
+				<Image src={logo} maxW="20%"></Image>
+				<Heading
+					size="sm"
+					fontFamily="Rock Salt,
 								Oribitron,
 								Impact,
 								Haettenschweiler,
 								'Arial Narrow Bold',
 								sans-serif;"
-							color={vaultPink}
-						>
-							Make a Killing
-						</Heading>
-					</Box>
-					<Divider mt="2rem" />
-					<Box mt="1rem">
-						<ArwesThemeProvider>
-							<Grid templateColumns="repeat(5, 1fr)" gap={1}>
-								<GridItem colSpan="5">
+					color={vaultPink}
+				>
+					Make a Killing
+				</Heading>
+			</Box>
+			<Divider mt="2rem" />
+			{Auth.loggedIn() ? (
+				<Box mt="1rem">
+					<ArwesThemeProvider>
+						<Grid templateColumns="repeat(5, 1fr)" gap={1}>
+							<GridItem colSpan="5">
+								<HStack>
 									<Heading
 										pb="1rem"
 										fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
 									>
-										Merc Username: {user.username}
+										Merc Username:
 									</Heading>
-								</GridItem>
+									<Heading
+										pb="1rem"
+										color={vaultPink}
+										fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
+									>
+										{user.username}
+									</Heading>
+									<Box padding="1rem">
+										<ButtonArwes
+											palette={vaultGreen}
+											FrameComponent={FrameHexagon}
+											onClick={onOpen}
+										>
+											Edit Username
+										</ButtonArwes>
+									</Box>
+								</HStack>
+							</GridItem>
 
-								<GridItem colSpan="1">
-									<Heading color={vaultYellow} as="h3" size="md">
-										Account Details:
-									</Heading>
-									<TableContainer>
-										<Table size="sm">
-											<Tbody>
-												{/* <Tr>
+							<GridItem colSpan="1">
+								<Heading color={vaultYellow} as="h3" size="md">
+									Account Details:
+								</Heading>
+								<TableContainer>
+									<Table size="sm">
+										<Tbody>
+											{/* <Tr>
 													<Td>Username:</Td>
 													<Td color={vaultGreen}>{user.username}</Td>
 												</Tr> */}
-												<Tr>
-													<Td>Email:</Td>
-													<Td color={vaultGreen}>{user.email}</Td>
-												</Tr>
-												<Tr>
-													<Td>Password:</Td>
-													<Td color={vaultGreen}>*************</Td>
-												</Tr>
-											</Tbody>
-										</Table>
-										<Box padding="1rem">
-											{Auth.loggedIn() ? (
-												<ButtonArwes
-													palette={vaultGreen}
-													FrameComponent={FrameHexagon}
-													onClick={onOpen}
-												>
-													Edit Info
-												</ButtonArwes>
-											) : (
-												""
-											)}
-										</Box>
-										<Box padding="1rem">
-											<ButtonArwes
-												palette={vaultGreen}
-												FrameComponent={FrameHexagon}
-											>
-												<Link href={`/${userNameVar}`}>Return Home</Link>
-											</ButtonArwes>
-										</Box>
-									</TableContainer>
-								</GridItem>
-							</Grid>
-							<Modal
-								initialFocusRef={initialRef}
-								finalFocusRef={finalRef}
-								isOpen={isOpen}
-								onClose={onClose}
+											<Tr>
+												<Td>Email:</Td>
+												<Td color={vaultGreen}>{user.email}</Td>
+											</Tr>
+											<Tr>
+												<Td>Password:</Td>
+												<Td color={vaultGreen}>*************</Td>
+											</Tr>
+										</Tbody>
+									</Table>
+									<Box padding="1rem">
+										<ButtonArwes
+											palette={vaultGreen}
+											FrameComponent={FrameHexagon}
+											onClick={onOpen}
+										>
+											Edit Account Info
+										</ButtonArwes>
+									</Box>
+									<Box padding="1rem">
+										<ButtonArwes
+											palette={vaultGreen}
+											FrameComponent={FrameHexagon}
+										>
+											<Link href={`/${userNameVar}`}>Return Home</Link>
+										</ButtonArwes>
+									</Box>
+								</TableContainer>
+							</GridItem>
+						</Grid>
+						<Modal
+							initialFocusRef={initialRef}
+							finalFocusRef={finalRef}
+							isOpen={isOpen}
+							onClose={onClose}
+						>
+							<ModalOverlay />
+							<ModalContent
+								fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+								bg={vaultYellow}
 							>
-								<ModalOverlay />
-								<ModalContent
-									fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-									bg={vaultYellow}
-								>
-									<ModalHeader color={vaultRasin} fontWeight="black">
-										Edit Your Vault Account
-									</ModalHeader>
-									<ModalCloseButton />
-									<form onSubmit={handleUpdateUser}>
-										<ModalBody color={vaultRasin} pb={6}>
-											<FormControl>
+								<ModalHeader color={vaultRasin} fontWeight="black">
+									Edit Your Vault Account
+								</ModalHeader>
+								<ModalCloseButton />
+								<form onSubmit={handleUpdateUser}>
+									<ModalBody color={vaultRasin} pb={6}>
+										{/* <FormControl>
 												<FormLabel fontWeight="black">Username:</FormLabel>
 												<Input
 													color={vaultRasin}
@@ -232,73 +242,76 @@ const UserProfile = () => {
 													onChange={handleInputChange}
 													autoComplete="false"
 												/>
-											</FormControl>
+											</FormControl> */}
 
-											<FormControl mt={4}>
-												<FormLabel fontWeight="black">Email:</FormLabel>
-												<Input
-													color={vaultRasin}
-													borderColor={vaultBlue}
-													ref={initialRef}
-													type="email"
-													name="email"
-													value={editUserData.email}
-													onChange={handleInputChange}
-													autoComplete="false"
-												/>
-											</FormControl>
-
-											<FormControl mt={4} isRequired>
-												<FormLabel fontWeight="black">Password:</FormLabel>
-												<Input
-													color={vaultRasin}
-													borderColor={vaultBlue}
-													type="password"
-													name="password"
-													onChange={handleInputChange}
-													autoComplete="false"
-													value={editUserData.password}
-												/>
-												<FormControl
-													display="none"
-													value={(editUserData.userId = user._id)}
-												></FormControl>
-												<FormErrorMessage color={vaultPink}>
-													Something Went Wrong! Please ensure info fields are
-													properly filled out.
-												</FormErrorMessage>
-											</FormControl>
-										</ModalBody>
-
-										<ModalFooter>
-											<Button
-												bg={vaultYellow}
+										<FormControl mt={4}>
+											<FormLabel fontWeight="black">Email:</FormLabel>
+											<Input
 												color={vaultRasin}
-												borderWidth="0px"
-												colorScheme="blackAlpha"
-												type="submit"
-												mr={3}
-											>
-												Save
-											</Button>
-											<Button
-												bg={vaultYellow}
+												borderColor={vaultBlue}
+												ref={initialRef}
+												type="email"
+												name="email"
+												value={editUserData.email}
+												onChange={handleInputChange}
+												autoComplete="false"
+											/>
+										</FormControl>
+
+										<FormControl mt={4} isRequired>
+											<FormLabel fontWeight="black">Password:</FormLabel>
+											<Input
 												color={vaultRasin}
-												borderWidth="0px"
-												colorScheme="blackAlpha"
-												onClick={onClose}
-											>
-												Cancel
-											</Button>
-										</ModalFooter>
-									</form>
-								</ModalContent>
-							</Modal>
-						</ArwesThemeProvider>
-					</Box>
-				</>
+												borderColor={vaultBlue}
+												type="password"
+												name="password"
+												onChange={handleInputChange}
+												autoComplete="false"
+												value={editUserData.password}
+											/>
+											<FormControl
+												display="none"
+												value={(editUserData.userId = user._id)}
+											></FormControl>
+											<FormControl
+												display="none"
+												value={(editUserData.username = userNameVar)}
+											></FormControl>
+											<FormErrorMessage color={vaultPink}>
+												Something Went Wrong! Please ensure info fields are
+												properly filled out.
+											</FormErrorMessage>
+										</FormControl>
+									</ModalBody>
+
+									<ModalFooter>
+										<Button
+											bg={vaultYellow}
+											color={vaultRasin}
+											borderWidth="0px"
+											colorScheme="blackAlpha"
+											type="submit"
+											mr={3}
+										>
+											Save
+										</Button>
+										<Button
+											bg={vaultYellow}
+											color={vaultRasin}
+											borderWidth="0px"
+											colorScheme="blackAlpha"
+											onClick={onClose}
+										>
+											Cancel
+										</Button>
+									</ModalFooter>
+								</form>
+							</ModalContent>
+						</Modal>
+					</ArwesThemeProvider>
+				</Box>
 			) : (
-				<Link to="/">
+				<Link href="/">
 					You need to be logged in to view this page. Please login.
 				</Link>
 			)}
