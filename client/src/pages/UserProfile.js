@@ -65,9 +65,9 @@ const UserProfile = () => {
 		variables: { username: username },
 	});
 	const user = data?.user || [];
-	const userId = user._id;
+	// const userId = user._id;
 	const userNameVar = user.username;
-	// console.log(userId);
+	// console.log(userNameVar);
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const initialRef = useRef(null);
@@ -75,11 +75,12 @@ const UserProfile = () => {
 	const [showAlert, setShowAlert] = useState(false);
 
 	const [editUserData, setEditUserData] = useState({
-		_id: userId,
-		username: userNameVar,
+		userId: "",
+		username: "",
 		email: "",
 		password: "",
 	});
+	console.log(editUserData);
 	const [updateUser] = useMutation(UPDATE_USER);
 
 	if (loading) return "Loading...";
@@ -98,23 +99,23 @@ const UserProfile = () => {
 			const { data } = await updateUser({
 				variables: { ...editUserData },
 			});
-			console.log(data);
+			// console.log(data);
 			if (!data) {
 				throw new Error("something went wrong!");
 			}
 			console.log("Handshake Complete");
 			localStorage.setItem(
 				"vaultUsername",
-				JSON.stringify(data.login.user.username)
+				JSON.stringify(editUserData.username)
 			);
 			window.location.reload();
 		} catch (err) {
-			console.error(err);
-			setShowAlert(true);
+			console.error(err.message);
+			// setShowAlert(true);
 		}
 		setEditUserData({
-			_id: userId,
-			username: userNameVar,
+			userId: "",
+			username: "",
 			email: "",
 			password: "",
 		});
@@ -180,12 +181,24 @@ const UserProfile = () => {
 											</Tbody>
 										</Table>
 										<Box padding="1rem">
+											{Auth.loggedIn() ? (
+												<ButtonArwes
+													palette={vaultGreen}
+													FrameComponent={FrameHexagon}
+													onClick={onOpen}
+												>
+													Edit Info
+												</ButtonArwes>
+											) : (
+												""
+											)}
+										</Box>
+										<Box padding="1rem">
 											<ButtonArwes
 												palette={vaultGreen}
 												FrameComponent={FrameHexagon}
-												onClick={onOpen}
 											>
-												Edit
+												<Link href={`/${userNameVar}`}>Return Home</Link>
 											</ButtonArwes>
 										</Box>
 									</TableContainer>
@@ -208,7 +221,7 @@ const UserProfile = () => {
 									<ModalCloseButton />
 									<form onSubmit={handleUpdateUser}>
 										<ModalBody color={vaultRasin} pb={6}>
-											{/* <FormControl isRequired isInvalid={setShowAlert}>
+											<FormControl>
 												<FormLabel fontWeight="black">Username:</FormLabel>
 												<Input
 													color={vaultRasin}
@@ -219,9 +232,9 @@ const UserProfile = () => {
 													onChange={handleInputChange}
 													autoComplete="false"
 												/>
-											</FormControl> */}
+											</FormControl>
 
-											<FormControl mt={4} isRequired isInvalid={setShowAlert}>
+											<FormControl mt={4}>
 												<FormLabel fontWeight="black">Email:</FormLabel>
 												<Input
 													color={vaultRasin}
@@ -235,7 +248,7 @@ const UserProfile = () => {
 												/>
 											</FormControl>
 
-											<FormControl mt={4} isRequired isInvalid={setShowAlert}>
+											<FormControl mt={4} isRequired>
 												<FormLabel fontWeight="black">Password:</FormLabel>
 												<Input
 													color={vaultRasin}
@@ -246,6 +259,10 @@ const UserProfile = () => {
 													autoComplete="false"
 													value={editUserData.password}
 												/>
+												<FormControl
+													display="none"
+													value={(editUserData.userId = user._id)}
+												></FormControl>
 												<FormErrorMessage color={vaultPink}>
 													Something Went Wrong! Please ensure info fields are
 													properly filled out.
