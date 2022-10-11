@@ -71,7 +71,7 @@ const LoginForm = () => {
 		setUserFormData({ ...userFormData, [name]: value });
 	};
 
-	// handles user login sumbittion and delivers auth token and username to localstorage
+	// handles user login submittion and delivers auth token and username to localstorage
 	const handleFormSubmit = async (event) => {
 		//prevent default
 		event.preventDefault();

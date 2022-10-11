@@ -1,3 +1,4 @@
+// importing utility dependancies
 import { useState, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
@@ -5,6 +6,7 @@ import { QUERY_USER } from "../utils/queries";
 import { UPDATE_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
 
+// import styling dependancies
 import {
 	Box,
 	Container,
@@ -52,6 +54,7 @@ import {
 } from "@arwes/core";
 import "../App.css";
 
+//bringing in the vault pallet and logo
 import logo from "../assets/imgs/VaultLogoforsite.png";
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
@@ -60,8 +63,10 @@ const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
 const UserProfile = () => {
+	// extract username from params.
 	let { username } = useParams();
 
+	// query's user data based on username from params
 	const { loading, data, error } = useQuery(QUERY_USER, {
 		variables: { username: username },
 	});
@@ -70,11 +75,15 @@ const UserProfile = () => {
 	const userNameVar = user.username;
 	// console.log(userNameVar);
 
+	// discolosure (open, close) system for modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const initialRef = useRef(null);
 	const finalRef = useRef(null);
-	const [showAlert, setShowAlert] = useState(false);
 
+	// Alerts if form isn't filled out properly, issue with always triggering so currently disabled.
+	// const [showAlert, setShowAlert] = useState(false);
+
+	// update user state setup for input
 	const [editUserData, setEditUserData] = useState({
 		userId: "",
 		username: "",
@@ -82,15 +91,20 @@ const UserProfile = () => {
 		password: "",
 	});
 	// console.log(editUserData);
+
+	// extracts update user function
 	const [updateUser] = useMutation(UPDATE_USER);
 
-	if (loading) return "Loading...";
-
+	// handle input change for the update fields
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setEditUserData({ ...editUserData, [name]: value });
 	};
 
+	// page loading response waiting on user data
+	if (loading) return "Loading...";
+
+	// handles user info update submittion and reloads page
 	const handleUpdateUser = async (event) => {
 		event.preventDefault();
 		// console.log(editUserData);
@@ -118,6 +132,7 @@ const UserProfile = () => {
 		});
 	};
 
+	// page rendering
 	return (
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
@@ -126,6 +141,7 @@ const UserProfile = () => {
 			width="100%"
 			maxWidth="100vw"
 		>
+			{/* Page Header */}
 			<Box paddingTop="2rem">
 				<Image src={logo} maxW="20%"></Image>
 				<Heading
@@ -142,11 +158,14 @@ const UserProfile = () => {
 				</Heading>
 			</Box>
 			<Divider mt="2rem" />
+			{/* Auth restriction to prevent users who are not logged in from viewing profile, needs more funtionality to limit to specific user. */}
 			{Auth.loggedIn() ? (
 				<Box mt="1rem">
+					{/* Arwes theme add-on wrapper */}
 					<ArwesThemeProvider>
 						<Grid templateColumns="repeat(5, 1fr)" gap={1}>
 							<GridItem colSpan="5">
+								{/* username field and edit button */}
 								<HStack>
 									<Heading
 										pb="1rem"
@@ -173,6 +192,7 @@ const UserProfile = () => {
 								</HStack>
 							</GridItem>
 
+							{/* account details section */}
 							<GridItem colSpan="1">
 								<Heading color={vaultYellow} as="h3" size="md">
 									Account Details:
@@ -180,10 +200,6 @@ const UserProfile = () => {
 								<TableContainer>
 									<Table size="sm">
 										<Tbody>
-											{/* <Tr>
-													<Td>Username:</Td>
-													<Td color={vaultGreen}>{user.username}</Td>
-												</Tr> */}
 											<Tr>
 												<Td>Email:</Td>
 												<Td color={vaultGreen}>{user.email}</Td>
@@ -194,6 +210,8 @@ const UserProfile = () => {
 											</Tr>
 										</Tbody>
 									</Table>
+
+									{/* bottom of page buttons for navigation and requesting to edit the account's info */}
 									<Box padding="1rem">
 										<ButtonArwes
 											palette={vaultGreen}
@@ -214,6 +232,8 @@ const UserProfile = () => {
 								</TableContainer>
 							</GridItem>
 						</Grid>
+
+						{/* modal for editing account details */}
 						<Modal
 							initialFocusRef={initialRef}
 							finalFocusRef={finalRef}
@@ -231,20 +251,8 @@ const UserProfile = () => {
 								<ModalCloseButton />
 								<form onSubmit={handleUpdateUser}>
 									<ModalBody color={vaultRasin} pb={6}>
-										{/* <FormControl>
-												<FormLabel fontWeight="black">Username:</FormLabel>
-												<Input
-													color={vaultRasin}
-													borderColor={vaultBlue}
-													type="input"
-													name="username"
-													value={editUserData.username}
-													onChange={handleInputChange}
-													autoComplete="false"
-												/>
-											</FormControl> */}
-
-										<FormControl mt={4}>
+										{/* email field */}
+										<FormControl isRequired mt={4}>
 											<FormLabel fontWeight="black">Email:</FormLabel>
 											<Input
 												color={vaultRasin}
@@ -258,6 +266,7 @@ const UserProfile = () => {
 											/>
 										</FormControl>
 
+										{/* password update field */}
 										<FormControl mt={4} isRequired>
 											<FormLabel fontWeight="black">Password:</FormLabel>
 											<Input
@@ -311,6 +320,7 @@ const UserProfile = () => {
 					</ArwesThemeProvider>
 				</Box>
 			) : (
+				// if user is not logged in then this displays instead
 				<Link href="/">
 					You need to be logged in to view this page. Please login.
 				</Link>
