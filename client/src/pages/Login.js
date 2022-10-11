@@ -25,7 +25,6 @@ import {
 	ModalHeader,
 	useDisclosure,
 	HStack,
-	VStack,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -43,7 +42,7 @@ const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
 // extract username from local storage.
-const loggedInUsername = JSON.parse(localStorage.getItem("vaultUsername"));
+const loggedInUsername = Auth.getProfile().data.username;
 
 // page rendering
 const LoginForm = () => {
@@ -97,11 +96,6 @@ const LoginForm = () => {
 				throw new Error("something went wrong!");
 			}
 			console.log("User Authenticated");
-			// sets username in local storage
-			localStorage.setItem(
-				"vaultUsername",
-				JSON.stringify(data.login.user.username)
-			);
 			// runs auth if login function succeeds
 			Auth.login(data.login.token);
 		} catch (err) {

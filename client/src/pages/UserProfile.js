@@ -11,30 +11,19 @@ import {
 	Box,
 	Container,
 	Divider,
-	ErrorMessage,
 	FormControl,
-	Form,
 	FormLabel,
 	FormErrorMessage,
-	FormHelperText,
 	Heading,
 	Input,
 	Image,
-	InputGroup,
-	InputLeftAddon,
 	Link,
-	List,
-	ListItem,
 	Grid,
 	GridItem,
 	Table,
-	Thead,
 	Tbody,
-	Tfoot,
 	Tr,
-	Th,
 	Td,
-	TableCaption,
 	TableContainer,
 	Modal,
 	ModalBody,
@@ -63,24 +52,26 @@ const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
 const UserProfile = () => {
-	// extract username from params.
-	let { username } = useParams();
+	// extracts username from params
+	let paramsUsername = useParams().username;
+	console.log(paramsUsername);
 
-	// query's user data based on username from params
-	const { loading, data, error } = useQuery(QUERY_USER, {
+	// extract username from token.
+	let username = Auth.getProfile().data.username;
+	console.log(username);
+
+	// query's user data based on username from token
+	const { loading, data } = useQuery(QUERY_USER, {
 		variables: { username: username },
 	});
 	const user = data?.user || [];
-	// const userId = user._id;
-	const userNameVar = user.username;
-	// console.log(userNameVar);
 
 	// discolosure (open, close) system for modal
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const initialRef = useRef(null);
 	const finalRef = useRef(null);
 
-	// Alerts if form isn't filled out properly, issue with always triggering so currently disabled.
+	//* Alerts if form isn't filled out properly, issue with always triggering so currently disabled.
 	// const [showAlert, setShowAlert] = useState(false);
 
 	// update user state setup for input
@@ -158,8 +149,8 @@ const UserProfile = () => {
 				</Heading>
 			</Box>
 			<Divider mt="2rem" />
-			{/* Auth restriction to prevent users who are not logged in from viewing profile, needs more funtionality to limit to specific user. */}
-			{Auth.loggedIn() ? (
+			{/* Auth restriction to prevent users who are not logged in from viewing profiles, also prevents other users editing profiles that they cannot log into.*/}
+			{Auth.loggedIn() && username === paramsUsername ? (
 				<Box mt="1rem">
 					{/* Arwes theme add-on wrapper */}
 					<ArwesThemeProvider>
@@ -226,7 +217,7 @@ const UserProfile = () => {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Link href={`/${userNameVar}`}>Return Home</Link>
+											<Link href={`/${username}`}>Return Home</Link>
 										</ButtonArwes>
 									</Box>
 								</TableContainer>
@@ -284,7 +275,7 @@ const UserProfile = () => {
 											></FormControl>
 											<FormControl
 												display="none"
-												value={(editUserData.username = userNameVar)}
+												value={(editUserData.username = username)}
 											></FormControl>
 											<FormErrorMessage color={vaultPink}>
 												Something Went Wrong! Please ensure info fields are

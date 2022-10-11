@@ -5,14 +5,7 @@ import Auth from "../utils/auth";
 
 // import styling dependancies
 import "../App.css";
-import {
-	Box,
-	Container,
-	Image,
-	Link,
-	ScaleFade,
-	Tooltip,
-} from "@chakra-ui/react";
+import { Box, Container, Image, Link, ScaleFade } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -27,8 +20,8 @@ const vaultYellow = "#ffc857";
 const vaultGreen = "#a4f9c8";
 // const vaultPink = "#f72585";
 
-// extract username from local storage.
-const username = JSON.parse(localStorage.getItem("vaultUsername"));
+// extract username from token.
+const username = Auth.getProfile().data.username;
 // console.log(user);
 
 // Page load greeting text for interactive feel, imcludes function to recognized user/loged in status.
