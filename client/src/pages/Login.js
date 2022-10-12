@@ -170,6 +170,7 @@ const LoginForm = () => {
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
 			bg={vaultRasin}
+			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
@@ -283,7 +284,9 @@ const LoginForm = () => {
 						<form onSubmit={handleAddUser}>
 							<ModalBody color={vaultRasin} pb={6}>
 								<FormControl isRequired isInvalid={showAlertRegister}>
-									<FormLabel fontWeight="black">Username:</FormLabel>
+									<FormLabel fontWeight="black">
+										Username (This is permanent):
+									</FormLabel>
 									<Input
 										color={vaultRasin}
 										borderColor={vaultBlue}

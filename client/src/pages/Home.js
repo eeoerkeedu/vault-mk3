@@ -61,6 +61,7 @@ function Home() {
 		// overall containter for
 		<Container
 			bg={vaultRasin}
+			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"

@@ -58,7 +58,7 @@ const UserProfile = () => {
 
 	// extract username from token.
 	let username = Auth.getProfile().data.username;
-	// console.log(username);
+	// console.log(Auth.getProfile().data);
 
 	// query's user data based on username from token
 	const { loading, data } = useQuery(QUERY_USER, {
@@ -68,7 +68,6 @@ const UserProfile = () => {
 
 	// discolosure (open, close) system for modals
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const [userForm, setUserForm] = useState();
 	const initialRef = useRef(null);
 	const finalRef = useRef(null);
 
@@ -82,18 +81,10 @@ const UserProfile = () => {
 		email: "",
 		password: "",
 	});
-	console.log(editUserData);
+	// console.log(editUserData);
 
-	// update username state setup for input
-	const [editUsernameData, setEditUsernameData] = useState({
-		userId: "",
-		newUsername: "",
-	});
-	console.log(editUsernameData);
-
-	// extracts update user functions
+	// extracts update user function
 	const [updateUser] = useMutation(UPDATE_USER);
-	const [updateUsername] = useMutation(UPDATE_USERNAME);
 
 	// handle input change for the update fields
 	const handleInputChange = (event) => {
@@ -101,153 +92,8 @@ const UserProfile = () => {
 		setEditUserData({ ...editUserData, [name]: value });
 	};
 
-	const handleUsernameChange = (event) => {
-		const { name, value } = event.target;
-		setEditUsernameData({ ...editUsernameData, [name]: value });
-	};
-
 	// page loading response waiting on user data
 	if (loading) return "Loading...";
-
-	// modal pre-construction
-	const EditUsernameModal = () => (
-		<>
-			<ModalHeader color={vaultRasin} fontWeight="black">
-				Edit Your Vault Username
-			</ModalHeader>
-			<ModalCloseButton />
-			<form onSubmit={handleUpdateUsername}>
-				<ModalBody color={vaultRasin} pb={6}>
-					{/* username field */}
-					<FormControl isRequired mt={4}>
-						<FormLabel fontWeight="black">New Username:</FormLabel>
-						<Input
-							color={vaultRasin}
-							borderColor={vaultBlue}
-							ref={initialRef}
-							type="string"
-							name="newUsername"
-							value={editUsernameData.newUsername}
-							onChange={handleUsernameChange}
-							autoComplete="false"
-						/>
-					</FormControl>
-
-					{/* userID control field */}
-					<FormControl
-						display="none"
-						value={(editUsernameData.userId = user._id)}
-					></FormControl>
-
-					{/* error message */}
-					<FormErrorMessage color={vaultPink}>
-						Something Went Wrong!
-					</FormErrorMessage>
-				</ModalBody>
-
-				<ModalFooter>
-					<Button
-						bg={vaultYellow}
-						color={vaultRasin}
-						borderWidth="0px"
-						colorScheme="blackAlpha"
-						type="submit"
-						mr={3}
-					>
-						Save
-					</Button>
-					<Button
-						bg={vaultYellow}
-						color={vaultRasin}
-						borderWidth="0px"
-						colorScheme="blackAlpha"
-						onClick={onClose}
-					>
-						Cancel
-					</Button>
-				</ModalFooter>
-			</form>
-		</>
-	);
-
-	const EditAccountModal = () => (
-		<>
-			<ModalHeader color={vaultRasin} fontWeight="black">
-				Edit Your Vault Account
-			</ModalHeader>
-			<ModalCloseButton />
-			<form onSubmit={handleUpdateUser}>
-				<ModalBody color={vaultRasin} pb={6}>
-					{/* email field */}
-					<FormControl isRequired mt={4}>
-						<FormLabel fontWeight="black">Email:</FormLabel>
-						<Input
-							color={vaultRasin}
-							borderColor={vaultBlue}
-							ref={initialRef}
-							type="email"
-							name="email"
-							value={editUserData.email}
-							onChange={handleInputChange}
-							autoComplete="false"
-						/>
-					</FormControl>
-
-					{/* password update field */}
-					<FormControl mt={4} isRequired>
-						<FormLabel fontWeight="black">Password:</FormLabel>
-						<Input
-							color={vaultRasin}
-							borderColor={vaultBlue}
-							type="password"
-							name="password"
-							onChange={handleInputChange}
-							autoComplete="false"
-							value={editUserData.password}
-						/>
-
-						{/* userID and username controls */}
-						<FormControl
-							display="none"
-							value={(editUserData.userId = user._id)}
-						></FormControl>
-						<FormControl
-							display="none"
-							value={(editUserData.username = username)}
-						></FormControl>
-
-						{/* error message */}
-						<FormErrorMessage color={vaultPink}>
-							Something Went Wrong! Please ensure info fields are properly
-							filled out.
-						</FormErrorMessage>
-					</FormControl>
-				</ModalBody>
-
-				<ModalFooter>
-					<Button
-						bg={vaultYellow}
-						color={vaultRasin}
-						borderWidth="0px"
-						colorScheme="blackAlpha"
-						type="submit"
-						mr={3}
-					>
-						Save
-					</Button>
-					<Button
-						bg={vaultYellow}
-						color={vaultRasin}
-						borderWidth="0px"
-						colorScheme="blackAlpha"
-						onClick={onClose}
-					>
-						Cancel
-					</Button>
-				</ModalFooter>
-			</form>
-		</>
-	);
 
 	// handles user info update submittion and reloads page
 	const handleUpdateUser = async (event) => {
@@ -277,36 +123,12 @@ const UserProfile = () => {
 		});
 	};
 
-	const handleUpdateUsername = async (event) => {
-		event.preventDefault();
-		// console.log(editUserData);
-
-		try {
-			console.log("Recieving Data from User Edit Form");
-			const { data } = await updateUsername({
-				variables: { ...editUsernameData },
-			});
-			console.log(data);
-			if (!data) {
-				throw new Error("something went wrong!");
-			}
-			console.log("Handshake Complete");
-			window.location.replace(`/profile/${data.username}`);
-		} catch (err) {
-			console.error(err.message);
-			// setShowAlert(true);
-		}
-		setEditUsernameData({
-			userId: "",
-			newUsername: "",
-		});
-	};
-
 	// page rendering
 	return (
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
 			bg={vaultRasin}
+			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
@@ -350,18 +172,6 @@ const UserProfile = () => {
 									>
 										{user.username}
 									</Heading>
-									<Box padding="1rem">
-										<ButtonArwes
-											palette={vaultGreen}
-											FrameComponent={FrameHexagon}
-											onClick={() => {
-												setUserForm(<EditUsernameModal />);
-												onOpen();
-											}}
-										>
-											Edit Username
-										</ButtonArwes>
-									</Box>
 								</HStack>
 							</GridItem>
 
@@ -389,10 +199,7 @@ const UserProfile = () => {
 										<ButtonArwes
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
-											onClick={() => {
-												setUserForm(<EditAccountModal />);
-												onOpen();
-											}}
+											onClick={onOpen}
 										>
 											Edit Account Info
 										</ButtonArwes>
@@ -421,7 +228,80 @@ const UserProfile = () => {
 								fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
 								bg={vaultYellow}
 							>
-								{userForm}
+								<ModalHeader color={vaultRasin} fontWeight="black">
+									Edit Your Vault Account
+								</ModalHeader>
+								<ModalCloseButton />
+								<form onSubmit={handleUpdateUser}>
+									<ModalBody color={vaultRasin} pb={6}>
+										{/* email field */}
+										<FormControl isRequired mt={4}>
+											<FormLabel fontWeight="black">Email:</FormLabel>
+											<Input
+												color={vaultRasin}
+												borderColor={vaultBlue}
+												ref={initialRef}
+												type="email"
+												name="email"
+												value={editUserData.email}
+												onChange={handleInputChange}
+												autoComplete="false"
+											/>
+										</FormControl>
+
+										{/* password update field */}
+										<FormControl mt={4} isRequired>
+											<FormLabel fontWeight="black">Password:</FormLabel>
+											<Input
+												color={vaultRasin}
+												borderColor={vaultBlue}
+												type="password"
+												name="password"
+												onChange={handleInputChange}
+												autoComplete="false"
+												value={editUserData.password}
+											/>
+
+											{/* userID and username controls */}
+											<FormControl
+												display="none"
+												value={(editUserData.userId = user._id)}
+											></FormControl>
+											<FormControl
+												display="none"
+												value={(editUserData.username = username)}
+											></FormControl>
+
+											{/* error message */}
+											<FormErrorMessage color={vaultPink}>
+												Something Went Wrong! Please ensure info fields are
+												properly filled out.
+											</FormErrorMessage>
+										</FormControl>
+									</ModalBody>
+
+									<ModalFooter>
+										<Button
+											bg={vaultYellow}
+											color={vaultRasin}
+											borderWidth="0px"
+											colorScheme="blackAlpha"
+											type="submit"
+											mr={3}
+										>
+											Save
+										</Button>
+										<Button
+											bg={vaultYellow}
+											color={vaultRasin}
+											borderWidth="0px"
+											colorScheme="blackAlpha"
+											onClick={onClose}
+										>
+											Cancel
+										</Button>
+									</ModalFooter>
+								</form>
 							</ModalContent>
 						</Modal>
 					</ArwesThemeProvider>
