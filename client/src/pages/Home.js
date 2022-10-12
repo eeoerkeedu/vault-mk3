@@ -21,7 +21,7 @@ const vaultGreen = "#a4f9c8";
 // const vaultPink = "#f72585";
 
 // extract username from token.
-const username = Auth.getProfile().data.username;
+let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 // console.log(user);
 
 // Page load greeting text for interactive feel, imcludes function to recognized user/loged in status.

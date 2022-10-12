@@ -7,28 +7,19 @@ import Auth from "../utils/auth";
 
 // import styling dependancies
 import "../App.css";
-import {
-	Container,
-	Image,
-	VStack,
-	HStack,
-	Box,
-	StackDivider,
-	Link,
-} from "@chakra-ui/react";
+import { Container, Image, VStack, Box, Link } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
-	Text,
 	FrameHexagon,
 } from "@arwes/core";
 
 //bringing in vault pallet
 const vaultRasin = "#272932";
-const vaultYellow = "#ffc857";
-const vaultBlue = "#4d7ea8";
+// const vaultYellow = "#ffc857";
+// const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
-const vaultPink = "#f72585";
+// const vaultPink = "#f72585";
 
 // extract username from local storage.
 const username = JSON.parse(localStorage.getItem("vaultUsername"));

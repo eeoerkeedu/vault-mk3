@@ -43,7 +43,7 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
-const username = JSON.parse(localStorage.getItem("vaultUsername"));
+let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 
 function App() {
 	return (
