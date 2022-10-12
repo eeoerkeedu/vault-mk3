@@ -42,7 +42,7 @@ const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
 
 // extract username from local storage.
-const loggedInUsername = Auth.getProfile().data.username;
+const loggedInUsername = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 
 // page rendering
 const LoginForm = () => {

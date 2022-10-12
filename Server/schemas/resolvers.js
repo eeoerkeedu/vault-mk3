@@ -49,6 +49,17 @@ const resolvers = {
 			);
 			return userData;
 		},
+
+		updateUsername: async (parent, { userId, username }) => {
+			const userData = await User.findOneAndUpdate(
+				{ _id: userId },
+				{
+					username: username,
+				},
+				{ new: true }
+			);
+			return userData;
+		},
 	},
 };
 module.exports = resolvers;
