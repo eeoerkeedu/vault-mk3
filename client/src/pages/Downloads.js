@@ -28,7 +28,13 @@ const username = JSON.parse(localStorage.getItem("vaultUsername"));
 function Downloads() {
 	return (
 		// outer containter for the page
-		<Container bg={vaultRasin} height="100%" width="100%" maxWidth="100vw">
+		<Container
+			bg={vaultRasin}
+			height="100%"
+			h="100%"
+			width="100%"
+			maxWidth="100vw"
+		>
 			<Box fontSize="2rem" padding="1rem" marginLeft="5%">
 				{/* Arwes theme add-on wrapper */}
 				<ArwesThemeProvider>
