@@ -44,7 +44,7 @@ class AuthService {
 		localStorage.removeItem("id_token");
 		localStorage.removeItem("vaultUsername");
 		// this will reload the page and reset the state of the application
-		window.location.assign("/login");
+		window.location.assign("/");
 	}
 }
 
