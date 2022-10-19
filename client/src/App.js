@@ -15,8 +15,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Downloads from "./pages/Downloads";
 import UserProfile from "./pages/UserProfile";
-
-// import NavbarComp from "./componets/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 // import Footer from "./componets/Footer/Footer";
 
 // Construct our main GraphQL API endpoint
@@ -49,6 +48,7 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
+				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/:username" element={<Home />} />

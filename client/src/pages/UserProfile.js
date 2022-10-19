@@ -231,7 +231,7 @@ const UserProfile = () => {
 								<ModalHeader color={vaultRasin} fontWeight="black">
 									Edit Your Vault Account
 								</ModalHeader>
-								<ModalCloseButton />
+								<ModalCloseButton color={vaultRasin} />
 								<form onSubmit={handleUpdateUser}>
 									<ModalBody color={vaultRasin} pb={6}>
 										{/* email field */}
