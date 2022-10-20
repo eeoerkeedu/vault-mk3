@@ -30,9 +30,7 @@ const loadingText = [
 	"Establishing Connection......",
 	"Building Encryption......",
 	"Confirming User......",
-	`Welcome Mercenary ${
-		Auth.loggedIn() ? `--- ${username}` : "Please Register or Login"
-	}`,
+	`${Auth.loggedIn() ? `Welcome ${username}` : `Please Register or Login`}`,
 ];
 
 // page rendering
@@ -70,18 +68,16 @@ function Home() {
 		>
 			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>
-				{/* Page header */}
-				<Box paddingTop="3rem" className="App-header">
-					<Image src={logo} maxW="40%"></Image>
-					<h1 className="spraypaint">Make a Killing</h1>
-				</Box>
 				{/* Main view area */}
 				<Box
 					flex="1"
 					color={vaultYellow}
 					fontSize="2rem"
 					padding="1rem"
-					marginLeft="5%"
+					display="flex"
+					flexDirection="column"
+					alignItems="center"
+					justifyContent="center"
 				>
 					{/* dispalys loading text if not logged-in, and just presents user personalization if logged-in */}
 					{Auth.loggedIn() ? (

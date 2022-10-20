@@ -16,6 +16,10 @@ root {
 	background: #272932;
 }
 
+body {
+	background-color: var(--vaultRasin);
+}
+
 .App {
   text-align: center;
   font-family: var(--mainText);
@@ -34,7 +38,6 @@ root {
 		Haettenschweiler,
 		'Arial Narrow Bold',
 		sans-serif;
-	font-size: 1.5rem;
 }
 
 .akashi {
