@@ -35,6 +35,7 @@ import {
 	Button,
 	useDisclosure,
 	HStack,
+	Text,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -145,14 +146,14 @@ const UserProfile = () => {
 								<HStack>
 									<Heading
 										pb="1rem"
-										fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
+										fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
 									>
 										Merc Username:
 									</Heading>
 									<Heading
 										pb="1rem"
 										color={vaultPink}
-										fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
+										fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
 									>
 										{user.username}
 									</Heading>
@@ -185,15 +186,9 @@ const UserProfile = () => {
 											FrameComponent={FrameHexagon}
 											onClick={onOpen}
 										>
-											Edit Account Info
-										</ButtonArwes>
-									</Box>
-									<Box padding="1rem">
-										<ButtonArwes
-											palette={vaultGreen}
-											FrameComponent={FrameHexagon}
-										>
-											<Link href={`/${username}`}>Return Home</Link>
+											<Text fontFamily="Signika, -apple-system, Roboto, sans-serif">
+												Edit Account Info
+											</Text>
 										</ButtonArwes>
 									</Box>
 								</TableContainer>
@@ -209,7 +204,7 @@ const UserProfile = () => {
 						>
 							<ModalOverlay />
 							<ModalContent
-								fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+								fontFamily="Signika, -apple-system, Roboto, sans-serif"
 								bg={vaultYellow}
 							>
 								<ModalHeader color={vaultRasin} fontWeight="black">

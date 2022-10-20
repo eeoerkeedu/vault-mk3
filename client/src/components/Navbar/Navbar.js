@@ -54,7 +54,13 @@ function Navbar({ currentPage, handlePageChange }) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
-		<Container bg={vaultRasin} width="100%" maxWidth="100vw" padding="20px">
+		<Container
+			fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
+			bg={vaultRasin}
+			width="100%"
+			maxWidth="100vw"
+			padding="20px"
+		>
 			<Flex>
 				<ArwesThemeProvider>
 					{isLargerThan426 ? (
@@ -109,16 +115,17 @@ function Navbar({ currentPage, handlePageChange }) {
 								<DrawerCloseButton color={vaultRasin} />
 							</DrawerHeader>
 							<DrawerBody>
-								<VStack align="left">
+								<VStack
+									fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+									placement="right"
+									align="left"
+								>
 									<Link padding=".5rem" href="/">
 										<ButtonArwes
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text
-												fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-												color={vaultRasin}
-											>
+											<Text align="left" color={vaultRasin}>
 												Home
 											</Text>
 										</ButtonArwes>
@@ -129,10 +136,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text
-												fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-												color={vaultRasin}
-											>
+											<Text align="left" color={vaultRasin}>
 												Character Builder
 											</Text>
 										</ButtonArwes>
@@ -145,10 +149,7 @@ function Navbar({ currentPage, handlePageChange }) {
 												palette={vaultGreen}
 												FrameComponent={FrameHexagon}
 											>
-												<Text
-													fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-													color={vaultRasin}
-												>
+												<Text align="left" color={vaultRasin}>
 													View Characters Roster
 												</Text>
 											</ButtonArwes>
@@ -162,10 +163,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text
-												fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-												color={vaultRasin}
-											>
+											<Text align="left" color={vaultRasin}>
 												Downloads
 											</Text>
 										</ButtonArwes>
@@ -178,7 +176,9 @@ function Navbar({ currentPage, handlePageChange }) {
 													FrameComponent={FrameHexagon}
 												>
 													<Text
-														fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+														fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+														placement="right"
+														align="left"
 														color={vaultRasin}
 													>
 														View Profile
@@ -191,7 +191,9 @@ function Navbar({ currentPage, handlePageChange }) {
 													FrameComponent={FrameHexagon}
 												>
 													<Text
-														fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+														fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+														placement="right"
+														align="left"
 														color={vaultRasin}
 													>
 														Logout
@@ -207,7 +209,8 @@ function Navbar({ currentPage, handlePageChange }) {
 												FrameComponent={FrameHexagon}
 											>
 												<Text
-													fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+													fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+													align="left"
 													color={vaultRasin}
 												>
 													Login
