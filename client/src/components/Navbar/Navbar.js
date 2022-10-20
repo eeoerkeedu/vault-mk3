@@ -17,11 +17,11 @@ import {
 	DrawerCloseButton,
 	useDisclosure,
 	Container,
-	Button,
 	VStack,
 	Spacer,
 	Flex,
 	Text,
+	useMediaQuery,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -52,14 +52,42 @@ function Navbar({ currentPage, handlePageChange }) {
 	return (
 		<Container bg={vaultRasin} width="100%" maxWidth="100vw" padding=".5rem">
 			<Flex>
-				<Spacer />
 				<ArwesThemeProvider>
+					<Link href="/" padding=".5rem">
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							Home
+						</ButtonArwes>
+					</Link>
+
+					{/* View user's profile navigation and log-out button, only shows when logged in, otherwise shows login button. Will get moved to navbar when built. */}
+					{Auth.loggedIn() ? (
+						<>
+							<Link href={`/profile/${username}`} padding=".5rem">
+								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+									View Profile
+								</ButtonArwes>
+							</Link>
+							<Link href="/" padding=".5rem" onClick={logout}>
+								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+									Logout
+								</ButtonArwes>
+							</Link>
+						</>
+					) : (
+						// login button
+						<Link href="/login" padding=".5rem">
+							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+								Login
+							</ButtonArwes>
+						</Link>
+					)}
+					<Spacer />
 					<ButtonArwes
 						palette={vaultGreen}
 						FrameComponent={FrameHexagon}
 						onClick={onOpen}
 					>
-						<Text px="2rem">Menu</Text>
+						Menu
 					</ButtonArwes>
 
 					<Drawer placement="right" onClose={onClose} isOpen={isOpen}>
@@ -118,47 +146,6 @@ function Navbar({ currentPage, handlePageChange }) {
 											</Text>
 										</ButtonArwes>
 									</Link>
-									{/* View user's profile navigation and log-out button, only shows when logged in, otherwise shows login button. Will get moved to navbar when built. */}
-									{Auth.loggedIn() ? (
-										<>
-											<Link href={`/profile/${username}`} padding=".5rem">
-												<ButtonArwes
-													palette={vaultGreen}
-													FrameComponent={FrameHexagon}
-												>
-													<Text
-														fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-														color={vaultRasin}
-													>
-														View Profile
-													</Text>
-												</ButtonArwes>
-											</Link>
-											<Link href="/" padding=".5rem" onClick={logout}>
-												<ButtonArwes
-													palette={vaultGreen}
-													FrameComponent={FrameHexagon}
-												>
-													<Text
-														fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-														color={vaultRasin}
-													>
-														Logout
-													</Text>
-												</ButtonArwes>
-											</Link>
-										</>
-									) : (
-										// login button
-										<Link href="/login" padding=".5rem">
-											<ButtonArwes
-												palette={vaultGreen}
-												FrameComponent={FrameHexagon}
-											>
-												Login
-											</ButtonArwes>
-										</Link>
-									)}
 								</VStack>
 							</DrawerBody>
 						</DrawerContent>
