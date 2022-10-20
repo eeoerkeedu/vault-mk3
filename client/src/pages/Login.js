@@ -176,11 +176,6 @@ const LoginForm = () => {
 			maxWidth="100vw"
 			centerContent
 		>
-			{/* Page Header */}
-			<Box paddingTop="2rem" className="App-header">
-				<Image src={logo} maxW="30%"></Image>
-				<h1 className="spraypaint">Make a Killing</h1>
-			</Box>
 			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>
 				<Box

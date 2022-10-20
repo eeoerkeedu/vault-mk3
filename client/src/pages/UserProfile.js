@@ -127,32 +127,16 @@ const UserProfile = () => {
 	return (
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+			padding="40px"
 			bg={vaultRasin}
 			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
 		>
-			{/* Page Header */}
-			<Box paddingTop="2rem">
-				<Image src={logo} maxW="20%"></Image>
-				<Heading
-					size="sm"
-					fontFamily="Rock Salt,
-								Oribitron,
-								Impact,
-								Haettenschweiler,
-								'Arial Narrow Bold',
-								sans-serif;"
-					color={vaultPink}
-				>
-					Make a Killing
-				</Heading>
-			</Box>
-			<Divider mt="2rem" />
 			{/* Auth restriction to prevent users who are not logged in from viewing profiles, also prevents other users editing profiles that they cannot log into.*/}
 			{Auth.loggedIn() && username === paramsUsername ? (
-				<Box mt="1rem">
+				<Box>
 					{/* Arwes theme add-on wrapper */}
 					<ArwesThemeProvider>
 						<Grid templateColumns="repeat(5, 1fr)" gap={1}>

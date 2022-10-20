@@ -34,8 +34,12 @@ function Downloads() {
 			h="100%"
 			width="100%"
 			maxWidth="100vw"
+			display="flex"
+			flexDirection="column"
+			alignItems="center"
+			justifyContent="center"
 		>
-			<Box fontSize="2rem" padding="1rem" marginLeft="5%">
+			<Box fontSize="2rem">
 				{/* Arwes theme add-on wrapper */}
 				<ArwesThemeProvider>
 					{/* link wrapped image and button for color character sheet */}
@@ -62,14 +66,6 @@ function Downloads() {
 								Character Sheet (Printer Friendly)
 							</ButtonArwes>
 							<Image src={BnWCS} />
-						</VStack>
-					</Link>
-					{/* Return to Homepage button with logic to return to the user specific homepage if logged-in */}
-					<Link href={Auth.loggedIn() ? `/${username}` : "/"} padding=".5rem">
-						<VStack>
-							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-								Return Home
-							</ButtonArwes>
 						</VStack>
 					</Link>
 				</ArwesThemeProvider>

@@ -22,6 +22,7 @@ import {
 	Flex,
 	Text,
 	useMediaQuery,
+	Heading,
 } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
@@ -30,6 +31,7 @@ import {
 } from "@arwes/core";
 
 //bringing in the vault pallet and logo
+import logo from "../../assets/imgs/VaultLogoforsite.png";
 import logoWord1 from "../../assets/imgs/SocialMedfiaWatermark.png";
 import logoWord2 from "../../assets/imgs/SocialMedfiaWatermarkYellow.png";
 const vaultRasin = "#272932";
@@ -42,6 +44,8 @@ const vaultPink = "#f72585";
 const username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 
 function Navbar({ currentPage, handlePageChange }) {
+	const [isLargerThan426] = useMediaQuery("(min-width: 426px)");
+
 	const logout = (event) => {
 		event.preventDefault();
 		Auth.logout();
@@ -50,55 +54,75 @@ function Navbar({ currentPage, handlePageChange }) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
-		<Container bg={vaultRasin} width="100%" maxWidth="100vw" padding=".5rem">
+		<Container bg={vaultRasin} width="100%" maxWidth="100vw" padding="20px">
 			<Flex>
 				<ArwesThemeProvider>
-					<Link href="/" padding=".5rem">
-						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-							Home
-						</ButtonArwes>
-					</Link>
-
-					{/* View user's profile navigation and log-out button, only shows when logged in, otherwise shows login button. Will get moved to navbar when built. */}
-					{Auth.loggedIn() ? (
+					{isLargerThan426 ? (
 						<>
-							<Link href={`/profile/${username}`} padding=".5rem">
+							<Link href="/">
 								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-									View Profile
+									<Text py="5px">Home</Text>
 								</ButtonArwes>
 							</Link>
-							<Link href="/" padding=".5rem" onClick={logout}>
-								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-									Logout
-								</ButtonArwes>
+							<Spacer />
+
+							<Link href="/">
+								<Box
+									display="flex"
+									flexDirection="column"
+									alignItems="center"
+									justifyContent="center"
+								>
+									<Image src={logoWord1} maxH="100px"></Image>
+								</Box>
 							</Link>
 						</>
 					) : (
-						// login button
-						<Link href="/login" padding=".5rem">
-							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-								Login
-							</ButtonArwes>
+						<Link href="/">
+							<Box
+								display="flex"
+								flexDirection="column"
+								alignItems="center"
+								justifyContent="center"
+							>
+								<Image src={logoWord1} maxH="100px"></Image>
+							</Box>
 						</Link>
 					)}
+
 					<Spacer />
-					<ButtonArwes
-						palette={vaultGreen}
-						FrameComponent={FrameHexagon}
-						onClick={onOpen}
-					>
-						Menu
-					</ButtonArwes>
+					<Box>
+						<ButtonArwes
+							palette={vaultGreen}
+							FrameComponent={FrameHexagon}
+							onClick={onOpen}
+						>
+							<Text py="5px">Menu</Text>
+						</ButtonArwes>
+					</Box>
 
 					<Drawer placement="right" onClose={onClose} isOpen={isOpen}>
 						<DrawerOverlay />
 						<DrawerContent bg={vaultYellow}>
-							<DrawerHeader borderBottomWidth="1px">
-								<Image dropShadow="true" src={logoWord1}></Image>
+							<DrawerHeader shadow="lg" borderBottomWidth="1px">
+								<Image src={logoWord1}></Image>
 								<DrawerCloseButton color={vaultRasin} />
 							</DrawerHeader>
 							<DrawerBody>
 								<VStack align="left">
+									<Link padding=".5rem" href="/">
+										<ButtonArwes
+											palette={vaultGreen}
+											FrameComponent={FrameHexagon}
+										>
+											<Text
+												fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+												color={vaultRasin}
+											>
+												Home
+											</Text>
+										</ButtonArwes>
+									</Link>
 									<Link padding=".5rem">
 										<ButtonArwes
 											disabled
@@ -146,6 +170,51 @@ function Navbar({ currentPage, handlePageChange }) {
 											</Text>
 										</ButtonArwes>
 									</Link>
+									{Auth.loggedIn() ? (
+										<>
+											<Link href={`/profile/${username}`} padding=".5rem">
+												<ButtonArwes
+													palette={vaultGreen}
+													FrameComponent={FrameHexagon}
+												>
+													<Text
+														fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+														color={vaultRasin}
+													>
+														View Profile
+													</Text>
+												</ButtonArwes>
+											</Link>
+											<Link href="/" padding=".5rem" onClick={logout}>
+												<ButtonArwes
+													palette={vaultGreen}
+													FrameComponent={FrameHexagon}
+												>
+													<Text
+														fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+														color={vaultRasin}
+													>
+														Logout
+													</Text>
+												</ButtonArwes>
+											</Link>
+										</>
+									) : (
+										// login button
+										<Link href="/login" padding=".5rem">
+											<ButtonArwes
+												palette={vaultGreen}
+												FrameComponent={FrameHexagon}
+											>
+												<Text
+													fontFamily="Oribitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+													color={vaultRasin}
+												>
+													Login
+												</Text>
+											</ButtonArwes>
+										</Link>
+									)}
 								</VStack>
 							</DrawerBody>
 						</DrawerContent>
