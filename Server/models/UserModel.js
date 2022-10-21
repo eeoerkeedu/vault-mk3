@@ -19,6 +19,12 @@ const userSchema = new Schema({
 		required: true,
 		minlength: 8,
 	},
+	// portrait: {
+	// 	type: Schema.Types.ObjectId,
+	// 	ref: "Portrait",
+	// 	required: false,
+	// },
+	// savedCharacaters: [{ type: Schema.Types.ObjectId, ref: "Character" }],
 });
 
 const saltRounds = 12;

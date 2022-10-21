@@ -10,13 +10,11 @@ import Auth from "../utils/auth";
 import {
 	Box,
 	Container,
-	Divider,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
 	Heading,
 	Input,
-	Image,
 	Link,
 	Grid,
 	GridItem,
@@ -45,7 +43,6 @@ import {
 import "../App.css";
 
 //bringing in the vault pallet and logo
-import logo from "../assets/imgs/VaultLogoforsite.png";
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";

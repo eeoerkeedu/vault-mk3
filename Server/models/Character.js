@@ -1,0 +1,28 @@
+const { Schema, model } = require("mongoose");
+
+const Character = new Schema({
+	charName: {},
+	charAppearance: [{}],
+	charStyle: [{}],
+	charSpecies: {},
+	charClasses: [{}],
+	charAbilities: [{}],
+	charEXP: {},
+	charTier: {},
+	charStats: {},
+	charCompStats: [{}],
+	charSkills: [{}],
+	charArmor: [{}],
+	charEoU: [{}],
+	charMoves: [{}],
+	charWpnRanks: [{}],
+	charBitz: [{}],
+	charContacts: [{}],
+	charInventory: [{}],
+	charCyberwear: [{}],
+	charVehicles: [{}],
+	charDrones: [{}],
+	charSpells: [{}],
+	charCompanions: [{}],
+	charAttacks: [{}],
+});

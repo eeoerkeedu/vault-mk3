@@ -16,7 +16,7 @@ import Login from "./pages/Login";
 import Downloads from "./pages/Downloads";
 import UserProfile from "./pages/UserProfile";
 import Navbar from "./components/Navbar/Navbar";
-// import Footer from "./componets/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -56,6 +56,7 @@ function App() {
 					<Route path="/downloads" element={<Downloads />} />
 					<Route path="/profile/:username" element={<UserProfile />} />
 				</Routes>
+				<Footer />
 			</Router>
 		</ApolloProvider>
 	);
