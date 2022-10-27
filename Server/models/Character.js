@@ -1,13 +1,13 @@
 const { Schema, model } = require("mongoose");
 
-const Character = new Schema({
+const characterSchema = new Schema({
 	charName: {},
-	charAppearance: [{}],
+	charAppearance: { type: Array, required: true },
 	charStyle: [{}],
 	charSpecies: {},
 	charClasses: [{}],
 	charAbilities: [{}],
-	charEXP: {},
+	charEXP: { type: Interger, default: 0 },
 	charTier: {},
 	charStats: {},
 	charCompStats: [{}],
@@ -26,3 +26,6 @@ const Character = new Schema({
 	charCompanions: [{}],
 	charAttacks: [{}],
 });
+
+const Character = model("Character", characterSchema);
+module.exports = Character;
