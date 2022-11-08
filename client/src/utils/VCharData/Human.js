@@ -1,5 +1,6 @@
 const Human = {
 	name: "Human",
+	desc: "The last decades have not been kind to humanity. We have been usurped from the top of the food chain, forced into a dozen or so overcrowded cities, and lost billions of souls. Our creations both machine and organic have turned on us, but we still adapt and thrive. Where the others have strengths we have flexibility. It's hard to imagine the Atlas of today without this same determined spirit making up the bulk of our workforce. It only makes sense that the exceptional of us would make some of the finest mercenaries this world has ever seen.",
 	stats: {
 		statsBase: {
 			STR: 4,
@@ -56,7 +57,7 @@ const Human = {
 			desc: "Choose one additional style bonus from this list, you do not need to have the style group as a prerequisite: Mental Focus, Crushing Momentum, Awareness, Keen sight.",
 		},
 	},
-	speciesabilities: {
+	speciesAbilities: {
 		1: {
 			name: "Practiced Flexibility",
 			desc: "Gain access to an ability group not available to your class choices. Also choose 2 skills to improve by one, the max for these skills also improves by one.",
