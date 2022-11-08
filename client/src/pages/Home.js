@@ -1,11 +1,10 @@
 // importing logo and utility dependancies
 import { useState, useEffect } from "react";
-import logo from "../assets/imgs/VaultLogoforsite.png";
 import Auth from "../utils/auth";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Container, Image, Link, ScaleFade } from "@chakra-ui/react";
+import { Box, Container, Link, ScaleFade } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -56,7 +55,7 @@ function Home() {
 	};
 
 	return (
-		// overall containter for
+		// overall containter
 		<Container
 			bg={vaultRasin}
 			h="100%"
@@ -93,12 +92,8 @@ function Home() {
 					{/* page load scaling up "animation" */}
 					<ScaleFade initialScale={0.75} in={true}>
 						{/* Character builder page link */}
-						<Link padding=".5rem">
-							<ButtonArwes
-								disabled
-								palette={vaultGreen}
-								FrameComponent={FrameHexagon}
-							>
+						<Link href="/characterbuilder" padding=".5rem">
+							<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 								Character Builder
 							</ButtonArwes>
 						</Link>
