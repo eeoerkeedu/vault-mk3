@@ -7,7 +7,7 @@ const characterSchema = new Schema({
 	charSpecies: {},
 	charClasses: [{}],
 	charAbilities: [{}],
-	charEXP: { type: Interger, default: 0 },
+	charEXP: { type: Number, default: 0 },
 	charTier: {},
 	charStats: {},
 	charCompStats: [{}],

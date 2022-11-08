@@ -12,11 +12,12 @@ import Auth from "./utils/auth";
 
 //imported routes
 import Home from "./pages/Home";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Login from "./pages/Login";
 import Downloads from "./pages/Downloads";
 import UserProfile from "./pages/UserProfile";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import CharacterBuilder from "./pages/CharacterBuilder";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -55,6 +56,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/downloads" element={<Downloads />} />
 					<Route path="/profile/:username" element={<UserProfile />} />
+					<Route path="/characterbuilder" element={<CharacterBuilder />} />
 				</Routes>
 				<Footer />
 			</Router>
