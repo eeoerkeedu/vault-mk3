@@ -1,5 +1,6 @@
 const Dwarf = {
 	name: "Dwarf",
+	desc: "Scores of Dwarven clans also used the first portals while they were open to enter our realm in hopes of finding hard to get to or undervalued resources. Dwarven lore keepers still don't understand how so many of our notions about them are accurate as no dwarf has ever had a resource claim or even record of travel to this realm. Even more disturbingly shortly after arriving, dwarves lost all contact with their home realm, leading to the belief that something terrible may have happened and the only dwarves left are the ones scattered among the countless realms. These dauntless adventurers still love to explore, create, and trade. The technology, knowledge, and experience with Fae they brought with them was more than enough reason for them to be welcomed into human cities and now those advantages make them highly sought mercenaries.",
 	stats: {
 		statsBase: {
 			STR: 5,
@@ -56,7 +57,7 @@ const Dwarf = {
 			desc: "Choose 2: Craft, Demo, Hack, Lore, Repair, First Aid, or Pilot. Gain 1 Skill Point in those skills and the Max number of points you can have in those skills improves by one.",
 		},
 	},
-	speciesabilities: {
+	speciesAbilities: {
 		1: {
 			name: "Itching for a Fight",
 			desc: "When INIT is rolled for a scene you may make a normal move. You gain +1 DEF and AV for the first round of combat.",
