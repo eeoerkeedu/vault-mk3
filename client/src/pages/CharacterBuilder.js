@@ -31,19 +31,29 @@ import {
 	ModalOverlay,
 	ModalCloseButton,
 	ModalFooter,
-	Radio,
-	RadioGroup,
+	Select,
 	Button,
 	useDisclosure,
 	HStack,
 	VStack,
+	Stack,
 	Text,
+	IconButton,
+	Drawer,
+	DrawerBody,
+	DrawerCloseButton,
+	DrawerContent,
+	DrawerHeader,
+	DrawerOverlay,
+	DrawerFooter,
 } from "@chakra-ui/react";
+import { InfoIcon } from "@chakra-ui/icons";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
 	FrameHexagon,
 } from "@arwes/core";
+import Human from "../utils/VCharData/Human";
 
 //bringing in the vault pallet
 const vaultRasin = "#272932";
@@ -67,9 +77,9 @@ class Character {
 	}
 }
 
-CharacterOptions.speciesOptions.map((species) => {
-	console.log(species.name);
-});
+//CharacterOptions.speciesOptions.map((species) => {
+//	console.log(species.name);
+//});
 
 function CharacterBuilder() {
 	// update character form state setup for input
@@ -82,10 +92,13 @@ function CharacterBuilder() {
 	});
 	// console.log(editUserData);
 
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	// handle input change for the update fields
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setCharacterData({ ...characterData, [name]: value });
+		console.log(document.getElementById("speciesSelect").value);
 	};
 
 	const handleSaveCharacter = async (event) => {
@@ -94,7 +107,8 @@ function CharacterBuilder() {
 
 		try {
 			console.log("Character Saved");
-			localStorage.setItem("SavedCharacter", characterData);
+			let minimizedChardata = JSON.stringify(characterData);
+			localStorage.setItem("SavedCharacter", minimizedChardata);
 			const savedChar = JSON.parse(localStorage.getItem("SavedCharacter"));
 
 			console.log(savedChar);
@@ -116,7 +130,7 @@ function CharacterBuilder() {
 		// overall containter
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-			padding="40px"
+			padding="20px"
 			bg={vaultRasin}
 			h="100%"
 			height="100vh"
@@ -130,7 +144,7 @@ function CharacterBuilder() {
 					<form onSubmit={handleSaveCharacter}>
 						<FormControl isRequired p="2%">
 							<FormHelperText
-								p="2%"
+								px="2%"
 								mb=".2rem"
 								fontSize="1.5rem"
 								color={vaultYellow}
@@ -148,25 +162,50 @@ function CharacterBuilder() {
 								value={characterData.name}
 							/>
 						</FormControl>
-						<FormControl isRequired p="2%">
-							<RadioGroup
-								onChange={handleInputChange}
-								value={characterData.species}
-							>
-								<HStack spacing={4}>
+						<FormControl isRequired px="2%" pb="5%">
+							<FormLabel color={vaultYellow}>Species:</FormLabel>
+							<HStack>
+								<Select
+									onChange={handleInputChange}
+									name="species"
+									value={characterData.species}
+									bg={vaultBlue}
+									size="lg"
+									placeholder="Choose a Species"
+									id="speciesSelect"
+								>
 									{CharacterOptions.speciesOptions.map((species) => (
-										<Radio key={species.name}>{species.name}</Radio>
+										<option key={species.name}>{species.name}</option>
 									))}
-								</HStack>
-							</RadioGroup>
+								</Select>
+								<IconButton
+									aria-label="More info"
+									variant="outline"
+									borderColor={vaultYellow}
+									size="lg"
+									color={vaultYellow}
+									icon={<InfoIcon />}
+									onClick={onOpen}
+								/>
+							</HStack>
 						</FormControl>
 
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-							Save
+							Next
 						</ButtonArwes>
 					</form>
 				</Box>
 			</ArwesThemeProvider>
+			<DrawerOverlay />
+			<DrawerContent>
+				<DrawerHeader borderBottomWidth="1px">Human</DrawerHeader>
+				<DrawerBody>
+					<p>Some contents...</p>
+					<p>Some contents...</p>
+					<p>Some contents...</p>
+				</DrawerBody>
+			</DrawerContent>
+			<Drawer placement="bottom" onClose={onClose} isOpen={isOpen}></Drawer>
 		</Container>
 	);
 }
