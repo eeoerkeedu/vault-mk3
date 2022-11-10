@@ -24,7 +24,7 @@ function Footer() {
 			bg={vaultRasin}
 			width="100%"
 			maxWidth="100vw"
-			padding="10px"
+			py="20px"
 		>
 			<Flex>
 				<ArwesThemeProvider>
