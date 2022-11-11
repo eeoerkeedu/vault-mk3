@@ -14,7 +14,6 @@ import {
 	Input,
 	Container,
 	Box,
-	Image,
 	Link,
 	Modal,
 	ModalContent,
@@ -34,12 +33,13 @@ import {
 import "../App.css";
 
 //bringing in the vault pallet and logo
-import logo from "../assets/imgs/VaultLogoforsite.png";
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
+const Signika =
+	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 
 // extract username from local storage.
 const loggedInUsername = Auth.loggedIn() ? Auth.getProfile().data.username : "";
@@ -168,7 +168,7 @@ const LoginForm = () => {
 
 	return (
 		<Container
-			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+			fontFamily={Signika}
 			bg={vaultRasin}
 			h="100%"
 			height="100vh"
@@ -268,10 +268,7 @@ const LoginForm = () => {
 					onClose={onClose}
 				>
 					<ModalOverlay />
-					<ModalContent
-						fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
-						bg={vaultYellow}
-					>
+					<ModalContent fontFamily={Signika} bg={vaultYellow}>
 						<ModalHeader color={vaultRasin} fontWeight="black">
 							Create a Vault account
 						</ModalHeader>
