@@ -4,6 +4,8 @@ import { useState } from "react";
 
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
+import VaultStyles from "../utils/VCharData/Styles";
+import VaultClasses from "../utils/VCharData/VaultClasses";
 
 // import styling dependancies
 import "../App.css";
