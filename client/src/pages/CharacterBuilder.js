@@ -102,7 +102,8 @@ function CharacterBuilder() {
 				{/* Main view area */}
 				<Box
 					width="95%"
-					mt="1rem"
+					height="90%"
+					mt="2%"
 					p="2%"
 					borderWidth="2px"
 					borderColor={vaultYellow}
