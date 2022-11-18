@@ -16,5 +16,6 @@
     "concurrently": "^7.4.0"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.1"
   }
 }
