@@ -21,10 +21,9 @@ function Footer() {
 	return (
 		<Container
 			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
-			bg={vaultRasin}
 			width="100%"
 			maxWidth="100vw"
-			py="20px"
+			p="20px"
 		>
 			<Flex>
 				<ArwesThemeProvider>

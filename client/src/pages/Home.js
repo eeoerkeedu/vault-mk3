@@ -12,12 +12,14 @@ import {
 	Text,
 } from "@arwes/core";
 
-//bringing in the vault pallet
+//bringing in the vault pallet and font families
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 // const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 // const vaultPink = "#f72585";
+const Signika =
+	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 
 // extract username from token.
 let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
@@ -57,13 +59,12 @@ function Home() {
 	return (
 		// overall containter
 		<Container
-			bg={vaultRasin}
 			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
 			centercontent="true"
-			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+			fontFamily={Signika}
 		>
 			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>

@@ -56,7 +56,6 @@ function Navbar({ currentPage, handlePageChange }) {
 	return (
 		<Container
 			fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
-			bg={vaultRasin}
 			width="100%"
 			maxWidth="100vw"
 			padding="20px"
@@ -111,7 +110,7 @@ function Navbar({ currentPage, handlePageChange }) {
 						<DrawerOverlay />
 						<DrawerContent bg={vaultYellow}>
 							<DrawerHeader shadow="lg" borderBottomWidth="1px">
-								<Image src={logoWord1}></Image>
+								<Image height="150px" src={logoWord1}></Image>
 								<DrawerCloseButton color={vaultRasin} />
 							</DrawerHeader>
 							<DrawerBody>
@@ -130,9 +129,8 @@ function Navbar({ currentPage, handlePageChange }) {
 											</Text>
 										</ButtonArwes>
 									</Link>
-									<Link padding=".5rem">
+									<Link padding=".5rem" href="/characterbuilder">
 										<ButtonArwes
-											disabled
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
