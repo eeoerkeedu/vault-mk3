@@ -169,12 +169,12 @@ const LoginForm = () => {
 	return (
 		<Container
 			fontFamily={Signika}
-			bg={vaultRasin}
 			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
 			centerContent
+			mb="100px"
 		>
 			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>

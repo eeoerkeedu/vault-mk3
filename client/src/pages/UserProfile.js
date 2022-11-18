@@ -48,6 +48,9 @@ const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 const vaultPink = "#f72585";
+const Signika =
+	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
+const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 const UserProfile = () => {
 	// extracts username from params for checking against login token on page load
@@ -124,13 +127,13 @@ const UserProfile = () => {
 	// page rendering
 	return (
 		<Container
-			fontFamily="Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;"
+			fontFamily={Signika}
 			padding="40px"
-			bg={vaultRasin}
 			h="100%"
 			height="100vh"
 			width="100%"
 			maxWidth="100vw"
+			mb="100px"
 		>
 			{/* Auth restriction to prevent users who are not logged in from viewing profiles, also prevents other users editing profiles that they cannot log into.*/}
 			{Auth.loggedIn() && username === paramsUsername ? (
@@ -141,17 +144,10 @@ const UserProfile = () => {
 							<GridItem colSpan="5">
 								{/* username field and edit button */}
 								<HStack>
-									<Heading
-										pb="1rem"
-										fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
-									>
+									<Heading pb="1rem" fontFamily={Orbitron}>
 										Merc Username:
 									</Heading>
-									<Heading
-										pb="1rem"
-										color={vaultPink}
-										fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
-									>
+									<Heading pb="1rem" color={vaultPink} fontFamily={Orbitron}>
 										{user.username}
 									</Heading>
 								</HStack>
@@ -183,9 +179,7 @@ const UserProfile = () => {
 											FrameComponent={FrameHexagon}
 											onClick={onOpen}
 										>
-											<Text fontFamily="Signika, -apple-system, Roboto, sans-serif">
-												Edit Account Info
-											</Text>
+											<Text fontFamily={Signika}>Edit Account Info</Text>
 										</ButtonArwes>
 									</Box>
 								</TableContainer>
@@ -200,10 +194,7 @@ const UserProfile = () => {
 							onClose={onClose}
 						>
 							<ModalOverlay />
-							<ModalContent
-								fontFamily="Signika, -apple-system, Roboto, sans-serif"
-								bg={vaultYellow}
-							>
+							<ModalContent fontFamily={Signika} bg={vaultYellow}>
 								<ModalHeader color={vaultRasin} fontWeight="black">
 									Edit Your Vault Account
 								</ModalHeader>

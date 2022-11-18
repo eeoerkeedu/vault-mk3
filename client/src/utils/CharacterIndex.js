@@ -4,28 +4,13 @@ import Elf from "./VCharData/Elf";
 import Changeling from "./VCharData/Changeling";
 import EOS from "./VCharData/EOS";
 import Faeborn from "./VCharData/Faeborn";
+import VaultClasses from "./VCharData/VaultClasses";
+import VaultStyles from "./VCharData/Styles";
 
 const CharacterOptions = {
 	speciesOptions: [Human, Dwarf, Elf, Changeling, EOS, Faeborn],
-	styleOptions: ["Mystic", "Titan", "Slayer", "Strategist"],
-	classOptions: [
-		"Shaman",
-		"Mage",
-		"Adept",
-		"Face",
-		"Assassin",
-		"Investigator",
-		"Doctor",
-		"Bodyguard",
-		"Weapons Specialist",
-		"Duelist",
-		"Sniper",
-		"Gear Head",
-		"Info Ripper",
-		"PIT Fighter",
-		"Drone Operator",
-		"Witch Hunter",
-	],
+	styleOptions: VaultStyles,
+	classOptions: VaultClasses,
 };
 
 // class Character {

@@ -29,7 +29,6 @@ function Downloads() {
 	return (
 		// outer containter for the page
 		<Container
-			bg={vaultRasin}
 			height="100%"
 			h="100%"
 			width="100%"
