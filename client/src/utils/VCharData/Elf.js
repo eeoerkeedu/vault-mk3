@@ -1,5 +1,6 @@
 const Elf = {
 	name: "Elf",
+	shortDec: "Graceful Beings with a Strong Connection to Essence",
 	desc: "Elves are born from humans, specifically from humans with at least one mystic parent. These children are revered by human society in the vast majority of human cultures. Being born from magic doesn't necessarily mean that they all embrace it though, as many find that technology also has a lot to offer them. The traits all elves do seem to share is a quickness, grace, and intuition that does always seem just a little unnatural.",
 	stats: {
 		statsBase: {

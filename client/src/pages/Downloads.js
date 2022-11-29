@@ -29,8 +29,8 @@ function Downloads() {
 	return (
 		// outer containter for the page
 		<Container
-			height="100%"
-			h="100%"
+			// height="100%"
+			// h="100%"
 			width="100%"
 			maxWidth="100vw"
 			display="flex"

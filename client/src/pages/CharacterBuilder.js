@@ -38,7 +38,7 @@ const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 // 	}
 // }
 
-console.log(CharacterOptions);
+//console.log(CharacterOptions);
 
 function CharacterBuilder() {
 	// // update character form state setup for input
@@ -90,8 +90,8 @@ function CharacterBuilder() {
 		<Container
 			fontFamily={Signika}
 			padding="20px"
-			h="100%"
-			height="100vh"
+			// h="1200px"
+			// height="100vh"
 			width="100%"
 			maxWidth="100vw"
 			centerContent
@@ -102,8 +102,8 @@ function CharacterBuilder() {
 				{/* Main view area */}
 				<Box
 					width="95%"
-					height="90%"
 					mt="2%"
+					mb="2%"
 					p="2%"
 					borderWidth="2px"
 					borderColor={vaultYellow}

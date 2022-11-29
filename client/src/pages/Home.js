@@ -4,7 +4,7 @@ import Auth from "../utils/auth";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Container, Link, ScaleFade } from "@chakra-ui/react";
+import { Box, Container, Image, Link, ScaleFade } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -13,6 +13,7 @@ import {
 } from "@arwes/core";
 
 //bringing in the vault pallet and font families
+import coverArt from "../assets/imgs/Vault_Final_Illo.png";
 const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 // const vaultBlue = "#4d7ea8";
@@ -59,8 +60,8 @@ function Home() {
 	return (
 		// overall containter
 		<Container
-			h="100%"
-			height="100vh"
+			// h="100%"
+			// height="100vh"
 			width="100%"
 			maxWidth="100vw"
 			centercontent="true"
@@ -147,6 +148,7 @@ function Home() {
 							</Link>
 						)}
 					</ScaleFade>
+					<Image borderRadius="15px" maxW="90%" m="2%" src={coverArt}></Image>
 				</Box>
 			</ArwesThemeProvider>
 		</Container>

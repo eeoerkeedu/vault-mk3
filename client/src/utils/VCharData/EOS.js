@@ -1,5 +1,6 @@
 const EOS = {
 	name: "EOS",
+	shortDec: "Powerful and Bold, Created for War but no Longer Destined for it",
 	desc: "As the world was crumbling, humanity got desperate. The Fae had returned, the artificial intelligence we had all come to rely on was in open rebellion and nearly every government was failing. When the solution of gene manipulated monstrosities was developed it was quickly embraced. Using only slightly different versions of the same technique, each government began making their own. These nearly unstoppable warriors were quite effective as they healed injuries at rates that seemed impossible, possessed extreme strength and durability, and were still capable of wielding magic about as well as anybody else. The only thing their makers didn’t plan for was free will. The final nail in the coffin for the power structures that used them was these killing machines discovering they could start their own families and a new species was born.",
 	stats: {
 		statsBase: {
