@@ -1,5 +1,6 @@
 const Dwarf = {
 	name: "Dwarf",
+	shortDec: "Tough and Stubborn, Brilliant and Determined",
 	desc: "Scores of Dwarven clans also used the first portals while they were open to enter our realm in hopes of finding hard to get to or undervalued resources. Dwarven lore keepers still don't understand how so many of our notions about them are accurate as no dwarf has ever had a resource claim or even record of travel to this realm. Even more disturbingly shortly after arriving, dwarves lost all contact with their home realm, leading to the belief that something terrible may have happened and the only dwarves left are the ones scattered among the countless realms. These dauntless adventurers still love to explore, create, and trade. The technology, knowledge, and experience with Fae they brought with them was more than enough reason for them to be welcomed into human cities and now those advantages make them highly sought mercenaries.",
 	stats: {
 		statsBase: {

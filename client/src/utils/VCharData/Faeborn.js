@@ -1,5 +1,6 @@
 const Faeborn = {
 	name: "Faeborn",
+	shortDec: "Small and Varied, Gifted with Magic and Flight",
 	desc: "Not all the Fae who came through the first portals were bloodthirsty monsters looking for revenge. Some came here out of curiosity and quickly took humanity’s side after watching so much life extinguished so casually. There are always new wild conspiracy theories about what this species' true goal might be. Strangely what they find to be relatively minor genetic variances we perceive as either classic images of beauty or hauntingly horrible terrors. The wings, innate ability to use magic, and supernatural reflexes make these Fae valuable team members in nearly every role, but asking them to take a hit for you might not be a good idea.",
 	stats: {
 		statsBase: {
@@ -58,7 +59,7 @@ const Faeborn = {
 		},
 		3: {
 			name: "Small Stature",
-			desc: "This character's base size is .75”. Normal sized one-handed weapons may be used by Faeborn in two hands at no penalty. Two-handed weapons need to be made miniature to be used by a Faeborn. Miniature weapons receive -1 DMG.",
+			desc: "This character's base size is Small, .75”. Normal sized one-handed weapons may be used by Faeborn in two hands at no penalty. Two-handed weapons need to be made miniature to be used by a Faeborn. Miniature weapons receive -1 DMG.",
 		},
 	},
 	speciesAbilities: {

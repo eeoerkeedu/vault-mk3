@@ -1,5 +1,6 @@
 const Human = {
 	name: "Human",
+	shortDec: "Versatile, Flexable, Diverse, and Passionate",
 	desc: "The last decades have not been kind to humanity. We have been usurped from the top of the food chain, forced into a dozen or so overcrowded cities, and lost billions of souls. Our creations both machine and organic have turned on us, but we still adapt and thrive. Where the others have strengths we have flexibility. It's hard to imagine the Atlas of today without this same determined spirit making up the bulk of our workforce. It only makes sense that the exceptional of us would make some of the finest mercenaries this world has ever seen.",
 	stats: {
 		statsBase: {

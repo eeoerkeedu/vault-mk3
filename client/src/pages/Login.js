@@ -169,8 +169,8 @@ const LoginForm = () => {
 	return (
 		<Container
 			fontFamily={Signika}
-			h="100%"
-			height="100vh"
+			// h="100%"
+			// height="100vh"
 			width="100%"
 			maxWidth="100vw"
 			centerContent

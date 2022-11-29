@@ -1,5 +1,6 @@
 const Changeling = {
 	name: "Changeling",
+	shortDec: "Rare and Unknowable Shapeshifters",
 	desc: "Not many Fae survived the Age of Iron in this realm but changelings often found a way to prosper. Some took the shape of humanoid creatures who were seen just enough to boost tourism where they lived, while others made dangerous plays for the riches of the dying wealthy. These people are still paying the price of having stayed though and they struggle more than anybody to connect to either their magical origins or the sprouting new technologies.",
 	stats: {
 		statsBase: {
