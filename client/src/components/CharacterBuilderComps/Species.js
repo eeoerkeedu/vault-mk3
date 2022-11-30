@@ -13,6 +13,7 @@ import {
 	GridItem,
 	Heading,
 	HStack,
+	Link,
 	Text,
 } from "@chakra-ui/react";
 import { Button as ButtonArwes } from "@arwes/core";
@@ -28,7 +29,11 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
-function Species() {
+//Character constructor
+console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+const character = JSON.parse(localStorage.getItem("NewCharacter"));
+
+function SpeciesOptions() {
 	const speciesList = CharacterOptions.speciesOptions;
 
 	const charSpecies = {
@@ -43,6 +48,9 @@ function Species() {
 
 	const handleSpeciesSubmit = async (event) => {
 		console.log(charSpecies.userChoice);
+		character.species = charSpecies.userChoice;
+		localStorage.setItem("NewCharacter", JSON.stringify(character));
+		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};
 
 	return (
@@ -237,9 +245,11 @@ function Species() {
 
 			<GridItem colSpan={2} colStart={2} colEnd={3} area={"footer"}>
 				<Center height="60px">
-					<ButtonArwes disabled>
-						<Text>PREV</Text>
-					</ButtonArwes>
+					<Link href="/characterbuilder">
+						<ButtonArwes>
+							<Text>PREV</Text>
+						</ButtonArwes>
+					</Link>
 				</Center>
 			</GridItem>
 			<GridItem colSpan={2} colStart={5} colEnd={6} area={"footer"}>
@@ -253,4 +263,4 @@ function Species() {
 	);
 }
 
-export default Species;
+export default SpeciesOptions;
