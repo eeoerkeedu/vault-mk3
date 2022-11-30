@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 //import pages for use
-import Species from "../components/CharacterBuilderComps/Species";
+import SpeciesOptions from "../components/CharacterBuilderComps/Species";
 
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
@@ -27,63 +27,17 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
-// Character constructor
-// class Character {
-// 	constructor(name, species, style, charClass1, charClass2) {
-// 		this.name = name;
-// 		this.species = species;
-// 		this.style = style;
-// 		this.charClass1 = charClass1;
-// 		this.charClass2 = charClass2;
-// 	}
-// }
-
-//console.log(CharacterOptions);
-
 function CharacterBuilder() {
-	// // update character form state setup for input
-	// const [characterData, setCharacterData] = useState({
-	// 	charName: "",
-	// 	species: "",
-	// 	style: "",
-	// 	class1: "",
-	// 	class2: "",
-	// });
-	// // console.log(editUserData);
+	const [builderView, setBuilderView] = useState(0);
 
-	// // handle input change for the update fields
-	// const handleInputChange = (event) => {
-	// 	const { name, value } = event.target;
-	// 	setCharacterData({ ...characterData, [name]: value });
-	// 	const speciesChoice = document.getElementById("speciesSelect").value;
-	// 	console.log(speciesChoice);
-	// 	speciesInfoDisplay(speciesChoice);
-	// };
-
-	// const handleSaveCharacter = async (event) => {
-	// 	event.preventDefault();
-	// 	console.log(characterData);
-
-	// 	try {
-	// 		console.log("Character Saved");
-	// 		let minimizedChardata = JSON.stringify(characterData);
-	// 		localStorage.setItem("SavedCharacter", minimizedChardata);
-	// 		const savedChar = JSON.parse(localStorage.getItem("SavedCharacter"));
-
-	// 		console.log(savedChar);
-	// 	} catch (err) {
-	// 		console.error(err.message);
-	// 		// setShowAlert(true);
-	// 	}
-	// 	//*test if not reseting characer info ins't so bad.
-	// 	// setCharacterData({
-	// 	// 	charName: "",
-	// 	// 	species: "",
-	// 	// 	style: "",
-	// 	// 	class1: "",
-	// 	// 	class2: "",
-	// 	// });
-	// };
+	const handlePageAdvance = (event) => {
+		setBuilderView({ ...(builderView + 1) });
+	};
+	const characterStages = [
+		<SpeciesOptions />,
+		// <StyleOptions />,
+		// <ClassesOptions />,
+	];
 
 	return (
 		// overall containter
@@ -112,14 +66,7 @@ function CharacterBuilder() {
 					boxShadow="0px 0px 40px 5px #4d7ea8"
 					flex={1}
 				>
-					<Center>
-						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-							<Heading color={vaultGreen} fontFamily={Orbitron}>
-								Create a New Character
-							</Heading>
-						</ButtonArwes>
-					</Center>
-					<Species />
+					{characterStages[builderView]}
 				</Box>
 			</ArwesThemeProvider>
 		</Container>

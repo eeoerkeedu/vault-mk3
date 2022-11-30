@@ -124,7 +124,11 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text align="left" color={vaultRasin}>
+											<Text
+												fontWeight="semibold"
+												align="left"
+												color={vaultRasin}
+											>
 												Home
 											</Text>
 										</ButtonArwes>
@@ -134,7 +138,11 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text align="left" color={vaultRasin}>
+											<Text
+												fontWeight="semibold"
+												align="left"
+												color={vaultRasin}
+											>
 												Character Builder
 											</Text>
 										</ButtonArwes>
@@ -147,7 +155,11 @@ function Navbar({ currentPage, handlePageChange }) {
 												palette={vaultGreen}
 												FrameComponent={FrameHexagon}
 											>
-												<Text align="left" color={vaultRasin}>
+												<Text
+													fontWeight="semibold"
+													align="left"
+													color={vaultRasin}
+												>
 													View Characters Roster
 												</Text>
 											</ButtonArwes>
@@ -161,7 +173,11 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text align="left" color={vaultRasin}>
+											<Text
+												fontWeight="semibold"
+												align="left"
+												color={vaultRasin}
+											>
 												Downloads
 											</Text>
 										</ButtonArwes>
@@ -175,6 +191,7 @@ function Navbar({ currentPage, handlePageChange }) {
 												>
 													<Text
 														fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+														fontWeight="semibold"
 														placement="right"
 														align="left"
 														color={vaultRasin}
@@ -190,6 +207,7 @@ function Navbar({ currentPage, handlePageChange }) {
 												>
 													<Text
 														fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+														fontWeight="semibold"
 														placement="right"
 														align="left"
 														color={vaultRasin}
@@ -208,6 +226,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											>
 												<Text
 													fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+													fontWeight="semibold"
 													align="left"
 													color={vaultRasin}
 												>
