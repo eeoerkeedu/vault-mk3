@@ -10,7 +10,7 @@ import CharacterOptions from "../utils/CharacterIndex";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Center, Container, Heading, Text } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -102,6 +102,7 @@ function CharacterBuilder() {
 				{/* Main view area */}
 				<Box
 					width="95%"
+					maxWidth="1000px"
 					mt="2%"
 					mb="2%"
 					p="2%"
@@ -111,51 +112,13 @@ function CharacterBuilder() {
 					boxShadow="0px 0px 40px 5px #4d7ea8"
 					flex={1}
 				>
-					{/* <Grid
-						templateColumns="repeat(3, 1fr)"
-						templateRows="repeat(3, 1fr)"
-						gap={5}
-					>
-						<form onSubmit={handleSaveCharacter}>
-							<GridItem colSpan="2">
-								<FormControl p="2%">
-									<FormLabel color={vaultYellow}>Merc Name:</FormLabel>
-									<Input
-										name="charName"
-										onChange={handleInputChange}
-										value={setCharacterData.charName}
-									/>
-								</FormControl>
-							</GridItem>
-							<GridItem colSpan="2">
-								<FormControl p="2%">
-									<FormLabel color={vaultYellow}>
-										Species: {speciesData.name}
-									</FormLabel>
-									<Select
-										onChange={handleInputChange}
-										name="species"
-										value={characterData.species}
-										bg={vaultBlue}
-										size="lg"
-										placeholder="Choose a Species"
-										id="speciesSelect"
-										fontFamily={Orbitron}
-										fontWeight="bold"
-									>
-										{CharacterOptions.speciesOptions.map((species) => (
-											<option key={species.name}>{species.name}</option>
-										))}
-									</Select>
-								</FormControl>
-							</GridItem>
-							<GridItem colSpan="1">
-								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-									Save
-								</ButtonArwes>
-							</GridItem>
-						</form>
-					</Grid> */}
+					<Center>
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							<Heading color={vaultGreen} fontFamily={Orbitron}>
+								Create a New Character
+							</Heading>
+						</ButtonArwes>
+					</Center>
 					<Species />
 				</Box>
 			</ArwesThemeProvider>

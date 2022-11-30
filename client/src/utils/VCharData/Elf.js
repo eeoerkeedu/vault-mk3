@@ -51,7 +51,7 @@ const Elf = {
 	bonuses: {
 		1: {
 			name: "Wiry",
-			desc: "+1 Def, and can dodge even when Knocked Prone, Grappled or Blinded",
+			desc: "+1 DEF, and can Dodge even when Knocked Prone, Grappled or Blinded",
 		},
 		2: {
 			name: "Charisma",

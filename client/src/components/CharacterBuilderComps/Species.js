@@ -4,33 +4,18 @@ import React from "react";
 import CharacterOptions from "../../utils/CharacterIndex";
 
 // import styling dependancies
-import {
-	Table,
-	Thead,
-	Tbody,
-	Tfoot,
-	Tr,
-	Th,
-	Td,
-	TableCaption,
-	TableContainer,
-	Box,
-	VStack,
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import {
-	Button,
 	Center,
-	Container,
 	Divider,
-	Flex,
 	Grid,
 	GridItem,
 	Heading,
 	HStack,
 	Text,
 } from "@chakra-ui/react";
-import { Button as ButtonArwes, FrameHexagon, title } from "@arwes/core";
+import { Button as ButtonArwes } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
@@ -45,18 +30,20 @@ const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 function Species() {
 	const speciesList = CharacterOptions.speciesOptions;
-	const specStats = [
-		"STR",
-		"PHY",
-		"SPD",
-		"AGL",
-		"CRD",
-		"MRK",
-		"INT",
-		"PER",
-		"ESS",
-	];
-	console.log(speciesList);
+
+	const charSpecies = {
+		userChoice: "Human",
+	};
+
+	const getSpecValue = (event) => {
+		//console.log(event.currentTarget.innerText);
+		charSpecies.userChoice = event.currentTarget.innerText;
+		console.log(charSpecies.userChoice);
+	};
+
+	const handleSpeciesSubmit = async (event) => {
+		console.log(charSpecies.userChoice);
+	};
 
 	return (
 		<Grid
@@ -64,7 +51,7 @@ function Species() {
 			// h="100%"
 			// w="100%"
 			templateColumns="repeat(6, 1fr)"
-			gridTemplateRows={"80px 1fr 70px"}
+			gridTemplateRows={"70px 1fr 70px"}
 			gap={1}
 			templateAreas={`	"header" 
 								"species"
@@ -82,7 +69,13 @@ function Species() {
 				<Tabs isFitted variant="enclosed">
 					<TabList>
 						{speciesList.map((spec) => (
-							<Tab key={spec.name + "tab"}>{spec.name}</Tab>
+							<Tab
+								fontWeight="bold"
+								onClick={getSpecValue}
+								key={spec.name + "tab"}
+							>
+								{spec.name}
+							</Tab>
 						))}
 					</TabList>
 					<TabPanels>
@@ -97,22 +90,14 @@ function Species() {
 									<Text p=".5rem" fontFamily={Signika}>
 										{spec.desc}
 									</Text>
-									{/* <Heading
-										color={vaultGreen}
-										pt="1%"
-										size="sm"
-										fontFamily={Orbitron}
-									>
-										Species Stats
-									</Heading> */}
 									<Table w="30%" size="sm" variant="simple">
 										<Thead fontFamily={Signika}>
 											<Tr>
 												<Th color={vaultBlue}>Stat</Th>
 												<Th color={vaultBlue}>Base</Th>
 												<Th color={vaultBlue}>Merc</Th>
-												<Th color={vaultBlue}>Exemplar</Th>
-												<Th color={vaultBlue}>World Shaper</Th>
+												<Th color={vaultBlue}>Exem</Th>
+												<Th color={vaultBlue}>WS</Th>
 											</Tr>
 										</Thead>
 										<Tbody>
@@ -250,12 +235,6 @@ function Species() {
 				</Tabs>
 			</GridItem>
 
-			{/* <GridItem colSpan={6} area={"body"}>
-				<Text fontStyle="italic" fontFamily={Signika}>
-					{speciesData}
-				</Text>
-			</GridItem> */}
-
 			<GridItem colSpan={2} colStart={2} colEnd={3} area={"footer"}>
 				<Center height="60px">
 					<ButtonArwes disabled>
@@ -265,7 +244,7 @@ function Species() {
 			</GridItem>
 			<GridItem colSpan={2} colStart={5} colEnd={6} area={"footer"}>
 				<Center height="60px">
-					<ButtonArwes>
+					<ButtonArwes onClick={handleSpeciesSubmit}>
 						<Text>NEXT</Text>
 					</ButtonArwes>
 				</Center>
