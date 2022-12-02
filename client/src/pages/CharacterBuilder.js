@@ -4,13 +4,18 @@ import { useState } from "react";
 
 //import pages for use
 import SpeciesOptions from "../components/CharacterBuilderComps/Species";
+import StyleOptions from "../components/CharacterBuilderComps/CharBuildStyles";
+import ClassOptions from "../components/CharacterBuilderComps/CharBuildClasses";
 
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Center, Container, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Container } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -30,13 +35,26 @@ const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 function CharacterBuilder() {
 	const [builderView, setBuilderView] = useState(0);
 
-	const handlePageAdvance = (event) => {
-		setBuilderView({ ...(builderView + 1) });
+	// const disablePrev = !builderView === 0 ? false : true;
+
+	const NextPage = (event) => {
+		setBuilderView(builderView + 1);
+		//console.log(builderView);
 	};
+	const PreviousPage = (event) => {
+		setBuilderView(builderView - 1);
+		//console.log(builderView);
+	};
+	const characterStagesHeaders = [
+		"Choose your Merc's Species",
+		"Choose your Merc's Style",
+		"Choose your Merc's First Class",
+		"Choose your Merc's Second Class",
+	];
 	const characterStages = [
 		<SpeciesOptions />,
-		// <StyleOptions />,
-		// <ClassesOptions />,
+		<StyleOptions />,
+		<ClassOptions />,
 	];
 
 	return (
@@ -66,7 +84,40 @@ function CharacterBuilder() {
 					boxShadow="0px 0px 40px 5px #4d7ea8"
 					flex={1}
 				>
-					{characterStages[builderView]}
+					<Grid
+						fontFamily={Orbitron}
+						templateColumns="repeat(6, 1fr)"
+						gridTemplateRows={"70px 1fr 70px"}
+						gap={1}
+						templateAreas={`	"header" 
+											"body"
+											"footer"`}
+					>
+						<GridItem h="80px" colSpan={6} area={"header"}>
+							<Center height="60px">
+								<Heading p="1%" size="md" color={vaultYellow}>
+									{characterStagesHeaders[builderView]}
+								</Heading>
+							</Center>
+						</GridItem>
+
+						{characterStages[builderView]}
+
+						<GridItem colSpan={2} colStart={2} colEnd={3} area={"footer"}>
+							<Center height="60px">
+								<ButtonArwes onClick={PreviousPage}>
+									<Text>PREV</Text>
+								</ButtonArwes>
+							</Center>
+						</GridItem>
+						<GridItem colSpan={2} colStart={5} colEnd={6} area={"footer"}>
+							<Center height="60px">
+								<ButtonArwes onClick={NextPage}>
+									<Text>NEXT</Text>
+								</ButtonArwes>
+							</Center>
+						</GridItem>
+					</Grid>
 				</Box>
 			</ArwesThemeProvider>
 		</Container>

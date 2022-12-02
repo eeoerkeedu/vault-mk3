@@ -40,13 +40,9 @@ function SpeciesOptions() {
 		userChoice: "Human",
 	};
 
-	const getSpecValue = (event) => {
+	const handleSpeciesSelect = (event) => {
 		//console.log(event.currentTarget.innerText);
 		charSpecies.userChoice = event.currentTarget.innerText;
-		console.log(charSpecies.userChoice);
-	};
-
-	const handleSpeciesSubmit = async (event) => {
 		console.log(charSpecies.userChoice);
 		character.species = charSpecies.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
@@ -54,212 +50,156 @@ function SpeciesOptions() {
 	};
 
 	return (
-		<Grid
-			fontFamily={Orbitron}
-			// h="100%"
-			// w="100%"
-			templateColumns="repeat(6, 1fr)"
-			gridTemplateRows={"70px 1fr 70px"}
-			gap={1}
-			templateAreas={`	"header" 
-								"species"
-								"footer"`}
-		>
-			<GridItem h="80px" colSpan={6} area={"header"}>
-				<Center height="60px">
-					<Heading p="1%" size="md" color={vaultYellow}>
-						Choose your Merc's Species
-					</Heading>
-				</Center>
-			</GridItem>
+		<GridItem colSpan={6} area={"body"}>
+			<Tabs isFitted variant="enclosed">
+				<TabList>
+					{speciesList.map((spec) => (
+						<Tab
+							fontWeight="bold"
+							onClick={handleSpeciesSelect}
+							key={spec.name + "tab"}
+						>
+							{spec.name}
+						</Tab>
+					))}
+				</TabList>
+				<TabPanels>
+					{speciesList.map((spec) => (
+						<TabPanel key={spec.name + "tabpanel"}>
+							<Heading color={vaultGreen} size="sm" fontFamily={Orbitron}>
+								{spec.shortDec}
+							</Heading>
+							<Divider p=".5%" />
+							<HStack>
+								<Text p=".5rem" fontFamily={Signika}>
+									{spec.desc}
+								</Text>
+								<Table w="30%" size="sm" variant="simple">
+									<Thead fontFamily={Signika}>
+										<Tr>
+											<Th color={vaultBlue}>Stat</Th>
+											<Th color={vaultBlue}>Base</Th>
+											<Th color={vaultBlue}>Merc</Th>
+											<Th color={vaultBlue}>Exem</Th>
+											<Th color={vaultBlue}>WS</Th>
+										</Tr>
+									</Thead>
+									<Tbody>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												STR
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.STR}</Td>
+											<Td>{spec.stats.statsMerc.STR}</Td>
+											<Td>{spec.stats.statsExemplar.STR}</Td>
+											<Td>{spec.stats.statsWS.STR}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												PHY
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.PHY}</Td>
+											<Td>{spec.stats.statsMerc.PHY}</Td>
+											<Td>{spec.stats.statsExemplar.PHY}</Td>
+											<Td>{spec.stats.statsWS.PHY}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												SPD
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.SPD}</Td>
+											<Td>{spec.stats.statsMerc.SPD}</Td>
+											<Td>{spec.stats.statsExemplar.SPD}</Td>
+											<Td>{spec.stats.statsWS.SPD}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												AGL
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.AGL}</Td>
+											<Td>{spec.stats.statsMerc.AGL}</Td>
+											<Td>{spec.stats.statsExemplar.AGL}</Td>
+											<Td>{spec.stats.statsWS.AGL}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												CRD
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.CRD}</Td>
+											<Td>{spec.stats.statsMerc.CRD}</Td>
+											<Td>{spec.stats.statsExemplar.CRD}</Td>
+											<Td>{spec.stats.statsWS.CRD}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												MRK
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.MRK}</Td>
+											<Td>{spec.stats.statsMerc.MRK}</Td>
+											<Td>{spec.stats.statsExemplar.MRK}</Td>
+											<Td>{spec.stats.statsWS.MRK}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												INT
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.INT}</Td>
+											<Td>{spec.stats.statsMerc.INT}</Td>
+											<Td>{spec.stats.statsExemplar.INT}</Td>
+											<Td>{spec.stats.statsWS.INT}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												PER
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.PER}</Td>
+											<Td>{spec.stats.statsMerc.PER}</Td>
+											<Td>{spec.stats.statsExemplar.PER}</Td>
+											<Td>{spec.stats.statsWS.PER}</Td>
+										</Tr>
+										<Tr>
+											<Td color={vaultYellow} fontWeight="bold">
+												ESS
+											</Td>
+											<Td fontWeight="semibold">{spec.stats.statsBase.ESS}</Td>
+											<Td>{spec.stats.statsMerc.ESS}</Td>
+											<Td>{spec.stats.statsExemplar.ESS}</Td>
+											<Td>{spec.stats.statsWS.ESS}</Td>
+										</Tr>
+									</Tbody>
+								</Table>
+							</HStack>
 
-			<GridItem colSpan={6} area={"species"}>
-				<Tabs isFitted variant="enclosed">
-					<TabList>
-						{speciesList.map((spec) => (
-							<Tab
-								fontWeight="bold"
-								onClick={getSpecValue}
-								key={spec.name + "tab"}
+							<Heading
+								color={vaultGreen}
+								pt="1%"
+								size="sm"
+								fontFamily={Orbitron}
 							>
-								{spec.name}
-							</Tab>
-						))}
-					</TabList>
-					<TabPanels>
-						{speciesList.map((spec) => (
-							<TabPanel key={spec.name + "tabpanel"}>
-								<Heading color={vaultGreen} size="sm" fontFamily={Orbitron}>
-									{spec.shortDec}
-								</Heading>
-								<Divider p=".5%" />
-								<HStack>
-									{" "}
-									<Text p=".5rem" fontFamily={Signika}>
-										{spec.desc}
+								Species Bonuses
+							</Heading>
+							<Text fontFamily={Signika}>
+								{spec.bonuses[1].name}: {spec.bonuses[1].desc}
+							</Text>
+							<Divider m="1%" />
+							<Text fontFamily={Signika}>
+								{spec.bonuses[2].name}: {spec.bonuses[2].desc}
+							</Text>
+							{!spec.bonuses[3] ? (
+								""
+							) : (
+								<>
+									<Divider m="1%" />
+									<Text fontFamily={Signika}>
+										{spec.bonuses[3].name}: {spec.bonuses[3].desc}
 									</Text>
-									<Table w="30%" size="sm" variant="simple">
-										<Thead fontFamily={Signika}>
-											<Tr>
-												<Th color={vaultBlue}>Stat</Th>
-												<Th color={vaultBlue}>Base</Th>
-												<Th color={vaultBlue}>Merc</Th>
-												<Th color={vaultBlue}>Exem</Th>
-												<Th color={vaultBlue}>WS</Th>
-											</Tr>
-										</Thead>
-										<Tbody>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													STR
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.STR}
-												</Td>
-												<Td>{spec.stats.statsMerc.STR}</Td>
-												<Td>{spec.stats.statsExemplar.STR}</Td>
-												<Td>{spec.stats.statsWS.STR}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													PHY
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.PHY}
-												</Td>
-												<Td>{spec.stats.statsMerc.PHY}</Td>
-												<Td>{spec.stats.statsExemplar.PHY}</Td>
-												<Td>{spec.stats.statsWS.PHY}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													SPD
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.SPD}
-												</Td>
-												<Td>{spec.stats.statsMerc.SPD}</Td>
-												<Td>{spec.stats.statsExemplar.SPD}</Td>
-												<Td>{spec.stats.statsWS.SPD}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													AGL
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.AGL}
-												</Td>
-												<Td>{spec.stats.statsMerc.AGL}</Td>
-												<Td>{spec.stats.statsExemplar.AGL}</Td>
-												<Td>{spec.stats.statsWS.AGL}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													CRD
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.CRD}
-												</Td>
-												<Td>{spec.stats.statsMerc.CRD}</Td>
-												<Td>{spec.stats.statsExemplar.CRD}</Td>
-												<Td>{spec.stats.statsWS.CRD}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													MRK
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.MRK}
-												</Td>
-												<Td>{spec.stats.statsMerc.MRK}</Td>
-												<Td>{spec.stats.statsExemplar.MRK}</Td>
-												<Td>{spec.stats.statsWS.MRK}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													INT
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.INT}
-												</Td>
-												<Td>{spec.stats.statsMerc.INT}</Td>
-												<Td>{spec.stats.statsExemplar.INT}</Td>
-												<Td>{spec.stats.statsWS.INT}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													PER
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.PER}
-												</Td>
-												<Td>{spec.stats.statsMerc.PER}</Td>
-												<Td>{spec.stats.statsExemplar.PER}</Td>
-												<Td>{spec.stats.statsWS.PER}</Td>
-											</Tr>
-											<Tr>
-												<Td color={vaultYellow} fontWeight="bold">
-													ESS
-												</Td>
-												<Td fontWeight="semibold">
-													{spec.stats.statsBase.ESS}
-												</Td>
-												<Td>{spec.stats.statsMerc.ESS}</Td>
-												<Td>{spec.stats.statsExemplar.ESS}</Td>
-												<Td>{spec.stats.statsWS.ESS}</Td>
-											</Tr>
-										</Tbody>
-									</Table>
-								</HStack>
-
-								<Heading
-									color={vaultGreen}
-									pt="1%"
-									size="sm"
-									fontFamily={Orbitron}
-								>
-									Species Bonuses
-								</Heading>
-								<Text fontFamily={Signika}>
-									{spec.bonuses[1].name}: {spec.bonuses[1].desc}
-								</Text>
-								<Divider m="1%" />
-								<Text fontFamily={Signika}>
-									{spec.bonuses[2].name}: {spec.bonuses[2].desc}
-								</Text>
-								{!spec.bonuses[3] ? (
-									""
-								) : (
-									<>
-										<Divider m="1%" />
-										<Text fontFamily={Signika}>
-											{spec.bonuses[3].name}: {spec.bonuses[3].desc}
-										</Text>
-									</>
-								)}
-							</TabPanel>
-						))}
-					</TabPanels>
-				</Tabs>
-			</GridItem>
-
-			<GridItem colSpan={2} colStart={2} colEnd={3} area={"footer"}>
-				<Center height="60px">
-					<Link href="/characterbuilder">
-						<ButtonArwes>
-							<Text>PREV</Text>
-						</ButtonArwes>
-					</Link>
-				</Center>
-			</GridItem>
-			<GridItem colSpan={2} colStart={5} colEnd={6} area={"footer"}>
-				<Center height="60px">
-					<ButtonArwes onClick={handleSpeciesSubmit}>
-						<Text>NEXT</Text>
-					</ButtonArwes>
-				</Center>
-			</GridItem>
-		</Grid>
+								</>
+							)}
+						</TabPanel>
+					))}
+				</TabPanels>
+			</Tabs>
+		</GridItem>
 	);
 }
 

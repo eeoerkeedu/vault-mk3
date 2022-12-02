@@ -1,6 +1,13 @@
+import mysticImg from "../../assets/imgs/mystic.jpg";
+import titanImg from "../../assets/imgs/titan.jpg";
+import slayerImg from "../../assets/imgs/slayer.jpg";
+import stratImg from "../../assets/imgs/strat.jpg";
+
 const VaultStyles = {
 	Mystic: {
 		name: "Mystic",
+		desc: "Wield Mighty Magics",
+		img: mysticImg,
 		benefit:
 			"You gain a magic stat equal to your Essence (ESS) minus any Cyberware points you have spent, at the start of each of your turns you generate Magic points (MP) equal to this stat. You must choose at least one of the awakened classes (Shaman, Mage, Adept) at character creation, these classes can not be taken if you do not have this style.",
 		bonuses: {
@@ -41,6 +48,8 @@ const VaultStyles = {
 
 	Titan: {
 		name: "Titan",
+		desc: "Be Unstoppable",
+		img: titanImg,
 		benefit:
 			"Each time you suffer damage, suffer an injury or miss an attack roll (after any rerolls) you gain a Rage Point (RP). You may bank rage points up to your ESS stat at the end of your turns and lose the rest. All rage points are lost when combat ends.You may spend a Rage Point (RP) at the start of your turn to ignore the Broken condition until the start of your next turn. As long as you have any Rage Points your melee attacks do an additional die of damage.",
 		bonuses: {
@@ -81,6 +90,8 @@ const VaultStyles = {
 
 	Slayer: {
 		name: "Slayer",
+		desc: "Master Deadly Skills",
+		img: slayerImg,
 		benefit:
 			"You gain one additional attack during your attack action. Note: All attacks must be taken as part of the attack action before using your next action. In addition, some weapon rules like Wrecker and Single Shot (SS) will still limit the number of attacks you can take with those weapons during an Attack Action.",
 		bonuses: {
@@ -121,6 +132,8 @@ const VaultStyles = {
 
 	Strategist: {
 		name: "Strategist",
+		desc: "Mind over Everything",
+		img: stratImg,
 		benefit:
 			"When you gain this style you may gain one of its bonuses. Whenever you gain another bonus in this group you may exchange a bonus you have gained from taking this style for another of its bonuses.",
 		bonuses: {
