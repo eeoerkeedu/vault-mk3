@@ -1,33 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 // import character builder files
 import CharacterOptions from "../../utils/CharacterIndex";
 
 // import styling dependancies
 import {
-	Box,
-	Center,
 	Divider,
-	Flex,
-	Grid,
 	GridItem,
 	Heading,
-	HStack,
 	Image,
-	Link,
 	Text,
 	Wrap,
+	List,
+	ListItem,
+	Button,
 } from "@chakra-ui/react";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Button as ButtonArwes } from "@arwes/core";
+import { Button as ButtonArwes, FrameHexagon } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
+//const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
-const vaultPink = "#f72585";
+//const vaultPink = "#f72585";
 const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
@@ -39,28 +36,73 @@ console.log(character);
 function ClassOptions() {
 	const classList = CharacterOptions.classOptions;
 
-	const charClass = {
-		userChoice: "Assassain",
+	// register state setup for user input
+	const [charClasses, setCharClasses] = useState({
+		userChoice: [],
+	});
+
+	// handle user selecting classes
+	const handleClassChoice = (event) => {
+		const { value } = event.target;
+		if (charClasses.userChoice.length === 2) {
+			console.log("max classes reached");
+			return;
+		}
+		charClasses.userChoice.push(value);
 	};
 
-	const handleStyleSubmit = async (event) => {
-		console.log(charClass.userChoice);
-		// character.species = charSpecies.userChoice;
-		// localStorage.setItem("NewCharacter", JSON.stringify(character));
-		// console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+	const chooseClass = (event) => {
+		event.preventDefault();
+		console.log(charClasses);
+		const character = JSON.parse(localStorage.getItem("NewCharacter"));
+		character.charClasses = charClasses.userChoice;
+		localStorage.setItem("NewCharacter", JSON.stringify(character));
+		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};
 
 	return (
 		<GridItem colSpan={6} area={"body"}>
-			<Wrap>
-				{classList.map((vClass) => (
-					<Card maxW="25%" minW="300px" m="1%" key={vClass.name}>
-						<CardHeader fontWeight="bold">{vClass.name}</CardHeader>+
-						<Image src={vClass.image}></Image>
-						<CardBody>{}</CardBody>
-					</Card>
-				))}
-			</Wrap>
+			<form onSubmit={chooseClass}>
+				<Wrap justify="center">
+					{classList.map((vClass) => (
+						<Card
+							borderRadius="15px"
+							maxW="25%"
+							minW="250px"
+							m="1%"
+							key={vClass.name}
+						>
+							<CardHeader p="15px" color={vaultYellow} fontWeight="bold">
+								{vClass.name}
+							</CardHeader>
+							<Image borderRadius="15px" p="10px" src={vClass.imageSM}></Image>
+							<CardBody fontFamily={Signika} p="10px">
+								<Text>{vClass.shortdesc}</Text>
+								<Divider m="5px" />
+								<Heading color={vaultGreen} size="sm">
+									Ability Groups
+								</Heading>
+								<List>
+									<ListItem>{vClass.abilityGroups[0]}</ListItem>
+									<ListItem>{vClass.abilityGroups[1]}</ListItem>
+								</List>
+							</CardBody>
+							<CardFooter justify="space-between">
+								<ButtonArwes FrameComponent={FrameHexagon}>Info</ButtonArwes>
+								<Button
+									value={vClass.name}
+									id={vClass.name}
+									variant="ghost"
+									onClick={handleClassChoice}
+									type="submit"
+								>
+									Select
+								</Button>
+							</CardFooter>
+						</Card>
+					))}
+				</Wrap>
+			</form>
 		</GridItem>
 	);
 }

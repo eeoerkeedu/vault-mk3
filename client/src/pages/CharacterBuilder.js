@@ -1,11 +1,12 @@
 // importing utility dependancies
-//import Auth from "../utils/auth";
+import Auth from "../utils/auth";
 import { useState } from "react";
 
 //import pages for use
 import SpeciesOptions from "../components/CharacterBuilderComps/Species";
 import StyleOptions from "../components/CharacterBuilderComps/CharBuildStyles";
 import ClassOptions from "../components/CharacterBuilderComps/CharBuildClasses";
+import CharDesc from "../components/CharacterBuilderComps/CharDesc";
 
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
@@ -32,29 +33,40 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
+// extract username from token.
+let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
+
 function CharacterBuilder() {
 	const [builderView, setBuilderView] = useState(0);
 
 	// const disablePrev = !builderView === 0 ? false : true;
 
 	const NextPage = (event) => {
+		if (builderView === 3) {
+			//window.location.assign("/roster/" + { username });
+			return;
+		}
 		setBuilderView(builderView + 1);
 		//console.log(builderView);
 	};
 	const PreviousPage = (event) => {
+		if (builderView === 0) {
+			return;
+		}
 		setBuilderView(builderView - 1);
 		//console.log(builderView);
 	};
 	const characterStagesHeaders = [
 		"Choose your Merc's Species",
 		"Choose your Merc's Style",
-		"Choose your Merc's First Class",
-		"Choose your Merc's Second Class",
+		"Choose your Merc's Two Classes",
+		"Last Step, Name Your Merc!",
 	];
 	const characterStages = [
 		<SpeciesOptions />,
 		<StyleOptions />,
 		<ClassOptions />,
+		<CharDesc />,
 	];
 
 	return (
