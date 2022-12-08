@@ -55,8 +55,9 @@ function ClassOptions() {
 			<Wrap>
 				{classList.map((vClass) => (
 					<Card maxW="25%" minW="300px" m="1%" key={vClass.name}>
-						<CardHeader fontWeight="bold">{vClass.name}</CardHeader>
-						<CardBody></CardBody>
+						<CardHeader fontWeight="bold">{vClass.name}</CardHeader>+
+						<Image src={vClass.image}></Image>
+						<CardBody>{}</CardBody>
 					</Card>
 				))}
 			</Wrap>
