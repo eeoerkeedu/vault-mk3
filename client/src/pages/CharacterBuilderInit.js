@@ -32,8 +32,8 @@ const character = {
 	name: "NewCharacter",
 	species: "",
 	style: "",
-	charClass1: "",
-	charClass2: "",
+	charClasses: [],
+	//charClass2: "",
 };
 
 //console.log(CharacterOptions);
