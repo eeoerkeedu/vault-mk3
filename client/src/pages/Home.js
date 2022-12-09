@@ -1,4 +1,4 @@
-// importing logo and utility dependancies
+// importing utility dependancies
 import { useState, useEffect } from "react";
 import Auth from "../utils/auth";
 
@@ -14,7 +14,7 @@ import {
 
 //bringing in the vault pallet and font families
 import coverArt from "../assets/imgs/Vault_Final_Illo.png";
-const vaultRasin = "#272932";
+//const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 // const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
@@ -101,12 +101,8 @@ function Home() {
 						</Link>
 						{/* user character roster saved from builder, only shows when logged in */}
 						{Auth.loggedIn() ? (
-							<Link padding=".5rem">
-								<ButtonArwes
-									disabled
-									palette={vaultGreen}
-									FrameComponent={FrameHexagon}
-								>
+							<Link href={`/roster/${username}`} padding=".5rem">
+								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 									View Characters Roster
 								</ButtonArwes>
 							</Link>

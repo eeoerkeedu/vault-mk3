@@ -149,9 +149,8 @@ function Navbar({ currentPage, handlePageChange }) {
 									</Link>
 									{/* user character roster saved from builder, only shows when logged in */}
 									{Auth.loggedIn() ? (
-										<Link padding=".5rem">
+										<Link href={"/roster/" + { username }} padding=".5rem">
 											<ButtonArwes
-												disabled
 												palette={vaultGreen}
 												FrameComponent={FrameHexagon}
 											>

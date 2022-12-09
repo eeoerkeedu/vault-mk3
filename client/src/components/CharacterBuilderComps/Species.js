@@ -6,31 +6,22 @@ import CharacterOptions from "../../utils/CharacterIndex";
 // import styling dependancies
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import {
-	Center,
-	Divider,
-	Grid,
-	GridItem,
-	Heading,
-	HStack,
-	Link,
-	Text,
-} from "@chakra-ui/react";
-import { Button as ButtonArwes } from "@arwes/core";
+import { Divider, GridItem, Heading, HStack, Text } from "@chakra-ui/react";
+// import { Button as ButtonArwes } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
+// const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
-const vaultPink = "#f72585";
+// const vaultPink = "#f72585";
 const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 //Character constructor
-console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+// console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 const character = JSON.parse(localStorage.getItem("NewCharacter"));
 
 function SpeciesOptions() {
@@ -43,10 +34,10 @@ function SpeciesOptions() {
 	const handleSpeciesSelect = (event) => {
 		//console.log(event.currentTarget.innerText);
 		charSpecies.userChoice = event.currentTarget.innerText;
-		console.log(charSpecies.userChoice);
+		// console.log(charSpecies.userChoice);
 		character.species = charSpecies.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
-		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+		// console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};
 
 	return (
@@ -65,7 +56,7 @@ function SpeciesOptions() {
 				</TabList>
 				<TabPanels>
 					{speciesList.map((spec) => (
-						<TabPanel key={spec.name + "tabpanel"}>
+						<TabPanel key={"tab" + spec.name}>
 							<Heading color={vaultGreen} size="sm" fontFamily={Orbitron}>
 								{spec.shortDec}
 							</Heading>

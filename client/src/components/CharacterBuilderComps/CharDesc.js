@@ -7,18 +7,14 @@ import { Button as ButtonArwes, FrameHexagon } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
-const vaultYellow = "#ffc857";
-const vaultBlue = "#4d7ea8";
-const vaultGreen = "#a4f9c8";
-const vaultPink = "#f72585";
-const Signika =
-	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
-const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
-
-//Character constructor
-console.log(JSON.parse(localStorage.getItem("NewCharacter")));
-// const character = JSON.parse(localStorage.getItem("NewCharacter"));
+// const vaultRasin = "#272932";
+// const vaultYellow = "#ffc857";
+// const vaultBlue = "#4d7ea8";
+// const vaultGreen = "#a4f9c8";
+// const vaultPink = "#f72585";
+// const Signika =
+// 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
+// const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 function CharDesc() {
 	const [charName, setCharName] = useState({
@@ -34,12 +30,23 @@ function CharDesc() {
 	const handleStyleSubmit = async (event) => {
 		event.preventDefault();
 		let newName = charName.userChoice;
-		console.log(newName);
+		// console.log(newName);
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
 		character.name = newName;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
-		localStorage.setItem(newName, JSON.stringify(character));
-		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+		let savedCharacters = JSON.parse(
+			localStorage.getItem("SavedVaultCharacters")
+		);
+		if (savedCharacters.length === 5) {
+			console.log("Max Saved Characters Limit Reached");
+			return;
+		}
+		savedCharacters.push(character);
+		localStorage.setItem(
+			"SavedVaultCharacters",
+			JSON.stringify(savedCharacters)
+		);
+		console.log(JSON.parse(localStorage.getItem("SavedVaultCharacters")));
 	};
 
 	return (

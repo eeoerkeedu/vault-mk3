@@ -1,16 +1,11 @@
 // importing utility dependancies
-//import Auth from "../utils/auth";
-import { useState } from "react";
-
-//import pages for use
-import SpeciesOptions from "../components/CharacterBuilderComps/Species";
-
-// import character builder files
-import CharacterOptions from "../utils/CharacterIndex";
+// import { useState, useEffect } from "react";
+import Auth from "../utils/auth";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Center, Container, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Center, Container, Heading } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -18,7 +13,7 @@ import {
 } from "@arwes/core";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
+//const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
@@ -27,16 +22,18 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
+// extract username from token.
+let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
+
 //Character constructor
 const character = {
-	name: "NewCharacter",
-	species: "",
-	style: "",
+	name: "",
+	species: "Human",
+	style: "Mystic",
 	charClasses: [],
-	//charClass2: "",
 };
 
-//console.log(CharacterOptions);
+const SavedVaultCharacters = [];
 
 function CharacterBuilderInit() {
 	const handleCharacterInit = (event) => {
@@ -44,52 +41,18 @@ function CharacterBuilderInit() {
 		//console.log("New Character Initialized");
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
 		//console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+		let existingRoster = JSON.parse(
+			localStorage.getItem("SavedVaultCharacters")
+		);
+		if (existingRoster == null) {
+			console.log("Creating Local character Save");
+			localStorage.setItem(
+				"SavedVaultCharacters",
+				JSON.stringify(SavedVaultCharacters)
+			);
+		}
 		window.location.assign(`/characterbuilder/app`);
 	};
-
-	// // update character form state setup for input
-	// const [characterData, setCharacterData] = useState({
-	// 	charName: "",
-	// 	species: "",
-	// 	style: "",
-	// 	class1: "",
-	// 	class2: "",
-	// });
-	// // console.log(editUserData);
-
-	// // handle input change for the update fields
-	// const handleInputChange = (event) => {
-	// 	const { name, value } = event.target;
-	// 	setCharacterData({ ...characterData, [name]: value });
-	// 	const speciesChoice = document.getElementById("speciesSelect").value;
-	// 	console.log(speciesChoice);
-	// 	speciesInfoDisplay(speciesChoice);
-	// };
-
-	// const handleSaveCharacter = async (event) => {
-	// 	event.preventDefault();
-	// 	console.log(characterData);
-
-	// 	try {
-	// 		console.log("Character Saved");
-	// 		let minimizedChardata = JSON.stringify(characterData);
-	// 		localStorage.setItem("SavedCharacter", minimizedChardata);
-	// 		const savedChar = JSON.parse(localStorage.getItem("SavedCharacter"));
-
-	// 		console.log(savedChar);
-	// 	} catch (err) {
-	// 		console.error(err.message);
-	// 		// setShowAlert(true);
-	// 	}
-	// 	//*test if not reseting characer info ins't so bad.
-	// 	// setCharacterData({
-	// 	// 	charName: "",
-	// 	// 	species: "",
-	// 	// 	style: "",
-	// 	// 	class1: "",
-	// 	// 	class2: "",
-	// 	// });
-	// };
 
 	return (
 		// overall containter
@@ -131,15 +94,28 @@ function CharacterBuilderInit() {
 							</ButtonArwes>
 						</Center>
 						<Center pt="5%">
-							<ButtonArwes
-								disabled
-								palette={vaultGreen}
-								FrameComponent={FrameHexagon}
-							>
-								<Heading size="md" color={vaultBlue} fontFamily={Orbitron}>
-									Edit a Character from your Roster
-								</Heading>
-							</ButtonArwes>
+							{Auth.loggedIn() ? (
+								<Link href={`/roster/${username}`} padding=".5rem">
+									<ButtonArwes
+										palette={vaultGreen}
+										FrameComponent={FrameHexagon}
+									>
+										<Heading size="md" color={vaultBlue} fontFamily={Orbitron}>
+											Edit a Character from your Roster
+										</Heading>
+									</ButtonArwes>
+								</Link>
+							) : (
+								<ButtonArwes
+									disabled
+									palette={vaultGreen}
+									FrameComponent={FrameHexagon}
+								>
+									<Heading size="md" color={vaultBlue} fontFamily={Orbitron}>
+										Edit a Character from your Roster
+									</Heading>
+								</ButtonArwes>
+							)}
 						</Center>
 					</Box>
 				</Box>
