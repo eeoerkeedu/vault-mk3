@@ -8,26 +8,18 @@ import StyleOptions from "../components/CharacterBuilderComps/CharBuildStyles";
 import ClassOptions from "../components/CharacterBuilderComps/CharBuildClasses";
 import CharDesc from "../components/CharacterBuilderComps/CharDesc";
 
-// import character builder files
-import CharacterOptions from "../utils/CharacterIndex";
-
 // import styling dependancies
 import "../App.css";
 import { Box, Center, Container } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Heading, Text } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels } from "@chakra-ui/react";
-import {
-	ArwesThemeProvider,
-	Button as ButtonArwes,
-	FrameHexagon,
-} from "@arwes/core";
+import { ArwesThemeProvider, Button as ButtonArwes } from "@arwes/core";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
+// const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
-const vaultBlue = "#4d7ea8";
-const vaultGreen = "#a4f9c8";
+// const vaultBlue = "#4d7ea8";
+// const vaultGreen = "#a4f9c8";
 //const vaultPink = "#f72585";
 const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
@@ -41,7 +33,7 @@ function CharacterBuilder() {
 
 	const NextPage = (event) => {
 		if (builderView === 3) {
-			//window.location.assign("/roster/" + { username });
+			window.location.assign("/roster/" + { username });
 			return;
 		}
 		setBuilderView(builderView + 1);
@@ -49,6 +41,7 @@ function CharacterBuilder() {
 	};
 	const PreviousPage = (event) => {
 		if (builderView === 0) {
+			window.location.assign("/characterbuilder");
 			return;
 		}
 		setBuilderView(builderView - 1);
@@ -116,14 +109,14 @@ function CharacterBuilder() {
 						<GridItem colSpan={2} colStart={2} colEnd={3} area={"footer"}>
 							<Center height="60px">
 								<ButtonArwes onClick={PreviousPage}>
-									<Text>PREV</Text>
+									<Text>{builderView === 0 ? "RETURN" : "PREV"}</Text>
 								</ButtonArwes>
 							</Center>
 						</GridItem>
 						<GridItem colSpan={2} colStart={5} colEnd={6} area={"footer"}>
 							<Center height="60px">
 								<ButtonArwes onClick={NextPage}>
-									<Text>NEXT</Text>
+									<Text>{builderView === 3 ? "VIEW ROSTER" : "NEXT"}</Text>
 								</ButtonArwes>
 							</Center>
 						</GridItem>

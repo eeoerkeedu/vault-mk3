@@ -8,8 +8,6 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Auth from "./utils/auth";
-
 //imported routes
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
@@ -19,6 +17,7 @@ import Downloads from "./pages/Downloads";
 import UserProfile from "./pages/UserProfile";
 import CharacterBuilderInit from "./pages/CharacterBuilderInit";
 import CharacterBuilder from "./pages/CharacterBuilder";
+import CharacterRoster from "./pages/CharacterRoster";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -44,8 +43,6 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 });
 
-let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
-
 function App() {
 	return (
 		<ApolloProvider client={client}>
@@ -59,6 +56,7 @@ function App() {
 					<Route path="/profile/:username" element={<UserProfile />} />
 					<Route path="/characterbuilder" element={<CharacterBuilderInit />} />
 					<Route path="/characterbuilder/app" element={<CharacterBuilder />} />
+					<Route path="/roster/:username" element={<CharacterRoster />} />
 				</Routes>
 				<Footer />
 			</Router>

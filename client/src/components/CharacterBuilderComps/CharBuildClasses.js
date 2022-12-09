@@ -20,24 +20,24 @@ import { Button as ButtonArwes, FrameHexagon } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
+// const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
 //const vaultPink = "#f72585";
 const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
-const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
+// const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 //Character constructor
-const character = JSON.parse(localStorage.getItem("NewCharacter"));
-console.log(character);
+// const character = JSON.parse(localStorage.getItem("NewCharacter"));
+// console.log(character);
 
 function ClassOptions() {
 	const classList = CharacterOptions.classOptions;
 
 	// register state setup for user input
-	const [charClasses, setCharClasses] = useState({
+	const [charClasses] = useState({
 		userChoice: [],
 	});
 
@@ -78,7 +78,7 @@ function ClassOptions() {
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
 		character.charClasses = charClasses.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
-		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+		// console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};
 
 	return (

@@ -7,21 +7,21 @@ import CharacterOptions from "../../utils/CharacterIndex";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { Divider, GridItem, Heading, Image, Text } from "@chakra-ui/react";
-import { Button as ButtonArwes } from "@arwes/core";
+// import { Button as ButtonArwes } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
-const vaultRasin = "#272932";
-const vaultYellow = "#ffc857";
-const vaultBlue = "#4d7ea8";
+// const vaultRasin = "#272932";
+// const vaultYellow = "#ffc857";
+// const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
-const vaultPink = "#f72585";
+// const vaultPink = "#f72585";
 const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 //Character constructor
-console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+// console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 // const character = JSON.parse(localStorage.getItem("NewCharacter"));
 
 function StyleOptions() {
@@ -34,7 +34,7 @@ function StyleOptions() {
 
 	const handleStyleSubmit = async (event) => {
 		charStyle.userChoice = event.currentTarget.innerText;
-		console.log(charStyle.userChoice);
+		// console.log(charStyle.userChoice);
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
 		character.style = charStyle.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
@@ -49,7 +49,7 @@ function StyleOptions() {
 						<Tab
 							fontWeight="bold"
 							onClick={handleStyleSubmit}
-							key={style.name + "tab"}
+							key={"tab" + style.name}
 						>
 							{style.name}
 						</Tab>
