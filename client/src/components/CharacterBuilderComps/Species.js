@@ -4,7 +4,17 @@ import React from "react";
 import CharacterOptions from "../../utils/CharacterIndex";
 
 // import styling dependancies
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import {
+	Table,
+	Thead,
+	Tbody,
+	Tr,
+	Th,
+	Td,
+	Wrap,
+	VStack,
+	TableContainer,
+} from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { Divider, GridItem, Heading, HStack, Text } from "@chakra-ui/react";
 // import { Button as ButtonArwes } from "@arwes/core";
@@ -42,150 +52,178 @@ function SpeciesOptions() {
 
 	return (
 		<GridItem colSpan={6} area={"body"}>
-			<Tabs isFitted variant="enclosed">
+			<Tabs size="sm" isFitted variant="solid-rounded">
 				<TabList>
-					{speciesList.map((spec) => (
-						<Tab
-							fontWeight="bold"
-							onClick={handleSpeciesSelect}
-							key={spec.name + "tab"}
-						>
-							{spec.name}
-						</Tab>
-					))}
+					<Wrap>
+						{speciesList.map((spec) => (
+							<Tab
+								fontSize=".9rem"
+								fontWeight="bold"
+								onClick={handleSpeciesSelect}
+								key={spec.name + "tab"}
+							>
+								{spec.name}
+							</Tab>
+						))}
+					</Wrap>
 				</TabList>
+
 				<TabPanels>
 					{speciesList.map((spec) => (
 						<TabPanel key={"tab" + spec.name}>
-							<Heading color={vaultGreen} size="sm" fontFamily={Orbitron}>
-								{spec.shortDec}
-							</Heading>
-							<Divider p=".5%" />
-							<HStack>
+							<Wrap>
+								<Heading color={vaultGreen} size="sm" fontFamily={Orbitron}>
+									{spec.shortDec}
+								</Heading>
+								<Divider p=".5%" />
+								{/* <HStack> */}
 								<Text p=".5rem" fontFamily={Signika}>
 									{spec.desc}
 								</Text>
-								<Table w="30%" size="sm" variant="simple">
-									<Thead fontFamily={Signika}>
-										<Tr>
-											<Th color={vaultBlue}>Stat</Th>
-											<Th color={vaultBlue}>Base</Th>
-											<Th color={vaultBlue}>Merc</Th>
-											<Th color={vaultBlue}>Exem</Th>
-											<Th color={vaultBlue}>WS</Th>
-										</Tr>
-									</Thead>
-									<Tbody>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												STR
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.STR}</Td>
-											<Td>{spec.stats.statsMerc.STR}</Td>
-											<Td>{spec.stats.statsExemplar.STR}</Td>
-											<Td>{spec.stats.statsWS.STR}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												PHY
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.PHY}</Td>
-											<Td>{spec.stats.statsMerc.PHY}</Td>
-											<Td>{spec.stats.statsExemplar.PHY}</Td>
-											<Td>{spec.stats.statsWS.PHY}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												SPD
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.SPD}</Td>
-											<Td>{spec.stats.statsMerc.SPD}</Td>
-											<Td>{spec.stats.statsExemplar.SPD}</Td>
-											<Td>{spec.stats.statsWS.SPD}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												AGL
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.AGL}</Td>
-											<Td>{spec.stats.statsMerc.AGL}</Td>
-											<Td>{spec.stats.statsExemplar.AGL}</Td>
-											<Td>{spec.stats.statsWS.AGL}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												CRD
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.CRD}</Td>
-											<Td>{spec.stats.statsMerc.CRD}</Td>
-											<Td>{spec.stats.statsExemplar.CRD}</Td>
-											<Td>{spec.stats.statsWS.CRD}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												MRK
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.MRK}</Td>
-											<Td>{spec.stats.statsMerc.MRK}</Td>
-											<Td>{spec.stats.statsExemplar.MRK}</Td>
-											<Td>{spec.stats.statsWS.MRK}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												INT
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.INT}</Td>
-											<Td>{spec.stats.statsMerc.INT}</Td>
-											<Td>{spec.stats.statsExemplar.INT}</Td>
-											<Td>{spec.stats.statsWS.INT}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												PER
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.PER}</Td>
-											<Td>{spec.stats.statsMerc.PER}</Td>
-											<Td>{spec.stats.statsExemplar.PER}</Td>
-											<Td>{spec.stats.statsWS.PER}</Td>
-										</Tr>
-										<Tr>
-											<Td color={vaultYellow} fontWeight="bold">
-												ESS
-											</Td>
-											<Td fontWeight="semibold">{spec.stats.statsBase.ESS}</Td>
-											<Td>{spec.stats.statsMerc.ESS}</Td>
-											<Td>{spec.stats.statsExemplar.ESS}</Td>
-											<Td>{spec.stats.statsWS.ESS}</Td>
-										</Tr>
-									</Tbody>
-								</Table>
-							</HStack>
+								<TableContainer>
+									<Table w="30%" size="sm" variant="simple">
+										<Thead fontFamily={Signika}>
+											<Tr>
+												<Th color={vaultBlue}>Stat</Th>
+												<Th color={vaultBlue}>Base</Th>
+												<Th color={vaultBlue}>Merc</Th>
+												<Th color={vaultBlue}>Exem</Th>
+												<Th color={vaultBlue}>WS</Th>
+											</Tr>
+										</Thead>
+										<Tbody>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													STR
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.STR}
+												</Td>
+												<Td>{spec.stats.statsMerc.STR}</Td>
+												<Td>{spec.stats.statsExemplar.STR}</Td>
+												<Td>{spec.stats.statsWS.STR}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													PHY
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.PHY}
+												</Td>
+												<Td>{spec.stats.statsMerc.PHY}</Td>
+												<Td>{spec.stats.statsExemplar.PHY}</Td>
+												<Td>{spec.stats.statsWS.PHY}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													SPD
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.SPD}
+												</Td>
+												<Td>{spec.stats.statsMerc.SPD}</Td>
+												<Td>{spec.stats.statsExemplar.SPD}</Td>
+												<Td>{spec.stats.statsWS.SPD}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													AGL
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.AGL}
+												</Td>
+												<Td>{spec.stats.statsMerc.AGL}</Td>
+												<Td>{spec.stats.statsExemplar.AGL}</Td>
+												<Td>{spec.stats.statsWS.AGL}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													CRD
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.CRD}
+												</Td>
+												<Td>{spec.stats.statsMerc.CRD}</Td>
+												<Td>{spec.stats.statsExemplar.CRD}</Td>
+												<Td>{spec.stats.statsWS.CRD}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													MRK
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.MRK}
+												</Td>
+												<Td>{spec.stats.statsMerc.MRK}</Td>
+												<Td>{spec.stats.statsExemplar.MRK}</Td>
+												<Td>{spec.stats.statsWS.MRK}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													INT
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.INT}
+												</Td>
+												<Td>{spec.stats.statsMerc.INT}</Td>
+												<Td>{spec.stats.statsExemplar.INT}</Td>
+												<Td>{spec.stats.statsWS.INT}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													PER
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.PER}
+												</Td>
+												<Td>{spec.stats.statsMerc.PER}</Td>
+												<Td>{spec.stats.statsExemplar.PER}</Td>
+												<Td>{spec.stats.statsWS.PER}</Td>
+											</Tr>
+											<Tr>
+												<Td color={vaultYellow} fontWeight="bold">
+													ESS
+												</Td>
+												<Td fontWeight="semibold">
+													{spec.stats.statsBase.ESS}
+												</Td>
+												<Td>{spec.stats.statsMerc.ESS}</Td>
+												<Td>{spec.stats.statsExemplar.ESS}</Td>
+												<Td>{spec.stats.statsWS.ESS}</Td>
+											</Tr>
+										</Tbody>
+									</Table>
+								</TableContainer>
+								{/* </HStack> */}
 
-							<Heading
-								color={vaultGreen}
-								pt="1%"
-								size="sm"
-								fontFamily={Orbitron}
-							>
-								Species Bonuses
-							</Heading>
-							<Text fontFamily={Signika}>
-								{spec.bonuses[1].name}: {spec.bonuses[1].desc}
-							</Text>
-							<Divider m="1%" />
-							<Text fontFamily={Signika}>
-								{spec.bonuses[2].name}: {spec.bonuses[2].desc}
-							</Text>
-							{!spec.bonuses[3] ? (
-								""
-							) : (
-								<>
+								<VStack>
+									<Heading
+										color={vaultGreen}
+										pt="1%"
+										size="sm"
+										fontFamily={Orbitron}
+									>
+										Species Bonuses
+									</Heading>
+									<Text fontFamily={Signika}>
+										{spec.bonuses[1].name}: {spec.bonuses[1].desc}
+									</Text>
 									<Divider m="1%" />
 									<Text fontFamily={Signika}>
-										{spec.bonuses[3].name}: {spec.bonuses[3].desc}
+										{spec.bonuses[2].name}: {spec.bonuses[2].desc}
 									</Text>
-								</>
-							)}
+									{!spec.bonuses[3] ? (
+										""
+									) : (
+										<>
+											<Divider m="1%" />
+											<Text fontFamily={Signika}>
+												{spec.bonuses[3].name}: {spec.bonuses[3].desc}
+											</Text>
+										</>
+									)}
+								</VStack>
+							</Wrap>
 						</TabPanel>
 					))}
 				</TabPanels>
