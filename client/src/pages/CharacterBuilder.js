@@ -39,8 +39,6 @@ let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 function CharacterBuilder() {
 	const [builderView, setBuilderView] = useState(0);
 
-	// const disablePrev = !builderView === 0 ? false : true;
-
 	const NextPage = (event) => {
 		if (builderView === 3) {
 			//window.location.assign("/roster/" + { username });

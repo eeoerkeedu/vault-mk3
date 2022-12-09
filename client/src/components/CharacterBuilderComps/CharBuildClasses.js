@@ -20,7 +20,7 @@ import { Button as ButtonArwes, FrameHexagon } from "@arwes/core";
 import "../../App.css";
 
 //bringing in the vault pallet and fonts
-//const vaultRasin = "#272932";
+const vaultRasin = "#272932";
 const vaultYellow = "#ffc857";
 const vaultBlue = "#4d7ea8";
 const vaultGreen = "#a4f9c8";
@@ -41,19 +41,40 @@ function ClassOptions() {
 		userChoice: [],
 	});
 
-	// handle user selecting classes
+	const cardSelection = (selectedCard) => {
+		selectedCard.parentElement.parentElement.style.background = vaultBlue;
+		selectedCard.style.fontSize = ".80rem";
+		selectedCard.style.color = vaultGreen;
+		selectedCard.textContent = "SELECTED";
+	};
+
+	const cardDeselection = (selectedCard) => {
+		selectedCard.parentElement.parentElement.style.background = "";
+		selectedCard.style.fontSize = "";
+		selectedCard.style.color = "";
+		selectedCard.textContent = "SELECT";
+	};
+
+	// handle user selecting and deselecting classes
 	const handleClassChoice = (event) => {
 		const { value } = event.target;
-		if (charClasses.userChoice.length === 2) {
+		const selectedCard = event.currentTarget;
+		if (event.currentTarget.innerText === "SELECTED") {
+			let position = charClasses.userChoice.indexOf(value);
+			charClasses.userChoice.splice(position, 1);
+			cardDeselection(selectedCard);
+			return;
+		} else if (charClasses.userChoice.length === 2) {
 			console.log("max classes reached");
 			return;
+		} else {
+			charClasses.userChoice.push(value);
+			cardSelection(selectedCard);
 		}
-		charClasses.userChoice.push(value);
 	};
 
 	const chooseClass = (event) => {
 		event.preventDefault();
-		console.log(charClasses);
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
 		character.charClasses = charClasses.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
@@ -88,7 +109,9 @@ function ClassOptions() {
 								</List>
 							</CardBody>
 							<CardFooter justify="space-between">
-								<ButtonArwes FrameComponent={FrameHexagon}>Info</ButtonArwes>
+								<ButtonArwes FrameComponent={FrameHexagon} disabled>
+									Info
+								</ButtonArwes>
 								<Button
 									value={vClass.name}
 									id={vClass.name}
