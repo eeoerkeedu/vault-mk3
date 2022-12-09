@@ -6,7 +6,14 @@ import CharacterOptions from "../../utils/CharacterIndex";
 // import styling dependancies
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { Divider, GridItem, Heading, Image, Text } from "@chakra-ui/react";
+import {
+	Divider,
+	GridItem,
+	Heading,
+	Image,
+	Text,
+	Wrap,
+} from "@chakra-ui/react";
 // import { Button as ButtonArwes } from "@arwes/core";
 import "../../App.css";
 
@@ -43,17 +50,19 @@ function StyleOptions() {
 
 	return (
 		<GridItem colSpan={6} area={"body"}>
-			<Tabs isFitted variant="enclosed">
+			<Tabs isFitted variant="solid-rounded">
 				<TabList>
-					{styleList.map((style) => (
-						<Tab
-							fontWeight="bold"
-							onClick={handleStyleSubmit}
-							key={"tab" + style.name}
-						>
-							{style.name}
-						</Tab>
-					))}
+					<Wrap>
+						{styleList.map((style) => (
+							<Tab
+								fontWeight="bold"
+								onClick={handleStyleSubmit}
+								key={"tab" + style.name}
+							>
+								{style.name}
+							</Tab>
+						))}
+					</Wrap>
 				</TabList>
 				<TabPanels>
 					{styleList.map((style) => (
