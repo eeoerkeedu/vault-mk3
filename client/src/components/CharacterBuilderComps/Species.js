@@ -16,7 +16,7 @@ import {
 	TableContainer,
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { Divider, GridItem, Heading, HStack, Text } from "@chakra-ui/react";
+import { Divider, GridItem, Heading, Text } from "@chakra-ui/react";
 // import { Button as ButtonArwes } from "@arwes/core";
 import "../../App.css";
 
