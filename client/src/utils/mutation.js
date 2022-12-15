@@ -55,10 +55,16 @@ export const UPDATE_USER = gql`
 // `;
 
 export const UPDATE_USERROSTER = gql`
-	mutation updateUserRoster($savedCharacaters: CharInput!) {
-		updateUserRoster(savedCharacaters: $savedCharacaters) {
+	mutation updateUserRoster($newCharacter: CharInput!) {
+		updateUserRoster(newCharacter: $newCharacter) {
 			_id
-			savedCharacaters
+			savedCharacters {
+				charId
+				charName
+				charStyle
+				charSpecies
+				charClasses
+			}
 		}
 	}
 `;

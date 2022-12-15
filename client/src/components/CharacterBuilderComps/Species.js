@@ -45,7 +45,7 @@ function SpeciesOptions() {
 		//console.log(event.currentTarget.innerText);
 		charSpecies.userChoice = event.currentTarget.innerText;
 		// console.log(charSpecies.userChoice);
-		character.species = charSpecies.userChoice;
+		character.charSpecies = charSpecies.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
 		// console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};

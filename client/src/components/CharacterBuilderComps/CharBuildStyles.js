@@ -43,7 +43,7 @@ function StyleOptions() {
 		charStyle.userChoice = event.currentTarget.innerText;
 		// console.log(charStyle.userChoice);
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
-		character.style = charStyle.userChoice;
+		character.charStyle = charStyle.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
 		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};
