@@ -6,6 +6,14 @@ const typeDefs = gql`
 		username: String!
 		email: String!
 		password: String!
+		savedCharacaters: [Character]
+	}
+
+	type Character {
+		charName: String
+		charStyle: String
+		charSpecies: String
+		charClasses: [String]
 	}
 
 	type Query {
