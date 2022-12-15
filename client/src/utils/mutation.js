@@ -55,8 +55,8 @@ export const UPDATE_USER = gql`
 // `;
 
 export const UPDATE_USERROSTER = gql`
-	mutation updateUserRoster($newCharacter: CharInput!) {
-		updateUserRoster(newCharacter: $newCharacter) {
+	mutation updateUserRoster($savedCharacters: CharInput!) {
+		updateUserRoster(savedCharacters: $savedCharacters) {
 			_id
 			savedCharacters {
 				charId

@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 // import schema from Book.js
-const characterSchema = require("./Character");
+const Character = require("./Character");
 
 const userSchema = new Schema({
 	username: {
@@ -22,7 +22,7 @@ const userSchema = new Schema({
 		required: true,
 		minlength: 8,
 	},
-	savedCharacaters: [characterSchema],
+	savedCharacters: [Character.schema],
 });
 
 const saltRounds = 12;

@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
 const characterSchema = new Schema({
@@ -30,4 +31,6 @@ const characterSchema = new Schema({
 	// charAttacks: [{}],
 });
 
-module.exports = characterSchema;
+const Character = mongoose.model("Character", characterSchema);
+
+module.exports = Character;

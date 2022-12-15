@@ -13,15 +13,12 @@ const resolvers = {
 		},
 	},
 	Mutation: {
-		addUser: async (
-			parent,
-			{ username, email, password, savedCharacaters }
-		) => {
+		addUser: async (parent, { username, email, password, savedCharacters }) => {
 			const user = await User.create({
 				username,
 				email,
 				password,
-				savedCharacaters,
+				savedCharacters,
 			});
 			const token = signToken(user);
 			return { token, user };
@@ -67,6 +64,17 @@ const resolvers = {
 				{ new: true }
 			);
 			return userData;
+		},
+
+		updateUserRoster: async (parent, { newCharacter }, context) => {
+			if (context.user) {
+				const userData = await User.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{ $addToSet: { savedCharacters: { newCharacter } } },
+					{ new: true }
+				);
+				return userData;
+			}
 		},
 	},
 };
