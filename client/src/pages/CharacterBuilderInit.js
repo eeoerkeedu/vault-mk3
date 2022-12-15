@@ -27,9 +27,9 @@ let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 
 //Character constructor
 const character = {
-	name: "",
-	species: "Human",
-	style: "Mystic",
+	charName: "",
+	charSpecies: "Human",
+	charStyle: "Mystic",
 	charClasses: [],
 };
 
@@ -37,6 +37,17 @@ const SavedVaultCharacters = [];
 
 function CharacterBuilderInit() {
 	const handleCharacterInit = (event) => {
+		// checks if user has reached limit of 5 characters
+		let savedCharacters = JSON.parse(
+			localStorage.getItem("SavedVaultCharacters")
+		);
+		if (savedCharacters !== null) {
+			if (savedCharacters.length === 5) {
+				console.log("Max Saved Characters Limit Reached");
+				return;
+			}
+		}
+
 		//initialize the localally stored character
 		//console.log("New Character Initialized");
 		localStorage.setItem("NewCharacter", JSON.stringify(character));

@@ -30,19 +30,14 @@ const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 // extract username from token.
 
 function CharacterBuilder() {
-	const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
+	//const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
 	const [builderView, setBuilderView] = useState(0);
 
 	// extracts roster update function
 	const [updateUserRoster] = useMutation(UPDATE_USERROSTER);
 
-	const [editUserRoster, setEditUserRoster] = useState({
-		userId: "",
-		savedCharacters: "",
-	});
-
-	const saveRostertoServer = async (savedChars) => {
-		console.log(savedChars);
+	const saveRostertoServer = async (newChar) => {
+		console.log(newChar);
 
 		// get token
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -50,15 +45,10 @@ function CharacterBuilder() {
 			return false;
 		}
 
-		setEditUserRoster({
-			...editUserRoster,
-			userId: userId,
-			savedCharacters: "",
-		});
 		try {
 			console.log("Updating User Roster");
 			const { data } = await updateUserRoster({
-				variables: { ...editUserRoster },
+				variables: { newCharacter: { newChar } },
 			});
 			console.log(data);
 			if (!data) {
@@ -72,9 +62,9 @@ function CharacterBuilder() {
 
 	const NextPage = (event) => {
 		if (builderView === 3) {
-			let savedChars = JSON.parse(localStorage.getItem("SavedVaultCharacters"));
-			console.log(savedChars);
-			saveRostertoServer(savedChars);
+			let newChar = JSON.parse(localStorage.getItem("NewCharacter"));
+			//console.log(newChar);
+			saveRostertoServer(newChar);
 			//window.location.assign("/roster/" + { username });
 			return;
 		}

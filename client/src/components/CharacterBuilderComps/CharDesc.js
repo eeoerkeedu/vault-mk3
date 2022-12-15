@@ -32,7 +32,7 @@ function CharDesc() {
 		let newName = charName.userChoice;
 		// console.log(newName);
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
-		character.name = newName;
+		character.charName = newName;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
 		let savedCharacters = JSON.parse(
 			localStorage.getItem("SavedVaultCharacters")
