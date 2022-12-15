@@ -45,11 +45,20 @@ export const UPDATE_USER = gql`
 	}
 `;
 
-export const UPDATE_USERNAME = gql`
-	mutation updateUsername($userId: ID!, $username: String!) {
-		updateUsername(userId: $userId, username: $username) {
+// export const UPDATE_USERNAME = gql`
+// 	mutation updateUsername($userId: ID!, $username: String!) {
+// 		updateUsername(userId: $userId, username: $username) {
+// 			_id
+// 			username
+// 		}
+// 	}
+// `;
+
+export const UPDATE_USERROSTER = gql`
+	mutation updateUserRoster($savedCharacaters: CharInput!) {
+		updateUserRoster(savedCharacaters: $savedCharacaters) {
 			_id
-			username
+			savedCharacaters
 		}
 	}
 `;

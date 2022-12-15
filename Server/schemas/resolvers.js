@@ -1,4 +1,4 @@
-const { User, Styles } = require("../models");
+const { User } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
@@ -13,8 +13,16 @@ const resolvers = {
 		},
 	},
 	Mutation: {
-		addUser: async (parent, { username, email, password }) => {
-			const user = await User.create({ username, email, password });
+		addUser: async (
+			parent,
+			{ username, email, password, savedCharacaters }
+		) => {
+			const user = await User.create({
+				username,
+				email,
+				password,
+				savedCharacaters,
+			});
 			const token = signToken(user);
 			return { token, user };
 		},

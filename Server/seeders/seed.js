@@ -18,6 +18,7 @@ db.once("open", async () => {
 				username: userSeed[i].username,
 				email: userSeed[i].email,
 				password: hashPass,
+				savedCharacaters: userSeed[i].savedCharacaters,
 			};
 
 			console.log(hashedUser);
