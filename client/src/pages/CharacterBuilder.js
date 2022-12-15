@@ -1,6 +1,8 @@
 // importing utility dependancies
 import Auth from "../utils/auth";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { UPDATE_USERROSTER } from "../utils/mutation";
 
 //import pages for use
 import SpeciesOptions from "../components/CharacterBuilderComps/Species";
@@ -26,14 +28,54 @@ const Signika =
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 // extract username from token.
-let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 
 function CharacterBuilder() {
+	const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
 	const [builderView, setBuilderView] = useState(0);
+
+	// extracts roster update function
+	const [updateUserRoster] = useMutation(UPDATE_USERROSTER);
+
+	const [editUserRoster, setEditUserRoster] = useState({
+		userId: "",
+		savedCharacters: "",
+	});
+
+	const saveRostertoServer = async (savedChars) => {
+		console.log(savedChars);
+
+		// get token
+		const token = Auth.loggedIn() ? Auth.getToken() : null;
+		if (!token) {
+			return false;
+		}
+
+		setEditUserRoster({
+			...editUserRoster,
+			userId: userId,
+			savedCharacters: "",
+		});
+		try {
+			console.log("Updating User Roster");
+			const { data } = await updateUserRoster({
+				variables: { ...editUserRoster },
+			});
+			console.log(data);
+			if (!data) {
+				throw new Error("something went wrong!");
+			}
+			console.log("User Roster Updated");
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	const NextPage = (event) => {
 		if (builderView === 3) {
-			window.location.assign("/roster/" + { username });
+			let savedChars = JSON.parse(localStorage.getItem("SavedVaultCharacters"));
+			console.log(savedChars);
+			saveRostertoServer(savedChars);
+			//window.location.assign("/roster/" + { username });
 			return;
 		}
 		setBuilderView(builderView + 1);
