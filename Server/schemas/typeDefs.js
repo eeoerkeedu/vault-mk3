@@ -9,7 +9,7 @@ const typeDefs = gql`
 	}
 
 	type Character {
-		charId: ID!
+		_id: ID!
 		charName: String
 		charStyle: String
 		charSpecies: String
@@ -48,7 +48,7 @@ const typeDefs = gql`
 
 		updateUsername(userId: ID!, username: String!): User
 
-		updateUserRoster(savedCharacters: CharInput!): User
+		addCharToRoster(userId: ID!, newCharacter: CharInput): User
 	}
 `;
 
