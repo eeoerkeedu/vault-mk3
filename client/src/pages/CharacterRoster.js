@@ -6,7 +6,7 @@ import { DELETE_CHARACTER } from "../utils/mutation";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Button, Center, Container } from "@chakra-ui/react";
+import { Box, Button, Center, Container, Link } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Table, Tbody, Tr, Td, TableContainer } from "@chakra-ui/react";
@@ -107,13 +107,18 @@ function CharacterRoster() {
 											{userRoster.map((char, index) => (
 												<Tr key={char.charName + index} fontFamily={Signika}>
 													<Td>
-														<Button
-															disabled
-															color={vaultRasin}
-															bg={vaultYellow}
+														<Link
+															href={
+																"/roster/characterview/" +
+																username +
+																"/" +
+																char._id
+															}
 														>
-															View
-														</Button>
+															<Button color={vaultRasin} bg={vaultYellow}>
+																View
+															</Button>
+														</Link>
 													</Td>
 													<Td fontWeight="bold">{char.charName}</Td>
 													<Td>{char.charSpecies}</Td>
