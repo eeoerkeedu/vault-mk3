@@ -7,6 +7,13 @@ export const QUERY_USER = gql`
 			username
 			email
 			password
+			savedCharacters {
+				_id
+				charName
+				charStyle
+				charSpecies
+				charClasses
+			}
 		}
 	}
 `;
