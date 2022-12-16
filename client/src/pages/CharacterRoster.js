@@ -61,11 +61,10 @@ function CharacterRoster() {
 					<Grid
 						fontFamily={Orbitron}
 						templateColumns="repeat(6, 1fr)"
-						gridTemplateRows={"70px 1fr 70px"}
+						gridTemplateRows={"70px 1fr"}
 						gap={1}
 						templateAreas={`	"header" 
-											"body"
-											"footer"`}
+											"body"`}
 					>
 						<GridItem h="80px" colSpan={6} area={"header"}>
 							<Center height="60px">
@@ -87,16 +86,16 @@ function CharacterRoster() {
 											<Td>Edit</Td>
 											<Td>Delete</Td>
 										</Tr>
-										{savedCharacters.map((char) => (
-											<Tr key={char.name} fontFamily={Signika}>
+										{savedCharacters.map((char, index) => (
+											<Tr key={char.charName + index} fontFamily={Signika}>
 												<Td>
 													<Button disabled color={vaultRasin} bg={vaultYellow}>
 														View
 													</Button>
 												</Td>
-												<Td fontWeight="bold">{char.name}</Td>
-												<Td>{char.species}</Td>
-												<Td>{char.style}</Td>
+												<Td fontWeight="bold">{char.charName}</Td>
+												<Td>{char.charSpecies}</Td>
+												<Td>{char.charStyle}</Td>
 												<Td>
 													{char.charClasses[0] + " & " + char.charClasses[1]}
 												</Td>

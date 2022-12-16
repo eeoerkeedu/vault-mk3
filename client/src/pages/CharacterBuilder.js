@@ -2,7 +2,7 @@
 import Auth from "../utils/auth";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { UPDATE_USERROSTER } from "../utils/mutation";
+import { ADD_CHARACTER } from "../utils/mutation";
 
 //import pages for use
 import SpeciesOptions from "../components/CharacterBuilderComps/Species";
@@ -30,15 +30,15 @@ const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 // extract username from token.
 
 function CharacterBuilder() {
-	//const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
+	const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
+	const username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
+	//console.log(userId);
 	const [builderView, setBuilderView] = useState(0);
 
 	// extracts roster update function
-	const [updateUserRoster] = useMutation(UPDATE_USERROSTER);
+	const [addCharToRoster] = useMutation(ADD_CHARACTER);
 
-	const saveRostertoServer = async (newChar) => {
-		console.log(newChar);
-
+	const saveRostertoServer = async (newCharacter) => {
 		// get token
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 		if (!token) {
@@ -46,9 +46,10 @@ function CharacterBuilder() {
 		}
 
 		try {
+			//console.log(userId, newCharacter);
 			console.log("Updating User Roster");
-			const { data } = await updateUserRoster({
-				variables: { newCharacter: { newChar } },
+			const { data } = await addCharToRoster({
+				variables: { userId: userId, newCharacter: newCharacter },
 			});
 			console.log(data);
 			if (!data) {
@@ -62,10 +63,10 @@ function CharacterBuilder() {
 
 	const NextPage = (event) => {
 		if (builderView === 3) {
-			let newChar = JSON.parse(localStorage.getItem("NewCharacter"));
-			//console.log(newChar);
-			saveRostertoServer(newChar);
-			//window.location.assign("/roster/" + { username });
+			let newCharacter = JSON.parse(localStorage.getItem("NewCharacter"));
+			//console.log(newCharacter);
+			saveRostertoServer(newCharacter);
+			window.location.assign("/roster/" + { username });
 			return;
 		}
 		setBuilderView(builderView + 1);
