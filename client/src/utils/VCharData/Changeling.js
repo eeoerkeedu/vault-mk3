@@ -58,16 +58,16 @@ const Changeling = {
 			desc: "You may change any of your appearance entries as a snap action, any other generic face requires little effort, however if you want to mimic someone you have touched the skin of, you must spend a fate and make a deception roll, this use will only last 1 minute for every 5 you get on the roll total and others may get rolls against that skill roll to notice something being off.",
 		},
 	},
-	speciesAbilities: {
-		1: {
+	speciesAbilities: [
+		{
 			name: "Fate Twister",
 			desc: "When you are critically hit by an enemy you gain the fate instead of the attacker. Gain 2 fate if you are critically missed.",
 		},
-		2: {
+		{
 			name: "Trickster Magic",
 			desc: "The range of A Thousand Faces extends to 5m and only requires eye contact. If your deception roll is 18 or better you make swap positions with your target.",
 		},
-	},
+	],
 };
 
 export default Changeling;

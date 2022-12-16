@@ -42,7 +42,7 @@ const vaultPink = "#f72585";
 
 // extract username from local storage.
 const username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
-console.log(username);
+//console.log(username);
 
 function Navbar({ currentPage, handlePageChange }) {
 	const [isLargerThan426] = useMediaQuery("(min-width: 426px)");
