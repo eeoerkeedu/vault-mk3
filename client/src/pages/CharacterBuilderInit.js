@@ -48,7 +48,7 @@ function CharacterBuilderInit() {
 			}
 		}
 
-		//initialize the localally stored character
+		//initialize the locally stored character
 		//console.log("New Character Initialized");
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
 		//console.log(JSON.parse(localStorage.getItem("NewCharacter")));

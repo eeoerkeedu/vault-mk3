@@ -1,10 +1,11 @@
 // importing utility dependancies
 import Auth from "../utils/auth";
-import { useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Button, Center, Container } from "@chakra-ui/react";
+import { Box, Button, Center, Container, Link, Text } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Table, Tbody, Tr, Td, TableContainer } from "@chakra-ui/react";
@@ -28,10 +29,21 @@ const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 // let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 
 function CharacterRoster() {
-	const savedCharacters = JSON.parse(
-		localStorage.getItem("SavedVaultCharacters")
-	);
-	// console.log(savedCharacters);
+	// extract username from token.
+	let username = Auth.getProfile().data.username;
+	console.log(username);
+
+	// query's user data based on username from token
+	const { loading, data } = useQuery(QUERY_USER, {
+		variables: { username: username },
+	});
+
+	const userRoster = data?.user.savedCharacters || [];
+	console.log(userRoster);
+
+	if (userRoster === "") {
+		userRoster.push(JSON.parse(localStorage.getItem("SavedVaultCharacters")));
+	}
 
 	return (
 		// overall containter
@@ -74,46 +86,52 @@ function CharacterRoster() {
 							</Center>
 						</GridItem>
 						<GridItem colSpan={6} area={"body"}>
-							<TableContainer>
-								<Table size="sm">
-									<Tbody>
-										<Tr color={vaultGreen}>
-											<Td>View</Td>
-											<Td>Name</Td>
-											<Td>Species</Td>
-											<Td>Style</Td>
-											<Td>Classes</Td>
-											<Td>Edit</Td>
-											<Td>Delete</Td>
-										</Tr>
-										{savedCharacters.map((char, index) => (
-											<Tr key={char.charName + index} fontFamily={Signika}>
-												<Td>
-													<Button disabled color={vaultRasin} bg={vaultYellow}>
-														View
-													</Button>
-												</Td>
-												<Td fontWeight="bold">{char.charName}</Td>
-												<Td>{char.charSpecies}</Td>
-												<Td>{char.charStyle}</Td>
-												<Td>
-													{char.charClasses[0] + " & " + char.charClasses[1]}
-												</Td>
-												<Td>
-													<Button disabled bg={vaultBlue}>
-														Edit
-													</Button>
-												</Td>
-												<Td>
-													<Button disabled bg={vaultPink}>
-														Delete
-													</Button>
-												</Td>
+							{loading ? (
+								<Box>Loading...</Box>
+							) : (
+								<TableContainer>
+									<Table size="sm">
+										<Tbody>
+											<Tr color={vaultGreen}>
+												<Td>View</Td>
+												<Td>Name</Td>
+												<Td>Species</Td>
+												<Td>Style</Td>
+												<Td>Classes</Td>
+												<Td>Edit</Td>
+												<Td>Delete</Td>
 											</Tr>
-										))}
-									</Tbody>
-								</Table>
-							</TableContainer>
+											{userRoster.map((char, index) => (
+												<Tr key={char.charName + index} fontFamily={Signika}>
+													<Td>
+														<Button
+															disabled
+															color={vaultRasin}
+															bg={vaultYellow}
+														>
+															View
+														</Button>
+													</Td>
+													<Td fontWeight="bold">{char.charName}</Td>
+													<Td>{char.charSpecies}</Td>
+													<Td>{char.charStyle}</Td>
+													<Td>
+														{char.charClasses[0] + " & " + char.charClasses[1]}
+													</Td>
+													<Td>
+														<Button disabled bg={vaultBlue}>
+															Edit
+														</Button>
+													</Td>
+													<Td>
+														<Button bg={vaultPink}>Delete</Button>
+													</Td>
+												</Tr>
+											))}
+										</Tbody>
+									</Table>
+								</TableContainer>
+							)}
 						</GridItem>
 					</Grid>
 				</Box>

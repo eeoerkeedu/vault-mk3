@@ -42,6 +42,7 @@ const vaultPink = "#f72585";
 
 // extract username from local storage.
 const username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
+console.log(username);
 
 function Navbar({ currentPage, handlePageChange }) {
 	const [isLargerThan426] = useMediaQuery("(min-width: 426px)");
@@ -149,7 +150,7 @@ function Navbar({ currentPage, handlePageChange }) {
 									</Link>
 									{/* user character roster saved from builder, only shows when logged in */}
 									{Auth.loggedIn() ? (
-										<Link href={"/roster/" + { username }} padding=".5rem">
+										<Link href={"/roster/" + username} padding=".5rem">
 											<ButtonArwes
 												palette={vaultGreen}
 												FrameComponent={FrameHexagon}
@@ -183,7 +184,7 @@ function Navbar({ currentPage, handlePageChange }) {
 									</Link>
 									{Auth.loggedIn() ? (
 										<>
-											<Link href={`/profile/${username}`} padding=".5rem">
+											<Link href={"/profile/" + username} padding=".5rem">
 												<ButtonArwes
 													palette={vaultGreen}
 													FrameComponent={FrameHexagon}
