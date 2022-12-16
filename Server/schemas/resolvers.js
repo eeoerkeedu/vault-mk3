@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Character } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
@@ -66,15 +66,15 @@ const resolvers = {
 			return userData;
 		},
 
-		updateUserRoster: async (parent, { newCharacter }, context) => {
-			if (context.user) {
-				const userData = await User.findByIdAndUpdate(
-					{ _id: context.user._id },
-					{ $addToSet: { savedCharacters: { newCharacter } } },
-					{ new: true }
-				);
-				return userData;
-			}
+		addCharToRoster: async (parent, { userId, newCharacter }) => {
+			const userData = await User.findOneAndUpdate(
+				{ _id: userId },
+				{
+					$addToSet: { savedCharacters: newCharacter },
+				},
+				{ new: true }
+			);
+			return userData;
 		},
 	},
 };

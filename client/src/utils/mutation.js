@@ -53,18 +53,3 @@ export const UPDATE_USER = gql`
 // 		}
 // 	}
 // `;
-
-export const UPDATE_USERROSTER = gql`
-	mutation updateUserRoster($savedCharacters: CharInput!) {
-		updateUserRoster(savedCharacters: $savedCharacters) {
-			_id
-			savedCharacters {
-				charId
-				charName
-				charStyle
-				charSpecies
-				charClasses
-			}
-		}
-	}
-`;
