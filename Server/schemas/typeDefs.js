@@ -49,6 +49,8 @@ const typeDefs = gql`
 		updateUsername(userId: ID!, username: String!): User
 
 		addCharToRoster(userId: ID!, newCharacter: CharInput): User
+
+		deleteCharFromRoster(userId: ID!, charId: ID!): User
 	}
 `;
 
