@@ -60,6 +60,17 @@ export const ADD_CHARACTER = gql`
 	}
 `;
 
+export const DELETE_CHARACTER = gql`
+	mutation deleteCharFromRoster($userId: ID!, $charId: ID!) {
+		deleteCharFromRoster(userId: $userId, charId: $charId) {
+			_id
+			savedCharacters {
+				_id
+			}
+		}
+	}
+`;
+
 // export const UPDATE_USERNAME = gql`;
 // 	mutation updateUsername($userId: ID!, $username: String!) {
 // 		updateUsername(userId: $userId, username: $username) {

@@ -2,10 +2,11 @@
 import Auth from "../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
+import { DELETE_CHARACTER } from "../utils/mutation";
 
 // import styling dependancies
 import "../App.css";
-import { Box, Button, Center, Container, Link, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Container } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/react";
 import { Table, Tbody, Tr, Td, TableContainer } from "@chakra-ui/react";
@@ -25,21 +26,23 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
-// extract username from token.
-// let username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
-
 function CharacterRoster() {
 	// extract username from token.
+	const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
 	let username = Auth.getProfile().data.username;
-	console.log(username);
+	// console.log(userId + " " + username);
 
+	// create the remove character mutation function
+	const [deleteCharFromRoster] = useMutation(DELETE_CHARACTER);
 	// query's user data based on username from token
-	const { loading, data } = useQuery(QUERY_USER, {
+	const { loading, data, error } = useQuery(QUERY_USER, {
 		variables: { username: username },
 	});
 
+	if (error) return `Error! ${error.message}`;
+
 	const userRoster = data?.user.savedCharacters || [];
-	console.log(userRoster);
+	// console.log(userRoster);
 
 	if (userRoster === "") {
 		userRoster.push(JSON.parse(localStorage.getItem("SavedVaultCharacters")));
@@ -124,7 +127,19 @@ function CharacterRoster() {
 														</Button>
 													</Td>
 													<Td>
-														<Button bg={vaultPink}>Delete</Button>
+														<Button
+															onClick={() => {
+																deleteCharFromRoster({
+																	variables: {
+																		userId: userId,
+																		charId: char._id,
+																	},
+																});
+															}}
+															bg={vaultPink}
+														>
+															Delete
+														</Button>
 													</Td>
 												</Tr>
 											))}

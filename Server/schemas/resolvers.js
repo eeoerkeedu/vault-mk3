@@ -76,6 +76,17 @@ const resolvers = {
 			);
 			return userData;
 		},
+
+		deleteCharFromRoster: async (parent, { userId, charId }) => {
+			const userData = await User.findOneAndUpdate(
+				{ _id: userId },
+				{
+					$pull: { savedCharacters: { _id: charId } },
+				},
+				{ new: true }
+			);
+			return userData;
+		},
 	},
 };
 module.exports = resolvers;
