@@ -48,26 +48,26 @@ const EOS = {
 			ESS: 7,
 		},
 	},
-	bonuses: {
-		1: {
+	bonuses: [
+		{
 			name: "War Born",
 			desc: "Heal Hit points (HP) equal to your PHY stat one round later, cost 1 Fate. If you would gain negative condition counters (Poison, Pathogen, Radiation, and Stun) you reduce the amount by -1 to a minimum of 0",
 		},
-		2: {
+		{
 			name: "Impressive Size",
 			desc: "This character's base size is 1.25” and can wield non-big 2 handed weapons in one hand except for Archery ranged weapons. To make a weapon your size add the Big Weapon Customization. Weapons you use that are not big get a -1 Ease of Use(EoU) penalty to ACC.",
 		},
-	},
-	speciesAbilities: {
-		1: {
+	],
+	speciesAbilities: [
+		{
 			name: "Tailored Purpose",
 			desc: "Choose 1: Marine +1 to AGL and Max AGL, can breath and speak in any water and may Surge Swim Skill rolls. OR Shock Trooper for each Injury Counter you are suffering from, gain +1 ACC and Damage on melee attacks, and gain half the amount healed by your war born ability again on the turn after the original effect happens. OR Subterranean you gain Thermal Vision and +1 to your MRK and maximum possible MRK stat points. (This ability must be taken at character creation)",
 		},
-		2: {
+		{
 			name: "Crafted leader",
 			desc: "You may use PHY in place of INT for the Influence skill and improve the effects of the Inspire skill action by +1 (to a max of +3 on its next Attack or Skill roll and +3 WILL for 1 round) and the Intimidate skill action by -1 (to a max of -3 on its next Attack or Skill roll and -3 WILL for 1 round).",
 		},
-	},
+	],
 };
 
 export default EOS;

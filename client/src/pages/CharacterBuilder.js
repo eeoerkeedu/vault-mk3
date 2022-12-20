@@ -64,6 +64,13 @@ function CharacterBuilder() {
 	const NextPage = (event) => {
 		if (builderView === 3) {
 			let newCharacter = JSON.parse(localStorage.getItem("NewCharacter"));
+			if (newCharacter.charName === "") {
+				console.log("character not saved");
+				window.alert(
+					"Current Character not Saved! Please Name and Save your current character so you do not lose them."
+				);
+				return;
+			}
 			//console.log(newCharacter);
 			saveRostertoServer(newCharacter);
 			window.location.assign("/roster/" + { username });

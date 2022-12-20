@@ -17,11 +17,12 @@ import {
 	Button,
 	Center,
 	Container,
+	Divider,
 	Heading,
 	VStack,
 } from "@chakra-ui/react";
 import { HStack, Link, Text } from "@chakra-ui/react";
-import { List, ListItem } from "@chakra-ui/react";
+import { List, ListItem, UnorderedList } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -97,11 +98,25 @@ function CharacterView() {
 	const characterSpecies = CharacterOptions.speciesOptions.filter((spec) => {
 		return spec.name === character[0].charSpecies;
 	});
-	const speciesAbilites = characterSpecies[0].speciesAbilities;
-	console.log(speciesAbilites);
+	const speciesBonuses = characterSpecies[0].bonuses;
+	// console.log(speciesBonuses);
 
-	const characterStyle = character[0].charStyle;
-	const characterClass1 = character[0].charClasses[0];
+	const characterStyle = CharacterOptions.styleOptions.filter((style) => {
+		return style.name === character[0].charStyle;
+	});
+	//console.log(characterStyle);
+	// will need to evolve to cover the user choices
+	const styleChoices = characterStyle[0].bonuses;
+
+	// const characterClass1 = character[0].charClasses[0];
+	const characterClass1 = CharacterOptions.classOptions.filter((class1) => {
+		return class1.name === character[0].charClasses[0];
+	});
+	console.log(characterClass1);
+	// will need to evolve to cover the user choices
+	const abilityGroups = [];
+	abilityGroups.push(characterClass1[0].abilityGroups);
+
 	const characterClass2 = character[0].charClasses[1];
 
 	return (
@@ -135,13 +150,28 @@ function CharacterView() {
 						</FrameHexagon>
 						<FrameHexagon inverted hover>
 							<Text>SPECIES: {characterSpecies[0].name}</Text>
-							{/* <Text>STYLE: {characterStyle}</Text>
-							<Text>CLASS 1: {characterClass1}</Text>
-							<Text>CLASS 2: {characterClass2}</Text> */}
+							<Text>STYLE: {characterStyle[0].name}</Text>
+							<Text>CLASS 1: {characterClass1[0].name}</Text>
+							<Text>CLASS 2: {characterClass2}</Text>
+						</FrameHexagon>
+						<FrameHexagon inverted hover>
+							<Text>Ability Groups: {characterSpecies[0].name}</Text>
 						</FrameHexagon>
 						<FrameHexagon inverted hover>
 							<Heading size="sm">Abilities:</Heading>
-							<List>{<ListItem>{character[0].charSpecies}</ListItem>}</List>
+							<UnorderedList>
+								{speciesBonuses.map((specBonus, index) => (
+									<ListItem key={"SB" + index}>
+										{specBonus.name}: {specBonus.desc}
+									</ListItem>
+								))}
+								<Divider m="5px" />
+								<ListItem>{characterStyle[0].benefit}</ListItem>
+								<ListItem>
+									{styleChoices[0].name}: {styleChoices[0].desc}
+								</ListItem>
+								<Divider m="5px" />
+							</UnorderedList>
 						</FrameHexagon>
 					</VStack>
 				</Box>

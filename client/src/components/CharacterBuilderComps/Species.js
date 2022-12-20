@@ -14,6 +14,9 @@ import {
 	Wrap,
 	VStack,
 	TableContainer,
+	Box,
+	HStack,
+	Image,
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { Divider, GridItem, Heading, Text } from "@chakra-ui/react";
@@ -36,6 +39,7 @@ const character = JSON.parse(localStorage.getItem("NewCharacter"));
 
 function SpeciesOptions() {
 	const speciesList = CharacterOptions.speciesOptions;
+	// console.log(speciesList);
 
 	const charSpecies = {
 		userChoice: "Human",
@@ -52,7 +56,7 @@ function SpeciesOptions() {
 
 	return (
 		<GridItem colSpan={6} area={"body"}>
-			<Tabs size="sm" isFitted variant="solid-rounded">
+			<Tabs size="sm" variant="solid-rounded" align="center">
 				<TabList>
 					<Wrap>
 						{speciesList.map((spec) => (
@@ -72,15 +76,15 @@ function SpeciesOptions() {
 					{speciesList.map((spec) => (
 						<TabPanel key={"tab" + spec.name}>
 							<Wrap>
+								{/* <Image src={spec.image}/> */}
 								<Heading color={vaultGreen} size="sm" fontFamily={Orbitron}>
 									{spec.shortDec}
 								</Heading>
 								<Divider p=".5%" />
-								{/* <HStack> */}
 								<Text p=".5rem" fontFamily={Signika}>
 									{spec.desc}
 								</Text>
-								<TableContainer>
+								<TableContainer minW="250px">
 									<Table w="30%" size="sm" variant="simple">
 										<Thead fontFamily={Signika}>
 											<Tr>
@@ -194,9 +198,8 @@ function SpeciesOptions() {
 										</Tbody>
 									</Table>
 								</TableContainer>
-								{/* </HStack> */}
 
-								<VStack>
+								<VStack align="left">
 									<Heading
 										color={vaultGreen}
 										pt="1%"
@@ -205,20 +208,21 @@ function SpeciesOptions() {
 									>
 										Species Bonuses
 									</Heading>
+
 									<Text fontFamily={Signika}>
-										{spec.bonuses[1].name}: {spec.bonuses[1].desc}
+										{spec.bonuses[0].name}: {spec.bonuses[0].desc}
 									</Text>
 									<Divider m="1%" />
 									<Text fontFamily={Signika}>
-										{spec.bonuses[2].name}: {spec.bonuses[2].desc}
+										{spec.bonuses[1].name}: {spec.bonuses[1].desc}
 									</Text>
-									{!spec.bonuses[3] ? (
+									{!spec.bonuses[2] ? (
 										""
 									) : (
 										<>
 											<Divider m="1%" />
 											<Text fontFamily={Signika}>
-												{spec.bonuses[3].name}: {spec.bonuses[3].desc}
+												{spec.bonuses[2].name}: {spec.bonuses[2].desc}
 											</Text>
 										</>
 									)}

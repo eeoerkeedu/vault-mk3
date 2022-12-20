@@ -39,6 +39,9 @@ function CharDesc() {
 		);
 		if (savedCharacters.length === 5) {
 			console.log("Max Saved Characters Limit Reached");
+			window.alert(
+				"Too many Characters in Roster! Max number of Vault Characters is 5 per user, please delete one to continue."
+			);
 			return;
 		}
 		savedCharacters.push(character);
@@ -46,7 +49,7 @@ function CharDesc() {
 			"SavedVaultCharacters",
 			JSON.stringify(savedCharacters)
 		);
-		console.log(JSON.parse(localStorage.getItem("SavedVaultCharacters")));
+		//console.log(JSON.parse(localStorage.getItem("SavedVaultCharacters")));
 	};
 
 	return (
