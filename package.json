@@ -16,5 +16,9 @@
     "concurrently": "^7.4.0"
   },
   "dependencies": {
+  },
+   "engines" : { 
+    "npm" : "8.5.5",
+    "node" : "16.15.0"
   }
 }
