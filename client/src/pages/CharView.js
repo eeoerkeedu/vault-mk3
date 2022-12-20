@@ -108,16 +108,18 @@ function CharacterView() {
 	// will need to evolve to cover the user choices
 	const styleChoices = characterStyle[0].bonuses;
 
-	// const characterClass1 = character[0].charClasses[0];
+	const abilityGroups = [];
 	const characterClass1 = CharacterOptions.classOptions.filter((class1) => {
 		return class1.name === character[0].charClasses[0];
 	});
-	console.log(characterClass1);
-	// will need to evolve to cover the user choices
-	const abilityGroups = [];
-	abilityGroups.push(characterClass1[0].abilityGroups);
+	characterClass1[0].abilityGroups.forEach((ag) => abilityGroups.push(ag));
 
-	const characterClass2 = character[0].charClasses[1];
+	const characterClass2 = CharacterOptions.classOptions.filter((class2) => {
+		return class2.name === character[0].charClasses[1];
+	});
+	characterClass2[0].abilityGroups.forEach((ag) => abilityGroups.push(ag));
+	const cleanedAbilityGroups = [...new Set(abilityGroups)];
+	// console.log(cleanedAbilityGroups);
 
 	return (
 		// overall containter
@@ -152,10 +154,10 @@ function CharacterView() {
 							<Text>SPECIES: {characterSpecies[0].name}</Text>
 							<Text>STYLE: {characterStyle[0].name}</Text>
 							<Text>CLASS 1: {characterClass1[0].name}</Text>
-							<Text>CLASS 2: {characterClass2}</Text>
+							<Text>CLASS 2: {characterClass2[0].name}</Text>
 						</FrameHexagon>
 						<FrameHexagon inverted hover>
-							<Text>Ability Groups: {characterSpecies[0].name}</Text>
+							<Text>Ability Groups: {cleanedAbilityGroups.join(",  ")}</Text>
 						</FrameHexagon>
 						<FrameHexagon inverted hover>
 							<Heading size="sm">Abilities:</Heading>

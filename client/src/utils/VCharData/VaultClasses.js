@@ -20,9 +20,27 @@ const VaultClasses = {
 		name: "Shaman",
 		imageSM: shamanSM,
 		shortdesc: "Totemic Magic Users with an Animal Companion",
-		desc: "The shaman draws its magical power from nature itself. A totem is a segment of nature, usually an animal the shaman emulates in their efforts to understand nature, and in turn the magical world better. A totem companion is often a shaman’s best friend or greatest fears come to life.  In any case, the shaman should have a wealth of respect for his companion as it is his connection to the magical world. Often shaman mercenaries see the challenges of this career as a way to pit nature against the world of man and show dominance.",
+		desc: "The shaman draws its magical power from nature itself. A totem is a segment of nature, usually an animal the shaman emulates in their efforts to understand nature, and in turn the magical world better. A totem companion is often a shaman's best friend or greatest fears come to life.  In any case, the shaman should have a wealth of respect for his companion as it is his connection to the magical world. Often shaman mercenaries see the challenges of this career as a way to pit nature against the world of man and show dominance.",
 		requresMystic: true,
 		abilityGroups: ["Magical", "Survival"],
+		classAbilities: [
+			{
+				name: "Spellcasting",
+				desc: "You can cast spells, your totem focus will determine what spell list you have access to. To cast a spell you must pay its cost in MP. You may then spend 1 additional MP to Surge its attack and/or damage rolls. Casting a spell is a snap action.",
+				xp13: false,
+			},
+			{
+				name: "Totem Focus",
+				desc: "Totem of the hunt, Totem of the Sky and Totem of Endurance are the three totems covered in this book but many more exist in the world. You may choose one. You gain one spell from that totem and the bonus granted by the chosen totem, this spell can't cost more than 2 MP to cast or have a variable cost. You gain a companion matching your totem. This animal is your connection to the magical world, if all of your companions die you become broken (lose one action on each turn and regain only half of your per turn resources) until a new one can be gained. The companion acts as a normal character with the shaman controlling all of its actions and knowing what it senses. The companion acts either directly before or after the shaman's turn in initiative.",
+				xp13: false,
+				choice: ["Totem of the Hunt", "Totem of the Sky", "Totem of Endurance"],
+			},
+			{
+				name: "Bonded Companion (XP 13)",
+				desc: "Totem of the hunt, Totem of the Sky and Totem of Endurance are the three totems covered in this book but many more exist in the world. You may choose one. You gain one spell from that totem and the bonus granted by the chosen totem, this spell can't cost more than 2 MP to cast or have a variable cost. You gain a companion matching your totem. This animal is your connection to the magical world, if all of your companions die you become broken (lose one action on each turn and regain only half of your per turn resources) until a new one can be gained. The companion acts as a normal character with the shaman controlling all of its actions and knowing what it senses. The companion acts either directly before or after the shaman's turn in initiative.",
+				xp13: true,
+			},
+		],
 	},
 
 	Mage: {
