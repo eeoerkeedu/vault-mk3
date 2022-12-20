@@ -48,26 +48,26 @@ const Dwarf = {
 			ESS: 7,
 		},
 	},
-	bonuses: {
-		1: {
+	bonuses: [
+		{
 			name: "Rugged Adventurers",
 			desc: "Dwarves gain a +2  to Willpower, dwarves may spend a fate to Surge a Willpower roll. Dwarves ignore movement penalties from armor.",
 		},
-		2: {
+		{
 			name: "Industrious",
 			desc: "Choose 2: Craft, Demo, Hack, Lore, Repair, First Aid, or Pilot. Gain 1 Skill Point in those skills and the Max number of points you can have in those skills improves by one.",
 		},
-	},
-	speciesAbilities: {
-		1: {
+	],
+	speciesAbilities: [
+		{
 			name: "Itching for a Fight",
 			desc: "When INIT is rolled for a scene you may make a normal move. You gain +1 DEF and AV for the first round of combat.",
 		},
-		2: {
+		{
 			name: "Vexing Stubbornness",
 			desc: "When you are targeted by a WILL ability you may roll an extra die and drop the die of your choice. If you win the roll and crit, the effect is applied to the character who originally targeted you.",
 		},
-	},
+	],
 };
 
 export default Dwarf;

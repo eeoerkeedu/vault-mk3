@@ -48,26 +48,26 @@ const Elf = {
 			ESS: 9,
 		},
 	},
-	bonuses: {
-		1: {
+	bonuses: [
+		{
 			name: "Wiry",
 			desc: "+1 DEF, and can Dodge even when Knocked Prone, Grappled or Blinded",
 		},
-		2: {
+		{
 			name: "Charisma",
 			desc: "Choose 2: Influence, Deceive, Detect, Stealth, Investigate, or Negotiate. Gain 1 point in those skills and the Max number of points you can have in those skills improves by one.",
 		},
-	},
-	speciesAbilities: {
-		1: {
+	],
+	speciesAbilities: [
+		{
 			name: "Athletically Gifted",
 			desc: "You gain +1 point in STR, Climb, Run, and Swim, the Max number of points you can have in those Stats/skills improves by one. (This ability must be taken at character creation)",
 		},
-		2: {
+		{
 			name: "Magically Gifted",
 			desc: "The first spell you cast each turn has its Magic Point (MP) cost reduced by -1 and range increased by +2m.",
 		},
-	},
+	],
 };
 
 export default Elf;

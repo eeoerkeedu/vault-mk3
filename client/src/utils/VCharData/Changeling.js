@@ -48,16 +48,16 @@ const Changeling = {
 			ESS: 6,
 		},
 	},
-	bonuses: {
-		1: {
+	bonuses: [
+		{
 			name: "Survivors Instinct",
 			desc: "When you dodge an attack you may apply the total bonus to either DEF or AV. In addition, you gain Diehard: Whenever you take an injury, roll 1D6 and if you roll a 5-6 ignore the entire injury including the injury counter is ignored.",
 		},
-		2: {
+		{
 			name: "A Thousand Faces",
 			desc: "You may change any of your appearance entries as a snap action, any other generic face requires little effort, however if you want to mimic someone you have touched the skin of, you must spend a fate and make a deception roll, this use will only last 1 minute for every 5 you get on the roll total and others may get rolls against that skill roll to notice something being off.",
 		},
-	},
+	],
 	speciesAbilities: [
 		{
 			name: "Fate Twister",

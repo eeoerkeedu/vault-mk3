@@ -48,30 +48,30 @@ const Faeborn = {
 			ESS: 8,
 		},
 	},
-	bonuses: {
-		1: {
+	bonuses: [
+		{
 			name: "Winged Flight",
 			desc: "This Character can ignore characters and terrain and can move up and down as easily as side to side while moving. This does not make you immune to cheapshots and you must have space to “land” (hovering at about shoulder height) between movements. You may choose to not land for a number of turns equal to your STR score per mission.",
 		},
-		2: {
+		{
 			name: "Innate Magic",
 			desc: "Each Faeborn has a single spell they can cast; this spell is chosen from the 1 MP cost spells of any school or totem. Casting your Innate Magic spell costs 1 fate, can be done once per turn, and cannot be Surged with additional fate or MP even if you are a mystic. Cyberware does not affect the effective magic rating for this spell and if the duration is Maintenance the duration is 1D3 rounds instead. Casting this way does not use a snap action.",
 		},
-		3: {
+		{
 			name: "Small Stature",
 			desc: "This character's base size is Small, .75”. Normal sized one-handed weapons may be used by Faeborn in two hands at no penalty. Two-handed weapons need to be made miniature to be used by a Faeborn. Miniature weapons receive -1 DMG.",
 		},
-	},
-	speciesAbilities: {
-		1: {
+	],
+	speciesAbilities: [
+		{
 			name: "Athletically Gifted",
 			desc: "You gain a second innate spell and when you use Innate magic you may cast both spells.",
 		},
-		2: {
+		{
 			name: "Cupid's Arrow",
 			desc: "Use your AGL instead of STR for archery based requirements and ignore the -1 DMG from miniature on bows.",
 		},
-	},
+	],
 };
 
 export default Faeborn;

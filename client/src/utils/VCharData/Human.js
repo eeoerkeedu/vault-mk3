@@ -48,26 +48,26 @@ const Human = {
 			ESS: 8,
 		},
 	},
-	bonuses: {
-		1: {
+	bonuses: [
+		{
 			name: "Do Anything",
 			desc: "Choose any stat, it and its max value go up by one.",
 		},
-		2: {
+		{
 			name: "Some of Everything",
 			desc: "Choose one additional style bonus from this list, you do not need to have the style group as a prerequisite: Mental Focus, Crushing Momentum, Awareness, Keen sight.",
 		},
-	},
-	speciesAbilities: {
-		1: {
+	],
+	speciesAbilities: [
+		{
 			name: "Practiced Flexibility",
 			desc: "Gain access to an ability group not available to your class choices. Also choose 2 skills to improve by one, the max for these skills also improves by one.",
 		},
-		2: {
+		{
 			name: "Hyper-Versatile",
 			desc: "As a snap action you can change your some of everything ability to any other style bonus on the list.",
 		},
-	},
+	],
 };
 
 export default Human;

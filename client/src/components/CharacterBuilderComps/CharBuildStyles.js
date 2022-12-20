@@ -45,12 +45,12 @@ function StyleOptions() {
 		const character = JSON.parse(localStorage.getItem("NewCharacter"));
 		character.charStyle = charStyle.userChoice;
 		localStorage.setItem("NewCharacter", JSON.stringify(character));
-		console.log(JSON.parse(localStorage.getItem("NewCharacter")));
+		//console.log(JSON.parse(localStorage.getItem("NewCharacter")));
 	};
 
 	return (
 		<GridItem colSpan={6} area={"body"}>
-			<Tabs isFitted variant="solid-rounded">
+			<Tabs isFitted align="center" variant="solid-rounded">
 				<TabList>
 					<Wrap>
 						{styleList.map((style) => (
@@ -79,7 +79,10 @@ function StyleOptions() {
 							<Heading color={vaultGreen} p="1%" size="sm">
 								Style Bonuses:
 							</Heading>
-							<UnorderedList fontFamily={Signika}>
+							<UnorderedList align="left" fontFamily={Signika}>
+								<ListItem>
+									{style.bonuses[0].name}: {style.bonuses[0].desc}
+								</ListItem>
 								<ListItem>
 									{style.bonuses[1].name}: {style.bonuses[1].desc}
 								</ListItem>
@@ -101,9 +104,13 @@ function StyleOptions() {
 								<ListItem>
 									{style.bonuses[7].name}: {style.bonuses[7].desc}
 								</ListItem>
-								<ListItem>
-									{style.bonuses[8].name}: {style.bonuses[8].desc}
-								</ListItem>
+								{!style.bonuses[8] ? (
+									""
+								) : (
+									<ListItem>
+										{style.bonuses[8].name}: {style.bonuses[8].desc}
+									</ListItem>
+								)}
 							</UnorderedList>
 						</TabPanel>
 					))}
