@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"scripts": {
-		"start": "node Server/Server.js",
+		"start": "node Server/server.js",
 		"dev": "concurrently \"cd Server && npm run watch\" \"cd client && npm start\"",
 		"install": "cd Server && npm i && cd ../client && npm i --legacy-peer-deps",
 		"seed": "cd Server && npm run seed",
