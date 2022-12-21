@@ -1,9 +1,13 @@
 # vault-mk3 ![MIT](https://img.shields.io/badge/License-MIT%20-green)
 
+[Deployed Application](https://the-official-vault-app.herokuapp.com/)
+
 ![Home Page](./client/src/assets/imgs/homepageCAP.PNG)
 ![Login Page](./client/src/assets/imgs/loginCAP.PNG)
 
 ## Description
+
+The Vault App is the official character builder tool for Vault RPG. Other features will be added as budget and time allow.
 
 ## Table of Contents
 
@@ -20,6 +24,8 @@
 
 ![Character Builder](./client/src/assets/imgs/charbuilderCAP.PNG)
 ![Downloads Page](./client/src/assets/imgs/downloadsCAP.PNG)
+
+Register for an account and use the character builder page to create some new characters for your games of Vault.
 
 ## Credits
 
