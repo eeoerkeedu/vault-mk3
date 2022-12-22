@@ -100,7 +100,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													STR
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.STR}
 												</Td>
 												<Td>{spec.stats.statsMerc.STR}</Td>
@@ -111,7 +111,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													PHY
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.PHY}
 												</Td>
 												<Td>{spec.stats.statsMerc.PHY}</Td>
@@ -122,7 +122,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													SPD
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.SPD}
 												</Td>
 												<Td>{spec.stats.statsMerc.SPD}</Td>
@@ -133,7 +133,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													AGL
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.AGL}
 												</Td>
 												<Td>{spec.stats.statsMerc.AGL}</Td>
@@ -144,7 +144,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													CRD
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.CRD}
 												</Td>
 												<Td>{spec.stats.statsMerc.CRD}</Td>
@@ -155,7 +155,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													MRK
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.MRK}
 												</Td>
 												<Td>{spec.stats.statsMerc.MRK}</Td>
@@ -166,7 +166,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													INT
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.INT}
 												</Td>
 												<Td>{spec.stats.statsMerc.INT}</Td>
@@ -177,7 +177,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													PER
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.PER}
 												</Td>
 												<Td>{spec.stats.statsMerc.PER}</Td>
@@ -188,7 +188,7 @@ function SpeciesOptions() {
 												<Td color={vaultYellow} fontWeight="bold">
 													ESS
 												</Td>
-												<Td fontWeight="semibold">
+												<Td fontWeight="bold" color={vaultGreen}>
 													{spec.stats.statsBase.ESS}
 												</Td>
 												<Td>{spec.stats.statsMerc.ESS}</Td>
