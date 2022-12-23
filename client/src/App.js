@@ -19,6 +19,7 @@ import CharacterBuilderInit from "./pages/CharacterBuilderInit";
 import CharacterBuilder from "./pages/CharacterBuilder";
 import CharacterRoster from "./pages/CharacterRoster";
 import CharacterView from "./pages/CharView";
+import CharacterPrint from "./pages/CharPrint";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -61,6 +62,10 @@ function App() {
 					<Route
 						path="/roster/characterview/:username/:id"
 						element={<CharacterView />}
+					/>
+					<Route
+						path="/roster/characterview/:username/:id/print"
+						element={<CharacterPrint />}
 					/>
 				</Routes>
 				<Footer />

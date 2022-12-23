@@ -124,6 +124,16 @@ function CharacterView() {
 	const cleanedAbilityGroups = [...new Set(abilityGroups)];
 	// console.log(cleanedAbilityGroups);
 
+	const charToPrintData = {
+		charName: character[0].charName,
+		charSpecies: characterSpecies[0].name,
+		charStyle: characterStyle[0].name,
+		charClass1: characterClass1[0].name,
+		charClass2: characterClass2[0].name,
+		charAbilGroups: cleanedAbilityGroups,
+		charAbilities: [speciesBonuses + characterStyle[0] + styleChoices[0].name],
+	};
+
 	return (
 		// overall containter
 		<Container
@@ -151,11 +161,27 @@ function CharacterView() {
 				>
 					<VStack alignItems="left" flex>
 						<Wrap>
-							<VStack alignItems="left" maxW="400px" minW="250px">
+							<VStack
+								alignItems="left"
+								maxW="400px"
+								minW="250px"
+								justify="space-around"
+								minH="350px"
+							>
 								<FrameHexagon inverted hover>
-									<Heading size="sm" fontFamily={Orbitron} fontWeight="bold">
-										MERC NAME: {character[0].charName}
-									</Heading>
+									<HStack>
+										<Heading
+											color={vaultYellow}
+											size="sm"
+											fontFamily={Orbitron}
+											fontWeight="bold"
+										>
+											MERC NAME:
+										</Heading>
+										<Heading size="sm" fontFamily={Orbitron} fontWeight="bold">
+											{character[0].charName}
+										</Heading>
+									</HStack>
 								</FrameHexagon>
 								<FrameHexagon inverted hover>
 									<HStack>
@@ -210,20 +236,27 @@ function CharacterView() {
 
 								<FrameHexagon inverted hover>
 									<VStack align="left">
-										<Text
-											color={vaultYellow}
-											fontFamily={Orbitron}
-											fontWeight="semibold"
-										>
-											Ability Groups:
-										</Text>
-										<Text fontWeight="semibold" fontFamily={Orbitron}>
-											{cleanedAbilityGroups.join(",  ")}
-										</Text>
+										<Wrap>
+											<Text
+												color={vaultYellow}
+												fontFamily={Orbitron}
+												fontWeight="semibold"
+											>
+												Ability Groups:
+											</Text>
+											<Text fontWeight="semibold" fontFamily={Orbitron}>
+												{cleanedAbilityGroups.join(",  ")}
+											</Text>
+										</Wrap>
 									</VStack>
 								</FrameHexagon>
 							</VStack>
-							<Box maxW="475px" minW="250px" justifyContent="space-evenly">
+							<VStack
+								maxW="480px"
+								minW="250px"
+								justify="space-around"
+								minH="350px"
+							>
 								<FrameHexagon inverted hover>
 									<Text
 										color={vaultYellow}
@@ -378,133 +411,133 @@ function CharacterView() {
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														STR:
+														FATE:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.STR}
+														3,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														PHY:
+														INIT:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.PHY}
+														+12,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														SPD:
+														DEF:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.SPD}
+														10,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														AGL:
+														DODGE USES:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.AGL}
+														2,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														CRD:
+														DODGING DEF:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.CRD}
+														12,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														MRK:
+														AV:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.MRK}
+														12,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														INT:
+														WILL:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.INT}
+														8,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														PER:
+														MAX CP:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.PER}
+														8,
 													</Text>
 												</HStack>
 											</ListItem>
 											<ListItem>
 												<HStack>
 													<Text fontFamily={Orbitron} fontWeight="bold">
-														ESS:
+														MAGIC:
 													</Text>
 													<Text
 														color={vaultYellow}
 														fontWeight="semibold"
 														fontFamily={Orbitron}
 													>
-														{characterSpecies[0].stats.statsBase.ESS}
+														4,
 													</Text>
 												</HStack>
 											</ListItem>
 										</Wrap>
 									</List>
 								</FrameHexagon>
-							</Box>
+							</VStack>
 						</Wrap>
 						<FrameHexagon inverted hover>
 							<Text
@@ -536,6 +569,19 @@ function CharacterView() {
 					<Link href={`/roster/${username}`} padding=".5rem">
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
 							Return to Roster
+						</ButtonArwes>
+					</Link>
+					<Link
+						to={{
+							pathname: "../print",
+							state: charToPrintData,
+						}}
+						// charToPrintData={charToPrintData}
+						href={"/roster/characterview/" + username + "/" + id + "/print"}
+						padding=".5rem"
+					>
+						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+							Preview
 						</ButtonArwes>
 					</Link>
 				</HStack>
