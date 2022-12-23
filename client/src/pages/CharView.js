@@ -19,10 +19,13 @@ import {
 	Container,
 	Divider,
 	Heading,
+	Spacer,
 	VStack,
+	Wrap,
 } from "@chakra-ui/react";
 import { HStack, Link, Text } from "@chakra-ui/react";
 import { List, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
@@ -146,21 +149,372 @@ function CharacterView() {
 					boxShadow="0px 0px 40px 5px #4d7ea8"
 					flex={1}
 				>
-					<VStack alignItems="left">
+					<VStack alignItems="left" flex>
+						<Wrap>
+							<VStack alignItems="left" maxW="400px" minW="250px">
+								<FrameHexagon inverted hover>
+									<Heading size="sm" fontFamily={Orbitron} fontWeight="bold">
+										MERC NAME: {character[0].charName}
+									</Heading>
+								</FrameHexagon>
+								<FrameHexagon inverted hover>
+									<HStack>
+										<Text
+											color={vaultYellow}
+											fontFamily={Orbitron}
+											fontWeight="semibold"
+										>
+											SPECIES:
+										</Text>
+										<Text fontFamily={Orbitron} fontWeight="semibold">
+											{characterSpecies[0].name}
+										</Text>
+									</HStack>
+									<HStack>
+										<Text
+											color={vaultYellow}
+											fontFamily={Orbitron}
+											fontWeight="semibold"
+										>
+											STYLE:
+										</Text>
+										<Text fontWeight="semibold" fontFamily={Orbitron}>
+											{characterStyle[0].name}
+										</Text>
+									</HStack>
+									<HStack>
+										<Text
+											color={vaultYellow}
+											fontFamily={Orbitron}
+											fontWeight="semibold"
+										>
+											CLASS 1:
+										</Text>
+										<Text fontWeight="semibold" fontFamily={Orbitron}>
+											{characterClass1[0].name}
+										</Text>
+									</HStack>
+									<HStack>
+										<Text
+											color={vaultYellow}
+											fontFamily={Orbitron}
+											fontWeight="semibold"
+										>
+											CLASS 2:
+										</Text>
+										<Text fontWeight="semibold" fontFamily={Orbitron}>
+											{characterClass2[0].name}
+										</Text>
+									</HStack>
+								</FrameHexagon>
+
+								<FrameHexagon inverted hover>
+									<VStack align="left">
+										<Text
+											color={vaultYellow}
+											fontFamily={Orbitron}
+											fontWeight="semibold"
+										>
+											Ability Groups:
+										</Text>
+										<Text fontWeight="semibold" fontFamily={Orbitron}>
+											{cleanedAbilityGroups.join(",  ")}
+										</Text>
+									</VStack>
+								</FrameHexagon>
+							</VStack>
+							<Box maxW="475px" minW="250px" justifyContent="space-evenly">
+								<FrameHexagon inverted hover>
+									<Text
+										color={vaultYellow}
+										fontFamily={Orbitron}
+										fontWeight="semibold"
+										size="md"
+									>
+										Stats:
+									</Text>
+									<List flex={1}>
+										<Wrap>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														STR:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.STR}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														PHY:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.PHY}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														SPD:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.SPD}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														AGL:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.AGL}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														CRD:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.CRD}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														MRK:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.MRK}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														INT:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.INT}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														PER:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.PER}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="semibold">
+														ESS:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.ESS}
+													</Text>
+												</HStack>
+											</ListItem>
+										</Wrap>
+									</List>
+								</FrameHexagon>
+								<FrameHexagon inverted hover>
+									<Text
+										color={vaultYellow}
+										fontFamily={Orbitron}
+										fontWeight="bold"
+										size="md"
+									>
+										Composite Stats:
+									</Text>
+									<List flex={1}>
+										<Wrap>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														STR:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.STR}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														PHY:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.PHY}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														SPD:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.SPD}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														AGL:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.AGL}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														CRD:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.CRD}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														MRK:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.MRK}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														INT:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.INT}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														PER:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.PER}
+													</Text>
+												</HStack>
+											</ListItem>
+											<ListItem>
+												<HStack>
+													<Text fontFamily={Orbitron} fontWeight="bold">
+														ESS:
+													</Text>
+													<Text
+														color={vaultYellow}
+														fontWeight="semibold"
+														fontFamily={Orbitron}
+													>
+														{characterSpecies[0].stats.statsBase.ESS}
+													</Text>
+												</HStack>
+											</ListItem>
+										</Wrap>
+									</List>
+								</FrameHexagon>
+							</Box>
+						</Wrap>
 						<FrameHexagon inverted hover>
-							<Text>MERC NAME: {character[0].charName}</Text>
-						</FrameHexagon>
-						<FrameHexagon inverted hover>
-							<Text>SPECIES: {characterSpecies[0].name}</Text>
-							<Text>STYLE: {characterStyle[0].name}</Text>
-							<Text>CLASS 1: {characterClass1[0].name}</Text>
-							<Text>CLASS 2: {characterClass2[0].name}</Text>
-						</FrameHexagon>
-						<FrameHexagon inverted hover>
-							<Text>Ability Groups: {cleanedAbilityGroups.join(",  ")}</Text>
-						</FrameHexagon>
-						<FrameHexagon inverted hover>
-							<Heading size="sm">Abilities:</Heading>
+							<Text
+								color={vaultYellow}
+								fontFamily={Orbitron}
+								fontWeight="semibold"
+								size="md"
+							>
+								Abilities:
+							</Text>
 							<UnorderedList>
 								{speciesBonuses.map((specBonus, index) => (
 									<ListItem key={"SB" + index}>
