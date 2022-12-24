@@ -574,7 +574,7 @@ function CharacterView() {
 					<Link
 						to={{
 							pathname: "../print",
-							state: charToPrintData,
+							state: { charToPrintData },
 						}}
 						// charToPrintData={charToPrintData}
 						href={"/roster/characterview/" + username + "/" + id + "/print"}
