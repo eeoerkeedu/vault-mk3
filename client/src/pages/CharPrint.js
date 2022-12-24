@@ -6,7 +6,7 @@ import Auth from "../utils/auth";
 import CharacterOptions from "../utils/CharacterIndex";
 
 // import styling dependancies
-import "../App.css";
+import "./charPrint.css";
 import {
 	Box,
 	Button,
@@ -18,7 +18,7 @@ import {
 	VStack,
 	Wrap,
 } from "@chakra-ui/react";
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack, Text, Link } from "@chakra-ui/react";
 import { ArwesThemeProvider, FrameHexagon } from "@arwes/core";
 
 //bringing in the vault pallet and fonts
@@ -32,28 +32,27 @@ const Signika =
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 function CharacterPrint(props) {
-	// super(props);
-	// this.state = {
-	// 	value: this.props.location.state,
-	// };
-	// const charToPrint = state;
-	// console.log(charToPrint);
+	const returnURL = window.location.pathname.replace("/print", "");
+	console.log(props);
 	return (
 		// overall containter
+
 		<Container
 			fontFamily={Signika}
 			padding="20px"
-			width="100%"
-			maxWidth="100vw"
+			width="2550px"
+			height="3300px"
 			centerContent
+			margin="0px"
 			mb="100px"
 		>
+			{/* <Link href={returnURL} background="white"> */}
 			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>
 				{/* Main view area */}
 				<Box
 					width="95%"
-					maxWidth="1000px"
+					// maxWidth="2400px"
 					mt="2%"
 					mb="2%"
 					p="2%"
@@ -142,6 +141,7 @@ function CharacterPrint(props) {
 					</VStack>
 				</Box>
 			</ArwesThemeProvider>
+			{/* </Link> */}
 		</Container>
 	);
 }

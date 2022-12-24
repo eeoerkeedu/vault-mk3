@@ -6,6 +6,7 @@ import Auth from "../../utils/auth";
 // import styling dependancies
 import {
 	Box,
+	Button,
 	Link,
 	Image,
 	Drawer,
@@ -46,7 +47,7 @@ const vaultPink = "#f72585";
 const username = Auth.loggedIn() ? Auth.getProfile().data.username : "";
 //console.log(username);
 
-function Navbar({ currentPage, handlePageChange }) {
+function PrintPageNav({ currentPage, handlePageChange }) {
 	const [isLargerThan426] = useMediaQuery("(min-width: 426px)");
 
 	const logout = (event) => {
@@ -65,60 +66,35 @@ function Navbar({ currentPage, handlePageChange }) {
 		>
 			<Flex>
 				<ArwesThemeProvider>
-					{isLargerThan426 ? (
-						<>
-							<Link href="/">
-								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-									<Text py="5px">Home</Text>
-								</ButtonArwes>
-							</Link>
-							<Spacer />
-
-							<Link href="/">
-								<Box
-									display="flex"
-									flexDirection="column"
-									alignItems="center"
-									justifyContent="center"
-								>
-									<Image src={logoWord1} maxH="100px"></Image>
-								</Box>
-							</Link>
-						</>
-					) : (
-						<Link href="/">
-							<Box
-								display="flex"
-								flexDirection="column"
-								alignItems="center"
-								justifyContent="center"
-							>
-								<Image src={logoWord1} maxH="100px"></Image>
-							</Box>
-						</Link>
-					)}
+					{/* <Link href="/">
+						<Box
+							display="flex"
+							flexDirection="column"
+							alignItems="center"
+							justifyContent="center"
+						>
+							<Image src={logoWord1} maxH="100px"></Image>
+						</Box>
+					</Link> */}
 
 					<Spacer />
 					<Box>
-						<ButtonArwes
-							palette={vaultGreen}
-							FrameComponent="none"
-							onClick={onOpen}
-						>
+						<Button color={vaultBlue} variant="ghost" onClick={onOpen}>
 							<Icon boxSize="2rem" as={HamburgerIcon} />
-						</ButtonArwes>
+						</Button>
 					</Box>
 
 					<Drawer placement="right" onClose={onClose} isOpen={isOpen}>
 						<DrawerOverlay />
-						<DrawerContent bg={vaultYellow}>
+						<DrawerContent bg={vaultRasin}>
 							<DrawerHeader shadow="lg" borderBottomWidth="1px">
 								<Image height="100px" src={logoWord1}></Image>
-								<DrawerCloseButton color={vaultRasin} />
+								<DrawerCloseButton color={vaultPink} />
 							</DrawerHeader>
 							<DrawerBody>
 								<VStack
 									fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
+									placement="right"
 									align="left"
 								>
 									<Link padding=".5rem" href="/">
@@ -126,11 +102,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text
-												fontWeight="semibold"
-												align="left"
-												color={vaultRasin}
-											>
+											<Text fontWeight="semibold" align="left">
 												Home
 											</Text>
 										</ButtonArwes>
@@ -140,11 +112,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text
-												fontWeight="semibold"
-												align="left"
-												color={vaultRasin}
-											>
+											<Text fontWeight="semibold" align="left">
 												Character Builder
 											</Text>
 										</ButtonArwes>
@@ -156,11 +124,7 @@ function Navbar({ currentPage, handlePageChange }) {
 												palette={vaultGreen}
 												FrameComponent={FrameHexagon}
 											>
-												<Text
-													fontWeight="semibold"
-													align="left"
-													color={vaultRasin}
-												>
+												<Text fontWeight="semibold" align="left">
 													View Characters Roster
 												</Text>
 											</ButtonArwes>
@@ -174,11 +138,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											palette={vaultGreen}
 											FrameComponent={FrameHexagon}
 										>
-											<Text
-												fontWeight="semibold"
-												align="left"
-												color={vaultRasin}
-											>
+											<Text fontWeight="semibold" align="left">
 												Downloads
 											</Text>
 										</ButtonArwes>
@@ -195,7 +155,6 @@ function Navbar({ currentPage, handlePageChange }) {
 														fontWeight="semibold"
 														placement="right"
 														align="left"
-														color={vaultRasin}
 													>
 														View Profile
 													</Text>
@@ -211,7 +170,6 @@ function Navbar({ currentPage, handlePageChange }) {
 														fontWeight="semibold"
 														placement="right"
 														align="left"
-														color={vaultRasin}
 													>
 														Logout
 													</Text>
@@ -229,7 +187,6 @@ function Navbar({ currentPage, handlePageChange }) {
 													fontFamily="Orbitron, Signika, -apple-system, Roboto, sans-serif"
 													fontWeight="semibold"
 													align="left"
-													color={vaultRasin}
 												>
 													Login
 												</Text>
@@ -245,4 +202,4 @@ function Navbar({ currentPage, handlePageChange }) {
 		</Container>
 	);
 }
-export default Navbar;
+export default PrintPageNav;

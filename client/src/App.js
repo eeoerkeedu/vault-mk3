@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //imported routes
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
+import PrintPageNav from "./components/Navbar/PrintPageNav";
 import Footer from "./components/Footer/Footer";
 import Login from "./pages/Login";
 import Downloads from "./pages/Downloads";
@@ -49,7 +50,11 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<Navbar />
+				{!window.location.pathname.includes("/print") ? (
+					<Navbar />
+				) : (
+					<PrintPageNav />
+				)}
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/:username" element={<Home />} />
