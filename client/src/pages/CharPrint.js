@@ -7,6 +7,7 @@ import CharacterOptions from "../utils/CharacterIndex";
 
 // import styling dependancies
 import "./charPrint.css";
+import CharacterSheetP1 from "../assets/imgs/CSP1.png";
 import {
 	Box,
 	Button,
@@ -17,6 +18,7 @@ import {
 	Spacer,
 	VStack,
 	Wrap,
+	Image,
 } from "@chakra-ui/react";
 import { HStack, Text, Link } from "@chakra-ui/react";
 import { ArwesThemeProvider, FrameHexagon } from "@arwes/core";
@@ -63,6 +65,7 @@ function CharacterPrint(props) {
 					flex={1}
 				>
 					<VStack alignItems="left" flex>
+						<Image src={CharacterSheetP1}></Image>
 						<Wrap>
 							<VStack
 								alignItems="left"
