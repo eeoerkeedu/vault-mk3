@@ -5,7 +5,7 @@ import Auth from "../utils/auth";
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { DELETE_CHARACTER } from "../utils/mutation";
@@ -47,6 +47,8 @@ function CharacterView() {
 	//extract characterID from params
 	let { id } = useParams();
 	// console.log(id);
+
+	const navigation = useNavigate();
 
 	// extract username from token.
 	const userId = Auth.loggedIn() ? Auth.getProfile().data._id : "";
@@ -555,7 +557,9 @@ function CharacterView() {
 									</ListItem>
 								))}
 								<Divider m="5px" />
-								<ListItem>{characterStyle[0].benefit}</ListItem>
+								<ListItem>
+									{characterStyle[0].name}: {characterStyle[0].benefit}
+								</ListItem>
 								<ListItem>
 									{styleChoices[0].name}: {styleChoices[0].desc}
 								</ListItem>
@@ -572,9 +576,13 @@ function CharacterView() {
 						</ButtonArwes>
 					</Link>
 					<Link
-						to={{
-							pathname: "../print",
-							state: { charToPrintData },
+						isExternal
+						onClick={() => {
+							console.log(charToPrintData);
+							navigation.navigate(
+								"/roster/characterview/" + username + "/" + id + "/print",
+								{ printData: charToPrintData }
+							);
 						}}
 						// charToPrintData={charToPrintData}
 						href={"/roster/characterview/" + username + "/" + id + "/print"}

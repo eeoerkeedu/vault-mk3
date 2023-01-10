@@ -6,8 +6,12 @@ import Auth from "../utils/auth";
 import CharacterOptions from "../utils/CharacterIndex";
 
 // import styling dependancies
-import "./charPrint.css";
 import CharacterSheetP1 from "../assets/imgs/CSP1.png";
+import CharacterSheetP2 from "../assets/imgs/CSP2.png";
+import CharacterSheetP3 from "../assets/imgs/CSP3.png";
+import CharacterSheetP4 from "../assets/imgs/CSP4.png";
+import CharacterSheetP5 from "../assets/imgs/CSP5.png";
+import CharacterSheetP6 from "../assets/imgs/CSP6.png";
 import {
 	Box,
 	Button,
@@ -33,26 +37,26 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
-function CharacterPrint(props) {
-	const returnURL = window.location.pathname.replace("/print", "");
-	console.log(props);
+const CharacterPrint = ({ route }) => {
+	// const returnURL = window.location.pathname.replace("/print", "");
+	console.log(route);
 	return (
 		// overall containter
 
-		<Container
+		<Box
 			fontFamily={Signika}
-			padding="20px"
-			width="2550px"
-			height="3300px"
-			centerContent
-			margin="0px"
-			mb="100px"
+			// padding="20px"
+			width="100%"
+			// height="3300px"
+			// centerContent
+			// mb="100px"
+			bgColor="white"
 		>
 			{/* <Link href={returnURL} background="white"> */}
 			{/* Arwes theme add-on wrapper */}
 			<ArwesThemeProvider>
 				{/* Main view area */}
-				<Box
+				{/* <Box
 					width="95%"
 					// maxWidth="2400px"
 					mt="2%"
@@ -63,90 +67,20 @@ function CharacterPrint(props) {
 					borderRadius="15px"
 					boxShadow="0px 0px 40px 5px #4d7ea8"
 					flex={1}
-				>
-					<VStack alignItems="left" flex>
-						<Image src={CharacterSheetP1}></Image>
-						<Wrap>
-							<VStack
-								alignItems="left"
-								maxW="400px"
-								minW="250px"
-								justify="space-around"
-								minH="350px"
-							>
-								<FrameHexagon inverted hover>
-									<HStack>
-										<Heading
-											color={vaultYellow}
-											size="sm"
-											fontFamily={Orbitron}
-											fontWeight="bold"
-										>
-											MERC NAME:
-										</Heading>
-										<Heading size="sm" fontFamily={Orbitron} fontWeight="bold">
-											{/* {charToPrint.charName} */}
-										</Heading>
-									</HStack>
-								</FrameHexagon>
-								<FrameHexagon inverted hover>
-									<HStack>
-										<Text
-											color={vaultYellow}
-											fontFamily={Orbitron}
-											fontWeight="semibold"
-										>
-											SPECIES:
-										</Text>
-										<Text fontFamily={Orbitron} fontWeight="semibold">
-											{/* {charToPrint.charSpecies} */}
-										</Text>
-									</HStack>
-									<HStack>
-										<Text
-											color={vaultYellow}
-											fontFamily={Orbitron}
-											fontWeight="semibold"
-										>
-											STYLE:
-										</Text>
-										<Text fontWeight="semibold" fontFamily={Orbitron}>
-											{/* {charToPrint.charStyle} */}
-										</Text>
-									</HStack>
-									<HStack>
-										<Text
-											color={vaultYellow}
-											fontFamily={Orbitron}
-											fontWeight="semibold"
-										>
-											CLASS 1:
-										</Text>
-										<Text fontWeight="semibold" fontFamily={Orbitron}>
-											{/* {charToPrint.charClass1} */}
-										</Text>
-									</HStack>
-									<HStack>
-										<Text
-											color={vaultYellow}
-											fontFamily={Orbitron}
-											fontWeight="semibold"
-										>
-											CLASS 2:
-										</Text>
-										<Text fontWeight="semibold" fontFamily={Orbitron}>
-											{/* {charToPrint.charClass2} */}
-										</Text>
-									</HStack>
-								</FrameHexagon>
-							</VStack>
-						</Wrap>
-					</VStack>
-				</Box>
+				> */}
+				<VStack alignItems="left" flex>
+					<Image src={CharacterSheetP1} />
+					<Image src={CharacterSheetP2} />
+					<Image src={CharacterSheetP3} />
+					<Image src={CharacterSheetP4} />
+					<Image src={CharacterSheetP5} />
+					<Image src={CharacterSheetP6} />
+				</VStack>
+				{/* </Box> */}
 			</ArwesThemeProvider>
 			{/* </Link> */}
-		</Container>
+		</Box>
 	);
-}
+};
 
 export default CharacterPrint;

@@ -53,7 +53,8 @@ function App() {
 				{!window.location.pathname.includes("/print") ? (
 					<Navbar />
 				) : (
-					<PrintPageNav />
+					""
+					// <PrintPageNav />
 				)}
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -73,7 +74,7 @@ function App() {
 						element={<CharacterPrint />}
 					/>
 				</Routes>
-				<Footer />
+				{!window.location.pathname.includes("/print") ? <Footer /> : ""}
 			</Router>
 		</ApolloProvider>
 	);
