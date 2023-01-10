@@ -579,13 +579,13 @@ function CharacterView() {
 						isExternal
 						onClick={() => {
 							console.log(charToPrintData);
-							navigation.navigate(
+							navigation(
 								"/roster/characterview/" + username + "/" + id + "/print",
 								{ printData: charToPrintData }
 							);
 						}}
 						// charToPrintData={charToPrintData}
-						href={"/roster/characterview/" + username + "/" + id + "/print"}
+						// href={"/roster/characterview/" + username + "/" + id + "/print"}
 						padding=".5rem"
 					>
 						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
