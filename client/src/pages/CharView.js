@@ -1,9 +1,11 @@
 // importing utility dependancies
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Auth from "../utils/auth";
 
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
+
+import CharPrint from "../components/CharPrint";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
@@ -27,6 +29,16 @@ import { HStack, Link, Text } from "@chakra-ui/react";
 import { List, ListItem, UnorderedList } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import {
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
+	useDisclosure,
+} from "@chakra-ui/react";
+import {
 	ArwesThemeProvider,
 	Button as ButtonArwes,
 	FrameHexagon,
@@ -44,6 +56,11 @@ const Signika =
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 function CharacterView() {
+	// discolosure (open, close) system for modal
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const initialRef = useRef(null);
+	const finalRef = useRef(null);
+
 	//extract characterID from params
 	let { id } = useParams();
 	// console.log(id);
@@ -575,24 +592,28 @@ function CharacterView() {
 							Return to Roster
 						</ButtonArwes>
 					</Link>
-					<Link
-						isExternal
-						onClick={() => {
-							console.log(charToPrintData);
-							navigation(
-								"/roster/characterview/" + username + "/" + id + "/print",
-								{ printData: charToPrintData }
-							);
-						}}
-						// charToPrintData={charToPrintData}
-						// href={"/roster/characterview/" + username + "/" + id + "/print"}
-						padding=".5rem"
+					<ButtonArwes
+						onClick={onOpen}
+						palette={vaultGreen}
+						FrameComponent={FrameHexagon}
 					>
-						<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
-							Preview
-						</ButtonArwes>
-					</Link>
+						Preview
+					</ButtonArwes>
 				</HStack>
+				<Modal
+					initialFocusRef={initialRef}
+					finalFocusRef={finalRef}
+					isOpen={isOpen}
+					onClose={onClose}
+				>
+					<ModalOverlay />
+					<ModalContent fontFamily={Signika} bg="white">
+						<ModalCloseButton />
+						<ModalBody>
+							<CharPrint chardata={{ charToPrintData }} />
+						</ModalBody>
+					</ModalContent>
+				</Modal>
 			</ArwesThemeProvider>
 		</Container>
 	);

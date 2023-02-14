@@ -23,6 +23,7 @@ import {
 	VStack,
 	Wrap,
 	Image,
+	ModalContent,
 } from "@chakra-ui/react";
 import { HStack, Text, Link } from "@chakra-ui/react";
 import { ArwesThemeProvider, FrameHexagon } from "@arwes/core";
@@ -37,48 +38,22 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
-const CharacterPrint = ({ route }) => {
-	// const returnURL = window.location.pathname.replace("/print", "");
-	console.log(route);
+const CharacterPrint = (charToPrintData) => {
+	console.log(charToPrintData);
 	return (
-		// overall containter
-
-		<Box
-			fontFamily={Signika}
-			// padding="20px"
-			width="100%"
-			// height="3300px"
-			// centerContent
-			// mb="100px"
-			bgColor="white"
-		>
-			{/* <Link href={returnURL} background="white"> */}
-			{/* Arwes theme add-on wrapper */}
+		<Box fontFamily={Signika} width="100%" bgColor="white">
 			<ArwesThemeProvider>
-				{/* Main view area */}
-				{/* <Box
-					width="95%"
-					// maxWidth="2400px"
-					mt="2%"
-					mb="2%"
-					p="2%"
-					borderWidth="2px"
-					borderColor={vaultYellow}
-					borderRadius="15px"
-					boxShadow="0px 0px 40px 5px #4d7ea8"
-					flex={1}
-				> */}
 				<VStack alignItems="left" flex>
-					<Image src={CharacterSheetP1} />
-					<Image src={CharacterSheetP2} />
-					<Image src={CharacterSheetP3} />
-					<Image src={CharacterSheetP4} />
-					<Image src={CharacterSheetP5} />
-					<Image src={CharacterSheetP6} />
+					<Box>
+						<Image src={CharacterSheetP1}></Image>
+					</Box>
+					{/* <Image src={CharacterSheetP2} />
+						<Image src={CharacterSheetP3} />
+						<Image src={CharacterSheetP4} />
+						<Image src={CharacterSheetP5} />
+						<Image src={CharacterSheetP6} /> */}
 				</VStack>
-				{/* </Box> */}
 			</ArwesThemeProvider>
-			{/* </Link> */}
 		</Box>
 	);
 };
