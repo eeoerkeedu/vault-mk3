@@ -605,7 +605,7 @@ function CharacterView() {
 					finalFocusRef={finalRef}
 					isOpen={isOpen}
 					onClose={onClose}
-					size="full"
+					size="xl"
 				>
 					<ModalOverlay />
 					<ModalContent fontFamily={Signika} color={vaultRasin} bg="white">
