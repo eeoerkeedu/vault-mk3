@@ -39,16 +39,20 @@ const Signika =
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 const CharacterPrint = (charToPrintData) => {
-	console.log(charToPrintData);
+	console.log(charToPrintData.chardata);
+
 	return (
 		<Box fontFamily={Signika} width="100%" bgColor="white">
 			<ArwesThemeProvider>
 				<VStack alignItems="left" flex>
 					<Box>
+						<Text>CharName HERE</Text>
 						<Image src={CharacterSheetP1}></Image>
 					</Box>
-					{/* <Image src={CharacterSheetP2} />
-						<Image src={CharacterSheetP3} />
+					<Box>
+						<Image src={CharacterSheetP2} />
+					</Box>
+					{/* <Image src={CharacterSheetP3} />
 						<Image src={CharacterSheetP4} />
 						<Image src={CharacterSheetP5} />
 						<Image src={CharacterSheetP6} /> */}
