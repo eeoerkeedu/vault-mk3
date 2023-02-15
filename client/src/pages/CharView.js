@@ -605,13 +605,35 @@ function CharacterView() {
 					finalFocusRef={finalRef}
 					isOpen={isOpen}
 					onClose={onClose}
+					size="xl"
 				>
 					<ModalOverlay />
-					<ModalContent fontFamily={Signika} bg="white">
+					<ModalContent fontFamily={Signika} color={vaultRasin} bg="white">
 						<ModalCloseButton />
-						<ModalBody>
+						<ModalBody scrollBehavior="outside">
 							<CharPrint chardata={{ charToPrintData }} />
 						</ModalBody>
+						<ModalFooter>
+							<Button
+								bg={vaultYellow}
+								color={vaultRasin}
+								borderWidth="0px"
+								colorScheme="blackAlpha"
+								mr={3}
+								// onClick={onClose}
+							>
+								Print
+							</Button>
+							<Button
+								bg={vaultYellow}
+								color={vaultRasin}
+								borderWidth="0px"
+								colorScheme="blackAlpha"
+								onClick={onClose}
+							>
+								Cancel
+							</Button>
+						</ModalFooter>
 					</ModalContent>
 				</Modal>
 			</ArwesThemeProvider>

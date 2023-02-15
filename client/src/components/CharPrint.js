@@ -38,17 +38,22 @@ const Signika =
 	"Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;";
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
-const CharacterPrint = (charToPrintData) => {
-	console.log(charToPrintData);
+const CharacterPrint = (props) => {
+	const data = props.chardata.charToPrintData;
+	console.log(data);
+
 	return (
 		<Box fontFamily={Signika} width="100%" bgColor="white">
 			<ArwesThemeProvider>
 				<VStack alignItems="left" flex>
 					<Box>
+						<Text>{data.charName}</Text>
 						<Image src={CharacterSheetP1}></Image>
 					</Box>
-					{/* <Image src={CharacterSheetP2} />
-						<Image src={CharacterSheetP3} />
+					<Box>
+						<Image src={CharacterSheetP2} />
+					</Box>
+					{/* <Image src={CharacterSheetP3} />
 						<Image src={CharacterSheetP4} />
 						<Image src={CharacterSheetP5} />
 						<Image src={CharacterSheetP6} /> */}
