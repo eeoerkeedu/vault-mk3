@@ -620,6 +620,7 @@ function CharacterView() {
 								borderWidth="0px"
 								colorScheme="blackAlpha"
 								mr={3}
+								disabled
 								// onClick={onClose}
 							>
 								Print

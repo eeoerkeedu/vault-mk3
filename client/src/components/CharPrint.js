@@ -46,17 +46,23 @@ const CharacterPrint = (props) => {
 		<Box fontFamily={Signika} width="100%" bgColor="white">
 			<ArwesThemeProvider>
 				<VStack alignItems="left" flex>
-					<Box>
-						<Text>{data.charName}</Text>
-						<Image src={CharacterSheetP1}></Image>
-					</Box>
-					<Box>
-						<Image src={CharacterSheetP2} />
-					</Box>
-					{/* <Image src={CharacterSheetP3} />
-						<Image src={CharacterSheetP4} />
-						<Image src={CharacterSheetP5} />
-						<Image src={CharacterSheetP6} /> */}
+					<Wrap>
+						<Box border="1px" rounded="0% 30px 0% 30px" p="2">
+							<HStack>
+								<Heading
+									color={vaultYellow}
+									size="sm"
+									fontFamily={Orbitron}
+									fontWeight="bold"
+								>
+									MERC NAME:
+								</Heading>
+								<Heading size="sm" fontFamily={Orbitron} fontWeight="bold">
+									{data.charName}
+								</Heading>
+							</HStack>
+						</Box>
+					</Wrap>
 				</VStack>
 			</ArwesThemeProvider>
 		</Box>
