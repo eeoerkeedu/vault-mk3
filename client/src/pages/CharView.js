@@ -5,7 +5,7 @@ import Auth from "../utils/auth";
 // import character builder files
 import CharacterOptions from "../utils/CharacterIndex";
 
-import CharPrint from "../components/CharPrint";
+import CharPrint from "../components/CharPrint/CharPrint";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
@@ -152,6 +152,24 @@ function CharacterView() {
 		charAbilGroups: cleanedAbilityGroups,
 		charAbilities: [speciesBonuses + characterStyle[0] + styleChoices[0].name],
 	};
+
+	// print modal functions
+	function printElement(elem) {
+		let domClone = elem.cloneNode(true);
+		let $printSection = document.getElementById("printSection");
+		if (!$printSection) {
+			let $printSection = document.createElement("div");
+			$printSection.id = "printSection";
+			document.body.appendChild($printSection);
+		}
+		$printSection.innerHTML = "";
+		$printSection.appendChild(domClone);
+		window.print();
+	}
+	function modalPrint() {
+		console.log("Print Button Clicked");
+		printElement(document.getElementById("PrintArea"));
+	}
 
 	return (
 		// overall containter
@@ -610,7 +628,7 @@ function CharacterView() {
 					<ModalOverlay />
 					<ModalContent fontFamily={Signika} color={vaultRasin} bg="white">
 						<ModalCloseButton />
-						<ModalBody scrollBehavior="outside">
+						<ModalBody id="PrintArea" scrollBehavior="outside">
 							<CharPrint chardata={{ charToPrintData }} />
 						</ModalBody>
 						<ModalFooter>
@@ -620,8 +638,7 @@ function CharacterView() {
 								borderWidth="0px"
 								colorScheme="blackAlpha"
 								mr={3}
-								disabled
-								// onClick={onClose}
+								onClick={modalPrint}
 							>
 								Print
 							</Button>
