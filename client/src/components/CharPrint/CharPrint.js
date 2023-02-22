@@ -1,17 +1,12 @@
 // importing utility dependancies
 import { useState } from "react";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 
 // import character builder files
-import CharacterOptions from "../utils/CharacterIndex";
+import CharacterOptions from "../../utils/CharacterIndex";
 
 // import styling dependancies
-import CharacterSheetP1 from "../assets/imgs/CSP1.png";
-import CharacterSheetP2 from "../assets/imgs/CSP2.png";
-import CharacterSheetP3 from "../assets/imgs/CSP3.png";
-import CharacterSheetP4 from "../assets/imgs/CSP4.png";
-import CharacterSheetP5 from "../assets/imgs/CSP5.png";
-import CharacterSheetP6 from "../assets/imgs/CSP6.png";
+import "./CharPrint.css";
 import {
 	Box,
 	Button,
@@ -52,7 +47,7 @@ const CharacterPrint = (props) => {
 	console.log(data);
 
 	return (
-		<Box fontFamily={Signika} width="100%" bgColor="white">
+		<Box fontFamily={Signika} width="100%" bgColor="white" color={vaultRasin}>
 			<ArwesThemeProvider themeSettings={themeSettings}>
 				<VStack
 					alignItems="left"
