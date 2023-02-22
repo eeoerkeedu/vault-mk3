@@ -56,6 +56,17 @@ function Navbar({ currentPage, handlePageChange }) {
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
+	const palette = {
+		vaultRasin: "#272932",
+		vaultYellow: "#ffc857",
+		vaultBlue: "#4d7ea8",
+		vaultGreen: "#a4f9c8",
+		vaultPink: "#f72585",
+		primary: { main: "#ffc857" },
+		secondary: { main: "#4d7ea8" },
+		neutral: { main: "#272932" },
+	};
+
 	return (
 		<Container
 			fontFamily="Orbitron, Signika, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'"
@@ -68,7 +79,7 @@ function Navbar({ currentPage, handlePageChange }) {
 					{isLargerThan426 ? (
 						<>
 							<Link href="/">
-								<ButtonArwes palette={vaultGreen} FrameComponent={FrameHexagon}>
+								<ButtonArwes FrameComponent={FrameHexagon}>
 									<Text py="5px">Home</Text>
 								</ButtonArwes>
 							</Link>
@@ -100,11 +111,7 @@ function Navbar({ currentPage, handlePageChange }) {
 
 					<Spacer />
 					<Box>
-						<ButtonArwes
-							palette={vaultGreen}
-							FrameComponent="none"
-							onClick={onOpen}
-						>
+						<ButtonArwes FrameComponent="none" onClick={onOpen}>
 							<Icon boxSize="2rem" as={HamburgerIcon} />
 						</ButtonArwes>
 					</Box>
@@ -123,7 +130,7 @@ function Navbar({ currentPage, handlePageChange }) {
 								>
 									<Link padding=".5rem" href="/">
 										<ButtonArwes
-											palette={vaultGreen}
+											palette="vaultRasin"
 											FrameComponent={FrameHexagon}
 										>
 											<Text
@@ -137,7 +144,7 @@ function Navbar({ currentPage, handlePageChange }) {
 									</Link>
 									<Link padding=".5rem" href="/characterbuilder">
 										<ButtonArwes
-											palette={vaultGreen}
+											palette="vaultRasin"
 											FrameComponent={FrameHexagon}
 										>
 											<Text
@@ -153,7 +160,7 @@ function Navbar({ currentPage, handlePageChange }) {
 									{Auth.loggedIn() ? (
 										<Link href={"/roster/" + username} padding=".5rem">
 											<ButtonArwes
-												palette={vaultGreen}
+												palette="vaultRasin"
 												FrameComponent={FrameHexagon}
 											>
 												<Text
@@ -171,7 +178,7 @@ function Navbar({ currentPage, handlePageChange }) {
 									{/* downloads page */}
 									<Link href="/downloads" padding=".5rem">
 										<ButtonArwes
-											palette={vaultGreen}
+											palette="vaultRasin"
 											FrameComponent={FrameHexagon}
 										>
 											<Text
@@ -187,7 +194,7 @@ function Navbar({ currentPage, handlePageChange }) {
 										<>
 											<Link href={"/profile/" + username} padding=".5rem">
 												<ButtonArwes
-													palette={vaultGreen}
+													palette="vaultRasin"
 													FrameComponent={FrameHexagon}
 												>
 													<Text
@@ -203,7 +210,7 @@ function Navbar({ currentPage, handlePageChange }) {
 											</Link>
 											<Link href="/" padding=".5rem" onClick={logout}>
 												<ButtonArwes
-													palette={vaultGreen}
+													palette="vaultRasin"
 													FrameComponent={FrameHexagon}
 												>
 													<Text
@@ -222,7 +229,7 @@ function Navbar({ currentPage, handlePageChange }) {
 										// login button
 										<Link href="/login" padding=".5rem">
 											<ButtonArwes
-												palette={vaultGreen}
+												palette="vaultRasin"
 												FrameComponent={FrameHexagon}
 											>
 												<Text

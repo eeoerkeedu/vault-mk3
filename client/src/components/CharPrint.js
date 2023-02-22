@@ -26,7 +26,8 @@ import {
 	ModalContent,
 } from "@chakra-ui/react";
 import { HStack, Text, Link } from "@chakra-ui/react";
-import { ArwesThemeProvider, FrameHexagon } from "@arwes/core";
+import { ArwesThemeProvider, FrameHexagon, StylesBaseline } from "@arwes/core";
+import { createTheme } from "@arwes/design";
 
 //bringing in the vault pallet and fonts
 const vaultRasin = "#272932";
@@ -39,29 +40,115 @@ const Signika =
 const Orbitron = "Orbitron, Signika, -apple-system, Roboto, sans-serif";
 
 const CharacterPrint = (props) => {
+	const palette = {
+		vaultRasin: "#272932",
+		vaultYellow: "#ffc857",
+		vaultBlue: "#4d7ea8",
+		vaultGreen: "#a4f9c8",
+		vaultPink: "#f72585",
+	};
+	const themeSettings = { palette };
 	const data = props.chardata.charToPrintData;
 	console.log(data);
 
 	return (
 		<Box fontFamily={Signika} width="100%" bgColor="white">
-			<ArwesThemeProvider>
-				<VStack alignItems="left" flex>
+			<ArwesThemeProvider themeSettings={themeSettings}>
+				<VStack
+					alignItems="left"
+					maxW="400px"
+					minW="250px"
+					justify="space-around"
+					minH="350px"
+				>
 					<Wrap>
-						<Box border="1px" rounded="0% 30px 0% 30px" p="2">
+						<FrameHexagon palette="vaultRasin">
 							<HStack>
 								<Heading
-									color={vaultYellow}
+									color={vaultBlue}
 									size="sm"
 									fontFamily={Orbitron}
 									fontWeight="bold"
+									mb="0"
 								>
 									MERC NAME:
 								</Heading>
-								<Heading size="sm" fontFamily={Orbitron} fontWeight="bold">
+								<Heading
+									size="sm"
+									color={vaultRasin}
+									fontFamily={Orbitron}
+									fontWeight="bold"
+								>
 									{data.charName}
 								</Heading>
 							</HStack>
-						</Box>
+						</FrameHexagon>
+						<FrameHexagon palette="vaultRasin">
+							<HStack>
+								<Text
+									color={vaultBlue}
+									fontFamily={Orbitron}
+									fontWeight="semibold"
+								>
+									SPECIES:
+								</Text>
+								<Text fontFamily={Orbitron} fontWeight="semibold">
+									{data.charSpecies}
+								</Text>
+							</HStack>
+							<HStack>
+								<Text
+									color={vaultBlue}
+									fontFamily={Orbitron}
+									fontWeight="semibold"
+								>
+									STYLE:
+								</Text>
+								<Text fontWeight="semibold" fontFamily={Orbitron}>
+									{data.charStyle}
+								</Text>
+							</HStack>
+							<HStack>
+								<Text
+									color={vaultBlue}
+									fontFamily={Orbitron}
+									fontWeight="semibold"
+								>
+									CLASS 1:
+								</Text>
+								<Text fontWeight="semibold" fontFamily={Orbitron}>
+									{data.charClass1}
+								</Text>
+							</HStack>
+							<HStack>
+								<Text
+									color={vaultBlue}
+									fontFamily={Orbitron}
+									fontWeight="semibold"
+								>
+									CLASS 2:
+								</Text>
+								<Text fontWeight="semibold" fontFamily={Orbitron}>
+									{data.charClass2}
+								</Text>
+							</HStack>
+						</FrameHexagon>
+						<FrameHexagon palette="vaultRasin">
+							<VStack align="left">
+								<Wrap>
+									<Text
+										color={vaultBlue}
+										fontFamily={Orbitron}
+										fontWeight="semibold"
+									>
+										Ability Groups:
+									</Text>
+									<Text fontWeight="semibold" fontFamily={Orbitron}>
+										{data.charAbilGroups.join(",  ")}
+									</Text>
+								</Wrap>
+							</VStack>
+						</FrameHexagon>
 					</Wrap>
 				</VStack>
 			</ArwesThemeProvider>
