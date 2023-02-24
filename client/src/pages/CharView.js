@@ -115,7 +115,7 @@ function CharacterView() {
 	const character = userRoster.filter((char) => {
 		return char._id === id;
 	});
-	console.log(CharacterOptions);
+	// console.log(CharacterOptions);
 
 	const characterSpecies = CharacterOptions.speciesOptions.filter((spec) => {
 		return spec.name === character[0].charSpecies;
@@ -145,12 +145,17 @@ function CharacterView() {
 
 	const charToPrintData = {
 		charName: character[0].charName,
-		charSpecies: characterSpecies[0].name,
-		charStyle: characterStyle[0].name,
-		charClass1: characterClass1[0].name,
-		charClass2: characterClass2[0].name,
+		charSpecies: characterSpecies[0],
+		charStyle: characterStyle[0],
+		charClass1: characterClass1[0],
+		charClass2: characterClass2[0],
 		charAbilGroups: cleanedAbilityGroups,
-		charAbilities: [speciesBonuses + characterStyle[0] + styleChoices[0].name],
+		charAbilities: [
+			speciesBonuses[0],
+			speciesBonuses[1],
+			characterStyle[0],
+			styleChoices[0],
+		],
 	};
 
 	// print modal functions
