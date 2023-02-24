@@ -88,7 +88,7 @@ const CharacterPrint = (props) => {
 									SPECIES:
 								</Text>
 								<Text fontFamily={Orbitron} fontWeight="semibold">
-									{data.charSpecies}
+									{data.charSpecies.name}
 								</Text>
 							</HStack>
 							<HStack>
@@ -100,7 +100,7 @@ const CharacterPrint = (props) => {
 									STYLE:
 								</Text>
 								<Text fontWeight="semibold" fontFamily={Orbitron}>
-									{data.charStyle}
+									{data.charStyle.name}
 								</Text>
 							</HStack>
 							<HStack>
@@ -112,7 +112,7 @@ const CharacterPrint = (props) => {
 									CLASS 1:
 								</Text>
 								<Text fontWeight="semibold" fontFamily={Orbitron}>
-									{data.charClass1}
+									{data.charClass1.name}
 								</Text>
 							</HStack>
 							<HStack>
@@ -124,7 +124,7 @@ const CharacterPrint = (props) => {
 									CLASS 2:
 								</Text>
 								<Text fontWeight="semibold" fontFamily={Orbitron}>
-									{data.charClass2}
+									{data.charClass2.name}
 								</Text>
 							</HStack>
 						</FrameHexagon>
