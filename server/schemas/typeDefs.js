@@ -6,6 +6,8 @@ const typeDefs = gql`
 		charStyle: String
 		charSpecies: String
 		charClasses: [String]
+		charStats: [String]
+		charEXP: Int!
 	}
 
 	type Character {
@@ -14,6 +16,8 @@ const typeDefs = gql`
 		charStyle: String
 		charSpecies: String
 		charClasses: [String]
+		charStats: [String]
+		charEXP: Int!
 	}
 
 	type User {
