@@ -33,6 +33,8 @@ const userSchema = new Schema({
 					type: String,
 				},
 			],
+			charEXP: { type: Number, default: 0 },
+			charStats: [{ type: String }],
 		},
 	],
 });
