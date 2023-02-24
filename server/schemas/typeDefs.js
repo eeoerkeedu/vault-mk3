@@ -6,7 +6,15 @@ const typeDefs = gql`
 		charStyle: String
 		charSpecies: String
 		charClasses: [String]
-		charStats: [String]
+		charSTR: Int
+		charPHY: Int
+		charSPD: Int
+		charAGL: Int
+		charCRD: Int
+		charMRK: Int
+		charINT: Int
+		charPER: Int
+		charESS: Int
 		charEXP: Int!
 	}
 
@@ -16,7 +24,15 @@ const typeDefs = gql`
 		charStyle: String
 		charSpecies: String
 		charClasses: [String]
-		charStats: [String]
+		charSTR: Int
+		charPHY: Int
+		charSPD: Int
+		charAGL: Int
+		charCRD: Int
+		charMRK: Int
+		charINT: Int
+		charPER: Int
+		charESS: Int
 		charEXP: Int!
 	}
 
