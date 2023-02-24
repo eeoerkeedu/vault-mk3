@@ -30,18 +30,16 @@
 					"Adept",
 					"Mage"
 				],
-				"charEXP": "0",
-				"charStats": [
-					"STR: 5",
-					"PHY: 5",
-					"SPD: 5",
-					"AGL: 5",
-					"CRD: 3",
-					"MRK: 3",
-					"INT: 4",
-					"PER: 4",
-					"ESS: 5"
-				]
+				"charEXP": 0,
+				"charSTR": 5,
+				"charPHY": 5,
+				"charSPD": 5,
+				"charAGL": 5,
+				"charCRD": 3,
+				"charMRK": 3,
+				"charINT": 4,
+				"charPER": 4,
+				"charESS": 5
 			},
 			{
 				"charName": "Lyn",
@@ -51,18 +49,16 @@
 					"Sniper",
 					"Doctor"
 				],
-				"charEXP": "0",
-				"charStats": [
-					"STR: 4",
-					"PHY: 5",
-					"SPD: 6",
-					"AGL: 6",
-					"CRD: 3",
-					"MRK: 4",
-					"INT: 3",
-					"PER: 5",
-					"ESS: 2"
-				]
+				"charEXP": 0,
+				"charSTR": 4,
+				"charPHY": 5,
+				"charSPD": 6,
+				"charAGL": 6,
+				"charCRD": 3,
+				"charMRK": 4,
+				"charINT": 3,
+				"charPER": 5,
+				"charESS": 2
 			},
 			{
 				"charName": "Brian",
@@ -72,18 +68,16 @@
 					"Runner",
 					"Face"
 				],
-				"charEXP": "0",
-				"charStats": [
-					"STR: 3",
-					"PHY: 4",
-					"SPD: 6",
-					"AGL: 5",
-					"CRD: 3",
-					"MRK: 4",
-					"INT: 5",
-					"PER: 4",
-					"ESS: 4"
-				]
+				"charEXP": 0,
+				"charSTR": 3,
+				"charPHY": 4,
+				"charSPD": 6,
+				"charAGL": 5,
+				"charCRD": 3,
+				"charMRK": 4,
+				"charINT": 5,
+				"charPER": 4,
+				"charESS": 4
 			}
 		]
 	},
