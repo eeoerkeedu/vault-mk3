@@ -31,6 +31,18 @@ const character = {
 	charSpecies: "Human",
 	charStyle: "Mystic",
 	charClasses: [],
+	charStats: {
+		STR: 4,
+		PHY: 5,
+		SPD: 5,
+		AGL: 4,
+		CRD: 3,
+		MRK: 3,
+		INT: 3,
+		PER: 4,
+		ESS: 3,
+	},
+	charEXP: 0,
 };
 
 const SavedVaultCharacters = [];
